@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>РоссияГид — Путеводитель по России</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+--n-0:#fff;--n-50:#f7f7f8;--n-100:#efeff1;--n-200:#dddde2;--n-300:#c3c3cc;
+--n-400:#9999a8;--n-500:#6e6e82;--n-600:#52525e;--n-700:#3a3a44;--n-800:#252530;--n-900:#16161e;
+--a-500:#e63030;--a-600:#c41f1f;--a-700:#9e1515;--a-50:#fff1f1;
+--surface:var(--n-0);--surface-raised:var(--n-50);--surface-hover:var(--n-100);
+--border:var(--n-200);--border-strong:var(--n-300);--text-muted:var(--n-500);
+--text-body:var(--n-800);--text-heading:var(--n-900);--accent:var(--a-500);
+--accent-hover:var(--a-600);--accent-light:var(--a-50);--accent-text:var(--a-700);
+--success:#1a7a4a;--success-bg:#e8f7ef;--warning:#b45309;--warning-bg:#fef3c7;
+--danger:#c41f1f;--danger-bg:#fff1f1;--info:#1d5fa8;--info-bg:#eff6ff;
+--shadow-sm:0 1px 2px rgba(0,0,0,.06),0 1px 4px rgba(0,0,0,.04);
+--shadow-md:0 2px 8px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+--shadow-lg:0 8px 24px rgba(0,0,0,.10),0 2px 6px rgba(0,0,0,.06);
+--shadow-xl:0 20px 48px rgba(0,0,0,.14);
+--r-sm:6px;--r-md:12px;--r-lg:18px;--r-xl:24px;--r-pill:999px;
+--font:'Inter','Segoe UI',system-ui,sans-serif;
+--sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;
+--sp-8:32px;--sp-10:40px;--sp-12:48px;--sp-16:64px;--sp-20:80px;
+--t-fast:120ms ease;--t-base:200ms ease;--t-slow:320ms ease;
+}
+[data-theme="dark"]{
+--surface:#1a1a22;--surface-raised:#22222e;--surface-hover:#2a2a38;
+--border:#32323f;--border-strong:#44445a;--text-muted:#8888a0;
+--text-body:#d4d4e8;--text-heading:#f0f0f8;--accent:#f05555;
+--accent-hover:#f07070;--accent-light:#2a1a1a;--accent-text:#ff8a8a;
+--success-bg:#12291d;--warning-bg:#2a1f0a;--danger-bg:#2a1212;--info-bg:#0f1c2e;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--surface);color:var(--text-body);
+line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:var(--accent);text-decoration:none;transition:color var(--t-fast)}
+button{cursor:pointer;font-family:var(--font)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--r-sm)}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--surface-raised)}
+::-webkit-scrollbar-thumb{background:var(--n-300);border-radius:var(--r-pill)}
+h1,h2,h3,h4{color:var(--text-heading);line-height:1.25;font-weight:700}
+h1{font-size:clamp(1.75rem,4vw,2.75rem)}
+h2{font-size:clamp(1.4rem,3vw,2rem)}
+h3{font-size:1.1rem}
+p{max-width:68ch}
+.text-muted{color:var(--text-muted);font-size:.9rem}
+.container{max-width:1280px;margin:0 auto;padding:0 var(--sp-6)}
+.flex{display:flex}.flex-col{flex-direction:column}
+.items-center{align-items:center}.justify-between{justify-content:space-between}
+.flex-wrap{flex-wrap:wrap}
+.gap-2{gap:var(--sp-2)}.gap-3{gap:var(--sp-3)}.gap-4{gap:var(--sp-4)}
+.mt-4{margin-top:var(--sp-4)}.mt-6{margin-top:var(--sp-6)}.mb-4{margin-bottom:var(--sp-4)}
+.mb-6{margin-bottom:var(--sp-6)}
+.hidden{display:none!important}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:100;background:var(--surface);
+border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm);height:64px}
+.navbar-inner{height:100%;display:flex;align-items:center;justify-content:space-between}
+.navbar-logo{display:flex;align-items:center;gap:var(--sp-3);font-size:1.2rem;
+font-weight:800;color:var(--text-heading)}
+.navbar-logo .logo-icon{font-size:1.5rem}
+.navbar-logo em{color:var(--accent);font-style:normal}
+.navbar-logo .logo-img{height:38px;width:auto;display:block}
+.navbar-logo .logo-txt{display:none}
+@media(min-width:900px){.navbar-logo .logo-txt{display:inline}}
+@media(max-width:900px){.navbar-logo .logo-img{height:34px}}
+.navbar-nav{display:flex;align-items:center;gap:var(--sp-1);list-style:none}
+.navbar-nav button{background:none;border:none;color:var(--text-body);
+padding:var(--sp-2) var(--sp-3);border-radius:var(--r-sm);font-size:.9rem;
+font-weight:500;transition:background var(--t-fast),color var(--t-fast)}
+.navbar-nav button:hover,.navbar-nav button.active{background:var(--surface-hover);color:var(--text-heading)}
+.navbar-nav button.active{color:var(--accent)}
+.navbar-actions{display:flex;align-items:center;gap:var(--sp-3)}
+.btn-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+border:none;background:transparent;color:var(--text-muted);border-radius:var(--r-sm);
+font-size:1.1rem;transition:background var(--t-fast),color var(--t-fast)}
+.btn-icon:hover{background:var(--surface-hover);color:var(--text-heading)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:var(--sp-2);padding:10px var(--sp-5);
+border:none;border-radius:var(--r-md);font-size:.9rem;font-weight:600;line-height:1;
+transition:background var(--t-fast),transform var(--t-fast);white-space:nowrap;min-height:44px}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(230,48,48,.25)}
+.btn-primary:hover{background:var(--accent-hover)}
+.btn-secondary{background:var(--surface-raised);color:var(--text-body);border:1px solid var(--border)}
+.btn-secondary:hover{background:var(--surface-hover);border-color:var(--border-strong)}
+.btn-ghost{background:transparent;color:var(--text-body)}
+.btn-ghost:hover{background:var(--surface-hover)}
+.btn-sm{padding:7px var(--sp-4);font-size:.8rem;min-height:36px}
+.btn-lg{padding:14px var(--sp-8);font-size:1rem}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;min-height:88vh;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:'';position:absolute;inset:0;
+background:linear-gradient(to bottom,rgba(0,0,0,.45) 0%,rgba(0,0,0,.75) 100%)}
+.hero-content{position:relative;z-index:2;max-width:820px;padding:var(--sp-16) 0}
+.hero-badge{display:inline-flex;align-items:center;gap:var(--sp-2);
+background:rgba(230,48,48,.18);border:1px solid rgba(230,48,48,.45);color:#ffb0b0;
+font-size:.8rem;font-weight:600;padding:var(--sp-2) var(--sp-4);border-radius:var(--r-pill);
+margin-bottom:var(--sp-6);backdrop-filter:blur(8px)}
+.hero h1{color:#fff;margin-bottom:var(--sp-5)}
+.hero h1 em{color:#ff9090;font-style:normal}
+.hero>div>div>p,.hero-lead{color:rgba(255,255,255,.82);font-size:1.15rem;margin-bottom:var(--sp-8)}
+.hero-actions{display:flex;gap:var(--sp-4);flex-wrap:wrap}
+.hero-search{background:rgba(255,255,255,.08);backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.16);border-radius:var(--r-xl);
+padding:var(--sp-5) var(--sp-6);margin-top:var(--sp-8);max-width:720px}
+.hero-search-title{color:rgba(255,255,255,.7);font-size:.75rem;font-weight:700;
+letter-spacing:.05em;text-transform:uppercase;margin-bottom:var(--sp-4)}
+.hero-search-row{display:flex;gap:var(--sp-3);flex-wrap:wrap}
+.hero-search-field{flex:1;min-width:170px;background:rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.2);border-radius:var(--r-md);color:#fff;
+font-size:.9rem;font-family:var(--font);padding:10px var(--sp-4);outline:none;min-height:44px}
+.hero-search-field:focus{border-color:rgba(255,255,255,.5)}
+.hero-search-field option{color:var(--n-900);background:var(--n-0)}
+.hero-stats{position:relative;z-index:2;padding:0 0 var(--sp-10)}
+.hero-stats-inline{display:flex;gap:var(--sp-10);flex-wrap:wrap;margin-top:var(--sp-10)}
+.hs-num{font-size:2rem;font-weight:800;color:#fff;line-height:1}
+.hs-lbl{font-size:.8rem;color:rgba(255,255,255,.62);margin-top:3px}
+@media(max-width:768px){
+  .hero-stats-inline{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);margin-top:var(--sp-6)}
+  .hs-num{font-size:1.6rem}
+}
+.hero-stats-inner{display:flex;gap:var(--sp-10);flex-wrap:wrap}
+.stat-num{font-size:2rem;font-weight:800;color:#fff;line-height:1}
+.stat-label{font-size:.8rem;color:rgba(255,255,255,.6);margin-top:2px}
+
+/* SECTIONS */
+.section{padding:var(--sp-20) 0}
+.section-alt{background:var(--surface-raised)}
+.section-header{margin-bottom:var(--sp-10)}
+.section-header h2{margin-bottom:var(--sp-3)}
+.section-header p{color:var(--text-muted)}
+.section-header-row{display:flex;align-items:flex-end;justify-content:space-between;
+gap:var(--sp-4);flex-wrap:wrap;margin-bottom:var(--sp-8)}
+
+/* REGION CARDS */
+.regions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--sp-6)}
+.region-card{border-radius:var(--r-lg);overflow:hidden;background:var(--surface-raised);
+border:1px solid var(--border);box-shadow:var(--shadow-sm);
+transition:transform var(--t-base),box-shadow var(--t-base);cursor:pointer;display:block}
+.region-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.region-card-img{position:relative;height:200px;overflow:hidden}
+.region-card-img img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-slow)}
+.region-card:hover .region-card-img img{transform:scale(1.06)}
+.region-card-badge{position:absolute;top:var(--sp-3);left:var(--sp-3);
+background:rgba(0,0,0,.6);backdrop-filter:blur(8px);color:#fff;font-size:.68rem;
+font-weight:700;letter-spacing:.04em;padding:4px var(--sp-3);border-radius:var(--r-pill);text-transform:uppercase}
+.difficulty-badge{position:absolute;top:var(--sp-3);right:var(--sp-3);font-size:.68rem;
+font-weight:700;padding:4px var(--sp-3);border-radius:var(--r-pill);text-transform:uppercase}
+.difficulty-easy{background:var(--success-bg);color:var(--success)}
+.difficulty-medium{background:var(--warning-bg);color:var(--warning)}
+.difficulty-hard{background:var(--danger-bg);color:var(--danger)}
+[data-theme="dark"] .difficulty-easy{background:rgba(26,122,74,.25);color:#5fd39a}
+[data-theme="dark"] .difficulty-medium{background:rgba(180,83,9,.25);color:#f0b455}
+[data-theme="dark"] .difficulty-hard{background:rgba(196,31,31,.25);color:#ff8080}
+.region-card-body{padding:var(--sp-5)}
+.region-card-body h3{margin-bottom:var(--sp-2);font-size:1.15rem}
+.region-card-body p{font-size:.875rem;color:var(--text-muted);max-width:none;
+display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.region-tags{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:var(--sp-3)}
+.tag{background:var(--surface-hover);border:1px solid var(--border);color:var(--text-muted);
+font-size:.7rem;font-weight:600;padding:3px var(--sp-3);border-radius:var(--r-pill)}
+.region-card-meta{display:flex;align-items:center;justify-content:space-between;
+margin-top:var(--sp-4);padding-top:var(--sp-4);border-top:1px solid var(--border);font-size:.8rem}
+.region-rating{display:flex;align-items:center;gap:4px;font-weight:700;color:var(--text-heading)}
+.star{color:#f59e0b}.region-reviews{color:var(--text-muted);font-weight:400}
+.region-season{color:var(--text-muted)}
+
+/* FILTERS */
+.filters-row{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-5)}
+.filter-chip{display:inline-flex;align-items:center;gap:var(--sp-2);
+background:var(--surface-raised);border:1px solid var(--border);color:var(--text-body);
+font-size:.85rem;font-weight:500;padding:7px var(--sp-4);border-radius:var(--r-pill);
+transition:all var(--t-fast);min-height:36px}
+.filter-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light)}
+.filter-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* SEARCH */
+.search-wrapper{position:relative;flex:1;min-width:260px}
+.search-bar{display:flex;gap:var(--sp-3);align-items:center;background:var(--surface-raised);
+border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-4);
+box-shadow:var(--shadow-sm)}
+.search-bar:focus-within{box-shadow:var(--shadow-md);border-color:var(--accent)}
+.search-bar input{flex:1;border:none;background:transparent;color:var(--text-body);
+font-size:.95rem;font-family:var(--font);outline:none}
+.search-icon{color:var(--text-muted);font-size:1.1rem}
+.search-dropdown{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:50;
+background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+box-shadow:var(--shadow-lg);overflow:hidden;max-height:400px;overflow-y:auto}
+.search-result-item{display:flex;gap:var(--sp-3);align-items:center;padding:var(--sp-3) var(--sp-4);
+cursor:pointer;transition:background var(--t-fast)}
+.search-result-item:hover{background:var(--surface-hover)}
+.search-result-img{width:48px;height:48px;border-radius:var(--r-sm);object-fit:cover;flex-shrink:0}
+.search-result-info h4{font-size:.9rem;margin-bottom:2px}
+.search-result-info p{font-size:.75rem;color:var(--text-muted);margin:0}
+.search-result-type{margin-left:auto;font-size:.68rem;font-weight:700;
+text-transform:uppercase;color:var(--accent);flex-shrink:0}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);
+backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;
+padding:var(--sp-6);overflow-y:auto;opacity:0;pointer-events:none;transition:opacity var(--t-base)}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--surface);border-radius:var(--r-xl);border:1px solid var(--border);
+box-shadow:var(--shadow-xl);width:100%;max-width:880px;margin:auto;
+transform:translateY(20px);transition:transform var(--t-base)}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-hero{position:relative;height:340px;border-radius:var(--r-xl) var(--r-xl) 0 0;overflow:hidden}
+.modal-hero img{width:100%;height:100%;object-fit:cover}
+.modal-hero-overlay{position:absolute;inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 55%)}
+.modal-hero-content{position:absolute;bottom:var(--sp-6);left:var(--sp-6);right:var(--sp-6)}
+.modal-hero-content h2{color:#fff;font-size:1.75rem}
+.modal-close{position:absolute;top:var(--sp-4);right:var(--sp-4);width:40px;height:40px;
+background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border:none;border-radius:50%;
+color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:rgba(0,0,0,.8)}
+.modal-body{padding:var(--sp-6)}
+.modal-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:var(--sp-6);
+overflow-x:auto}
+.modal-tab{padding:var(--sp-3) var(--sp-5);background:none;border:none;
+color:var(--text-muted);font-size:.875rem;font-weight:600;
+border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;
+transition:color var(--t-fast),border-color var(--t-fast)}
+.modal-tab:hover{color:var(--text-heading)}
+.modal-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* ROAD CARD */
+.road-card{border-radius:var(--r-md);padding:var(--sp-5);display:flex;gap:var(--sp-4);
+align-items:flex-start;margin-bottom:var(--sp-5)}
+.road-card.paved{background:var(--success-bg);border:1px solid rgba(26,122,74,.3)}
+.road-card.mixed{background:var(--warning-bg);border:1px solid rgba(180,83,9,.3)}
+.road-card.offroad{background:var(--danger-bg);border:1px solid rgba(196,31,31,.3)}
+.road-card.boat{background:var(--info-bg);border:1px solid rgba(29,95,168,.3)}
+.road-card.helicopter{background:#f5f0ff;border:1px solid #ddd0ff}
+[data-theme="dark"] .road-card.helicopter{background:#1e1530;border-color:#3d2a5c}
+.road-icon{font-size:2rem;flex-shrink:0;line-height:1}
+.road-info h4{font-size:1rem;margin-bottom:var(--sp-2)}
+.road-info p{font-size:.875rem;color:var(--text-muted);margin:0;max-width:none}
+.road-pill{display:inline-flex;align-items:center;gap:var(--sp-2);font-size:.72rem;
+font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:4px var(--sp-3);border-radius:var(--r-pill)}
+.road-pill.paved{background:var(--success-bg);color:var(--success)}
+.road-pill.mixed{background:var(--warning-bg);color:var(--warning)}
+.road-pill.offroad{background:var(--danger-bg);color:var(--danger)}
+.road-pill.boat{background:var(--info-bg);color:var(--info)}
+.road-pill.helicopter{background:#f5f0ff;color:#7c3aed}
+[data-theme="dark"] .road-pill.helicopter{background:#241a38;color:#b794f6}
+.road-pill.urban{background:var(--surface-hover);color:var(--text-muted)}
+
+/* TRANSPORT */
+.transport-options{display:flex;flex-direction:column;gap:var(--sp-4)}
+.transport-option{display:flex;gap:var(--sp-4);padding:var(--sp-4);
+background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--r-md)}
+.transport-icon{font-size:1.5rem;flex-shrink:0}
+.transport-body h4{font-size:.9rem;margin-bottom:var(--sp-1)}
+.transport-body p{font-size:.875rem;color:var(--text-muted);margin:0;max-width:none}
+
+/* STAY & FOOD */
+.stay-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--sp-4)}
+.stay-card{background:var(--surface-raised);border:1px solid var(--border);
+border-radius:var(--r-md);padding:var(--sp-4)}
+.stay-type{font-size:.68rem;font-weight:700;text-transform:uppercase;
+letter-spacing:.05em;color:var(--accent);margin-bottom:var(--sp-2)}
+.stay-card h4{font-size:.95rem;margin-bottom:var(--sp-2)}
+.stay-price{font-weight:700;color:var(--success);font-size:.9rem}
+.food-list{display:flex;flex-direction:column;gap:var(--sp-3)}
+.food-card{display:flex;align-items:center;justify-content:space-between;
+padding:var(--sp-4);background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--r-md)}
+.food-info h4{font-size:.95rem;margin-bottom:2px}
+.food-info p{font-size:.8rem;color:var(--text-muted);margin:0}
+.food-price{font-weight:700;font-size:.9rem;text-align:right}
+
+/* REVIEWS */
+.review-card{background:var(--surface-raised);border:1px solid var(--border);
+border-radius:var(--r-md);padding:var(--sp-5);margin-bottom:var(--sp-4)}
+.review-header{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3)}
+.review-avatar{width:42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;
+display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}
+.review-meta h4{font-size:.9rem;margin-bottom:2px}
+.review-meta p{font-size:.75rem;color:var(--text-muted);margin:0}
+.review-text{font-size:.875rem;line-height:1.6;margin:0;max-width:none}
+.review-photos{display:flex;gap:var(--sp-2);margin-top:var(--sp-4);flex-wrap:wrap}
+.review-photo{width:80px;height:60px;border-radius:var(--r-sm);overflow:hidden}
+.review-photo img{width:100%;height:100%;object-fit:cover}
+
+/* FORM */
+.form-group{margin-bottom:var(--sp-5)}
+.form-label{display:block;font-weight:600;font-size:.875rem;margin-bottom:var(--sp-2);color:var(--text-heading)}
+.form-input,.form-select,.form-textarea{width:100%;padding:10px var(--sp-4);
+background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
+color:var(--text-body);font-size:.9rem;font-family:var(--font);min-height:44px}
+.form-textarea{resize:vertical;min-height:100px}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;
+border-color:var(--accent);box-shadow:0 0 0 3px rgba(230,48,48,.15)}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--sp-5)}
+.feature-card{background:var(--surface-raised);border:1px solid var(--border);
+border-radius:var(--r-lg);padding:var(--sp-6);transition:box-shadow var(--t-base),transform var(--t-base)}
+.feature-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.feature-icon{font-size:2rem;margin-bottom:var(--sp-4);width:52px;height:52px;
+background:var(--accent-light);border-radius:var(--r-md);display:flex;
+align-items:center;justify-content:center}
+.feature-card h3{font-size:1rem;margin-bottom:var(--sp-2)}
+.feature-card p{font-size:.875rem;color:var(--text-muted);max-width:none}
+
+/* PLANNER */
+.trip-planner-strip{background:linear-gradient(135deg,#0d0d1a 0%,#1a0820 100%);
+padding:var(--sp-16) 0;position:relative;overflow:hidden}
+.trip-planner-strip::before{content:'';position:absolute;inset:0;
+background:radial-gradient(ellipse at 70% 50%,rgba(230,48,48,.18) 0%,transparent 60%)}
+.trip-planner-strip .container{position:relative;z-index:1}
+.trip-planner-strip h2{color:#fff}
+.trip-planner-strip p{color:rgba(255,255,255,.7)}
+.planner-form{background:rgba(255,255,255,.07);backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.14);border-radius:var(--r-xl);padding:var(--sp-6);margin-top:var(--sp-8)}
+.planner-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+gap:var(--sp-4);margin-bottom:var(--sp-5)}
+.planner-field label{display:block;color:rgba(255,255,255,.65);font-size:.72rem;
+font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:var(--sp-2)}
+.planner-field input,.planner-field select{width:100%;background:rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.18);border-radius:var(--r-md);color:#fff;
+font-size:.9rem;font-family:var(--font);padding:10px var(--sp-4);min-height:44px;outline:none}
+.planner-field input::placeholder{color:rgba(255,255,255,.4)}
+.planner-field select option{color:var(--n-900);background:var(--n-0)}
+.route-result{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+border-radius:var(--r-lg);padding:var(--sp-5);margin-top:var(--sp-5)}
+.route-result h4{color:#fff;margin-bottom:var(--sp-4)}
+.route-step-item{display:flex;gap:var(--sp-3);align-items:flex-start;padding:var(--sp-3) 0;
+border-bottom:1px solid rgba(255,255,255,.08)}
+.route-step-item:last-child{border-bottom:none}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;
+display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
+.step-text{color:rgba(255,255,255,.85);font-size:.875rem}
+.step-text strong{color:#fff}
+.step-cost{margin-left:auto;flex-shrink:0;background:rgba(26,122,74,.3);color:#5fd39a;
+font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:var(--r-pill);white-space:nowrap}
+
+/* THEME TOGGLE POSITION */
+.navbar-actions{position:relative}
+
+/* TOAST */
+.toast-container{position:fixed;bottom:var(--sp-6);right:var(--sp-6);z-index:1000;
+display:flex;flex-direction:column;gap:var(--sp-3);pointer-events:none}
+.toast{background:var(--n-900);color:#fff;padding:var(--sp-3) var(--sp-5);
+border-radius:var(--r-md);font-size:.875rem;box-shadow:var(--shadow-lg);
+display:flex;align-items:center;gap:var(--sp-3);transform:translateX(120%);
+transition:transform var(--t-base);max-width:340px}
+.toast.show{transform:translateX(0)}
+.toast-success{border-left:3px solid #4ade80}
+.toast-error{border-left:3px solid #f87171}
+
+
+/* ================= СТРАНИЦА МЕСТА (полноэкранная) ================= */
+.pd-wrap{position:fixed;inset:0;z-index:300;background:var(--surface);
+overflow-y:auto;overscroll-behavior:contain;
+opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s}
+.pd-wrap.open{opacity:1;visibility:visible}
+.pd-topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:var(--sp-3);
+padding:var(--sp-3) var(--sp-4);background:rgba(255,255,255,.82);
+backdrop-filter:blur(14px) saturate(160%);
+-webkit-backdrop-filter:blur(14px) saturate(160%);
+border-bottom:1px solid var(--border)}
+[data-theme="dark"] .pd-topbar{background:rgba(26,26,34,.82)}
+.pd-back{display:inline-flex;align-items:center;gap:6px;background:none;border:none;
+color:var(--text-body);font-size:.875rem;font-weight:600;padding:8px 10px;
+border-radius:var(--r-sm);transition:background var(--t-fast)}
+.pd-back:hover{background:var(--surface-hover)}
+.pd-crumb{font-size:.78rem;color:var(--text-muted);white-space:nowrap;
+overflow:hidden;text-overflow:ellipsis}
+.pd-hero{position:relative;height:clamp(240px,38vh,400px);overflow:hidden}
+.pd-hero img{width:100%;height:100%;object-fit:cover}
+.pd-hero::after{content:'';position:absolute;inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.15) 55%,transparent 100%)}
+.pd-hero-txt{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:var(--sp-6)}
+.pd-hero-txt .pd-cat{display:inline-block;font-size:.68rem;font-weight:700;
+letter-spacing:.06em;text-transform:uppercase;color:#fff;
+background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);
+padding:4px 10px;border-radius:var(--r-pill);margin-bottom:10px;
+backdrop-filter:blur(6px)}
+.pd-hero-txt h1{color:#fff;font-size:clamp(1.5rem,4.5vw,2.4rem);line-height:1.15;
+text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.pd-hero-meta{display:flex;gap:var(--sp-4);flex-wrap:wrap;margin-top:10px;
+color:rgba(255,255,255,.9);font-size:.82rem}
+.pd-body{max-width:820px;margin:0 auto;padding:var(--sp-8) var(--sp-5) 120px}
+.pd-lead{font-size:1.02rem;line-height:1.75;color:var(--text-body);margin-bottom:var(--sp-8)}
+.pd-block{margin-bottom:var(--sp-8)}
+.pd-block h2{font-size:1.1rem;margin-bottom:var(--sp-4);
+display:flex;align-items:center;gap:8px}
+.pd-card{background:var(--surface-raised);border:1px solid var(--border);
+border-radius:var(--r-lg);padding:var(--sp-5);margin-bottom:var(--sp-3)}
+.pd-card h3{font-size:.9rem;margin-bottom:6px}
+.pd-card p{font-size:.875rem;color:var(--text-muted);margin:0;max-width:none;line-height:1.65}
+.pd-badge{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;
+font-weight:700;padding:4px 11px;border-radius:var(--r-pill);white-space:nowrap}
+.pd-warn{background:var(--warning-bg);border:1px solid rgba(180,83,9,.35);
+color:var(--warning);border-radius:var(--r-lg);padding:var(--sp-4);
+font-size:.85rem;font-weight:600;display:flex;gap:10px;align-items:flex-start;
+margin-bottom:var(--sp-6)}
+.pd-warn.danger{background:var(--danger-bg);border-color:rgba(196,31,31,.35);color:var(--danger)}
+.pd-warn.success{background:var(--success-bg);border-color:rgba(26,122,74,.35);color:var(--success)}
+.pd-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--sp-3)}
+.pd-mini{background:var(--surface-raised);border:1px solid var(--border);
+border-radius:var(--r-md);padding:var(--sp-4)}
+.pd-mini .k{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;
+color:var(--text-muted);font-weight:700;margin-bottom:4px}
+.pd-mini .v{font-size:.95rem;font-weight:700;color:var(--text-heading)}
+.pd-cta{position:fixed;left:0;right:0;bottom:0;z-index:320;display:flex;gap:var(--sp-3);
+padding:var(--sp-3) var(--sp-4);
+padding-bottom:calc(var(--sp-3) + env(safe-area-inset-bottom));
+background:rgba(255,255,255,.92);border-top:1px solid var(--border);
+backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+[data-theme="dark"] .pd-cta{background:rgba(26,26,34,.92)}
+.pd-cta .btn{flex:1;justify-content:center}
+.pd-near{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:var(--sp-3)}
+.pd-near-card{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;
+cursor:pointer;background:var(--surface-raised);transition:transform var(--t-fast),box-shadow var(--t-fast)}
+.pd-near-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.pd-near-card img{width:100%;height:100px;object-fit:cover}
+.pd-near-card span{display:block;padding:10px;font-size:.8rem;font-weight:600;color:var(--text-heading)}
+
+/* ================= МОБИЛЬНАЯ НИЖНЯЯ НАВИГАЦИЯ ================= */
+.mob-nav{display:none;position:fixed;left:0;right:0;bottom:0;z-index:90;
+background:rgba(255,255,255,.94);border-top:1px solid var(--border);
+backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+padding-bottom:env(safe-area-inset-bottom)}
+[data-theme="dark"] .mob-nav{background:rgba(26,26,34,.94)}
+.mob-nav-inner{display:grid;grid-template-columns:repeat(5,1fr);max-width:520px;margin:0 auto}
+.mob-nav button{display:flex;flex-direction:column;align-items:center;gap:3px;
+background:none;border:none;padding:9px 2px 7px;color:var(--text-muted);
+font-size:.62rem;font-weight:600;transition:color var(--t-fast)}
+.mob-nav button .ic{font-size:1.22rem;line-height:1}
+.mob-nav button.active{color:var(--accent)}
+
+@media(max-width:768px){
+  .mob-nav{display:block}
+  body{padding-bottom:64px}
+  .filters-row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .filters-row::-webkit-scrollbar{display:none}
+  .filter-chip{flex:0 0 auto}
+  .section{padding:var(--sp-10) 0}
+  .hero-content{padding:var(--sp-8) 0}
+  .hero-stats-inner{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5)}
+  .stat-num{font-size:1.6rem}
+  .pd-body{padding:var(--sp-6) var(--sp-4) 130px}
+  .modal{max-width:100%}
+  .pd-cta .btn{font-size:.82rem;padding:10px}
+}
+@media(max-width:420px){
+  .navbar-logo span:not(.logo-icon){font-size:1rem}
+  .btn-lg{padding:12px var(--sp-4);font-size:.9rem}
+}
+
+/* FOOTER */
+.footer{background:var(--n-900);color:rgba(255,255,255,.7);padding:var(--sp-16) 0 var(--sp-8)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--sp-8);margin-bottom:var(--sp-10)}
+.footer-logo{font-size:1.2rem;font-weight:800;color:#fff;display:flex;align-items:center;gap:var(--sp-3)}
+.footer-brand p{font-size:.875rem;margin-top:var(--sp-4);color:rgba(255,255,255,.5);max-width:none}
+.footer-col h4{color:#fff;font-size:.875rem;margin-bottom:var(--sp-5)}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:var(--sp-3)}
+.footer-col ul a,.footer-col ul button{color:rgba(255,255,255,.55);font-size:.875rem;
+background:none;border:none;text-align:left;padding:0;transition:color var(--t-fast)}
+.footer-col ul a:hover,.footer-col ul button:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:var(--sp-8);
+display:flex;align-items:center;justify-content:space-between;font-size:.8rem;
+color:rgba(255,255,255,.4);flex-wrap:wrap;gap:var(--sp-4)}
+
+/* ATTRACTION LIST */
+.attraction-card{display:grid;grid-template-columns:280px 1fr;border:1px solid var(--border);
+border-radius:var(--r-lg);overflow:hidden;background:var(--surface-raised);
+box-shadow:var(--shadow-sm);transition:box-shadow var(--t-base),transform var(--t-base);
+cursor:pointer;margin-bottom:var(--sp-6)}
+.attraction-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.attraction-img{height:220px;overflow:hidden}
+.attraction-img img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-slow)}
+.attraction-card:hover .attraction-img img{transform:scale(1.05)}
+.attraction-body{padding:var(--sp-6);display:flex;flex-direction:column}
+.attraction-body h3{margin-bottom:var(--sp-3)}
+.attraction-body>p{color:var(--text-muted);font-size:.9rem;flex:1;margin:0;max-width:none}
+.attraction-footer{margin-top:var(--sp-5);padding-top:var(--sp-4);border-top:1px solid var(--border);
+display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3)}
+
+/* REGION DETAIL */
+.region-hero{position:relative;height:60vh;min-height:420px;display:flex;align-items:flex-end;overflow:hidden}
+.region-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.region-hero-overlay{position:absolute;inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.25) 60%,transparent 100%)}
+.region-hero-content{position:relative;z-index:1;padding:var(--sp-10) 0;width:100%}
+.region-hero-content h1{color:#fff;margin-bottom:var(--sp-3)}
+.region-hero-content p{color:rgba(255,255,255,.85);font-size:1.1rem}
+.region-meta-bar{display:flex;gap:var(--sp-6);flex-wrap:wrap;margin-top:var(--sp-6)}
+.region-meta-item{display:flex;align-items:center;gap:var(--sp-2);
+color:rgba(255,255,255,.9);font-size:.875rem}
+.detail-bar{position:sticky;top:0;z-index:10;background:var(--surface);
+border-bottom:1px solid var(--border);padding:var(--sp-3) 0}
+
+/* AUTH TABS */
+.auth-tabs{display:flex;margin-bottom:var(--sp-6);border-bottom:1px solid var(--border)}
+.auth-tab{flex:1;padding:var(--sp-3);text-align:center;background:none;border:none;
+font-weight:600;font-size:.9rem;color:var(--text-muted);border-bottom:2px solid transparent;
+margin-bottom:-1px;transition:color var(--t-fast),border-color var(--t-fast)}
+.auth-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.travel-mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3)}
+.travel-mode-card{border:2px solid var(--border);border-radius:var(--r-md);
+padding:var(--sp-5) var(--sp-4);text-align:center;cursor:pointer;background:var(--surface-raised);
+transition:all var(--t-fast)}
+.travel-mode-card:hover{border-color:var(--accent)}
+.travel-mode-card.active{border-color:var(--accent);background:var(--accent-light)}
+.travel-mode-icon{font-size:2rem;display:block;margin-bottom:var(--sp-2)}
+.travel-mode-label{font-weight:600;font-size:.875rem;color:var(--text-heading)}
+.travel-mode-sub{font-size:.72rem;color:var(--text-muted);margin-top:2px}
+.star-rating{display:flex;gap:var(--sp-1);flex-direction:row-reverse;justify-content:flex-end}
+.star-rating input{display:none}
+.star-rating label{font-size:1.6rem;color:var(--n-300);cursor:pointer;transition:color var(--t-fast)}
+.star-rating label:hover,.star-rating label:hover~label,.star-rating input:checked~label{color:#f59e0b}
+
+@media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr}
+.attraction-card{grid-template-columns:220px 1fr}}
+@media(max-width:768px){
+.navbar-nav{display:none}
+.attraction-card{grid-template-columns:1fr}
+.attraction-img{height:200px}
+.hero{min-height:auto;padding:var(--sp-10) 0}
+.hero-stats-inner{gap:var(--sp-6)}
+.footer-grid{grid-template-columns:1fr}
+.modal-hero{height:240px}
+.modal-overlay{padding:var(--sp-3)}
+.hero-search-row{flex-direction:column}
+.travel-mode-grid{grid-template-columns:1fr}
+.regions-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{
+transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/fav-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/fav-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/brand/fav-180.png">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a class="navbar-logo" href="#" onclick="showPage('home');return false" aria-label="РоссияГид — на главную">
+      <img src="images/brand/logo-mark.png" alt="РоссияГид" class="logo-img">
+    </a>
+    <ul class="navbar-nav" id="mainNav">
+      <li><button data-page="home" class="active" onclick="showPage('home')">Главная</button></li>
+      <li><button data-page="regions" onclick="showPage('regions')">Регионы</button></li>
+      <li><button data-page="routes" onclick="showPage('routes')">Маршруты</button></li>
+      <li><button data-page="planner" onclick="showPage('planner')">Планировщик</button></li>
+      <li><button data-page="community" onclick="showPage('community')">Сообщество</button></li>
+    </ul>
+    <div class="navbar-actions">
+      <button class="btn-icon" onclick="openSearch()" title="Поиск">🔍</button>
+      <button class="btn-icon" id="themeToggle" onclick="toggleTheme()" title="Сменить тему">🌙</button>
+      <button class="btn btn-secondary btn-sm" onclick="openModal('authModal')">Войти</button>
+      <button class="btn btn-primary btn-sm" onclick="openModal('authModal')">Зарегистрироваться</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ГЛАВНАЯ -->
+<div id="page-home">
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="images/hero_sobor.jpg" alt="Собор Василия Блаженного, Москва">
+    </div>
+    <div class="container" style="position:relative;z-index:2;width:100%">
+      <div class="hero-content">
+        <div class="hero-badge">🌟 Более 1 200 достопримечательностей по всей России</div>
+        <h1>Открой <em>настоящую</em><br>Россию своими глазами</h1>
+        <p class="hero-lead">Полный путеводитель для самостоятельных путешественников. Маршруты, дороги, жильё и еда — всё в одном месте.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" onclick="showPage('regions')">🗺️ Выбрать регион</button>
+          <button class="btn btn-lg btn-secondary" onclick="showPage('planner')">🚗 Спланировать поездку</button>
+        </div>
+        <div class="hero-search">
+          <div class="hero-search-title">🔎 Быстрый поиск</div>
+          <div class="hero-search-row">
+            <select class="hero-search-field" id="heroRegion"><option value="">📍 Выберите регион...</option></select>
+            <select class="hero-search-field" id="heroTransport">
+              <option value="">🚗 Тип транспорта</option>
+              <option value="car_sedan">🚗 Легковой автомобиль</option>
+              <option value="car_suv">🚙 Внедорожник</option>
+              <option value="public">🚆 Без машины</option>
+            </select>
+            <button class="btn btn-primary" onclick="quickSearch()">Найти →</button>
+          </div>
+        </div>
+        <div class="hero-stats-inline">
+          <div class="hs-item"><div class="hs-num" id="statRegions">0</div><div class="hs-lbl">Регионов России</div></div>
+          <div class="hs-item"><div class="hs-num" id="statPlaces">0</div><div class="hs-lbl">Достопримечательностей</div></div>
+          <div class="hs-item"><div class="hs-num">320+</div><div class="hs-lbl">Готовых маршрутов</div></div>
+          <div class="hs-item"><div class="hs-num">48 000+</div><div class="hs-lbl">Отзывов путешественников</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Возможности сервиса">
+    <div class="container">
+      <div class="section-header" style="text-align:center;max-width:620px;margin:0 auto var(--sp-10)">
+        <h2>Всё для самостоятельного путешествия</h2>
+        <p>Один сервис вместо десяти вкладок в браузере</p>
+      </div>
+      <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🛣️</div>
+        <h3>Тип дороги и проходимость</h3>
+        <p>Узнайте заранее — асфальт или грунтовка, нужен ли полный привод, закрыта ли дорога зимой.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧭</div>
+        <h3>Маршруты для авто</h3>
+        <p>Пошаговый маршрут с учётом вашего города отправления и типа транспорта.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✈️</div>
+        <h3>Как добраться своим ходом</h3>
+        <p>Куда лететь, откуда ехать, стоимость трансфера и такси — всё в одном месте.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏠</div>
+        <h3>Жильё рядом</h3>
+        <p>Отели, гостевые дома, глэмпинг и квартиры — выбор рядом с каждой локацией.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🍽️</div>
+        <h3>Где поесть</h3>
+        <p>Кафе и рестораны с отзывами путешественников, средним чеком и кухней.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📸</div>
+        <h3>Живые отзывы и фото</h3>
+        <p>Реальные фотографии и комментарии от туристов, побывавших там совсем недавно.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Офлайн-карты (Premium)</h3>
+        <p>Скачайте карты региона заранее — работайте без интернета в горах и тайге.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👤</div>
+        <h3>Ваш профиль путешественника</h3>
+        <p>Укажите ваш автомобиль и город — маршруты и советы будут подобраны именно для вас.</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header-row">
+        <div><h2>Популярные регионы</h2><p class="text-muted">Выберите направление</p></div>
+        <button class="btn btn-secondary" onclick="showPage('regions')">Все регионы →</button>
+      </div>
+      <div class="filters-row" id="homeFilters"></div>
+      <div class="regions-grid mt-6" id="homeGrid"></div>
+    </div>
+  </section>
+
+  <section class="trip-planner-strip">
+    <div class="container">
+      <div style="max-width:760px">
+        <h2>Спланируй поездку прямо сейчас</h2>
+        <p class="mt-4">Укажи откуда едешь и на чём — получи готовый маршрут с примерной стоимостью.</p>
+        <div class="planner-form">
+          <div class="planner-row">
+            <div class="planner-field"><label>Откуда</label><input type="text" id="fromCity" value="Москва"></div>
+            <div class="planner-field"><label>Куда</label><select id="toRegion"><option value="">Выбрать регион</option></select></div>
+            <div class="planner-field"><label>Транспорт</label>
+              <select id="travelMode">
+                <option value="car_sedan">🚗 Легковой автомобиль</option>
+                <option value="car_suv">🚙 Внедорожник (4x4)</option>
+                <option value="public">🚆 Без машины</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="buildRoute()">🗺️ Построить маршрут</button>
+          <div id="routeResult" class="route-result" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header-row"><div><h2>Лучшие места</h2><p class="text-muted">По оценкам путешественников</p></div></div>
+      <div class="regions-grid" id="topPlaces"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header-row">
+        <div><h2>Свежие отзывы</h2><p class="text-muted">Реальные истории от людей, которые были там</p></div>
+        <button class="btn btn-secondary" onclick="openModal('reviewModal')">✍️ Написать отзыв</button>
+      </div>
+      <div id="reviewsContainer"></div>
+    </div>
+  </section>
+</div>
+
+<!-- РЕГИОНЫ -->
+<div id="page-regions" style="display:none">
+  <section class="section">
+    <div class="container">
+      <h1 style="margin-bottom:var(--sp-3)">Все регионы России</h1>
+      <p class="text-muted" style="margin-bottom:var(--sp-6)">От Калининграда до Камчатки — выбери своё направление</p>
+      <div class="search-wrapper" style="max-width:600px">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="regionSearch" placeholder="Поиск по регионам..." oninput="filterRegions()">
+        </div>
+      </div>
+      <div class="filters-row" id="allFilters"></div>
+      <div class="regions-grid mt-6" id="allGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- МАРШРУТЫ -->
+<div id="page-routes" style="display:none">
+  <section class="section">
+    <div class="container">
+      <h1 style="margin-bottom:var(--sp-3)">Готовые маршруты</h1>
+      <p class="text-muted" style="margin-bottom:var(--sp-6)">Проверенные маршруты для самостоятельных путешествий</p>
+      <div class="filters-row" id="routeFilters"></div>
+      <div class="regions-grid mt-6" id="routesGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ПЛАНИРОВЩИК -->
+<div id="page-planner" style="display:none">
+  <section class="section">
+    <div class="container" style="max-width:760px">
+      <h1 style="margin-bottom:var(--sp-6)">Планировщик маршрута</h1>
+      <div style="background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-8)">
+        <div class="form-group"><label class="form-label">Откуда едете</label>
+          <input type="text" id="pFrom" class="form-input" value="Москва"></div>
+        <div class="form-group"><label class="form-label">Куда</label>
+          <select id="pTo" class="form-select"><option value="">Выберите регион</option></select></div>
+        <div class="form-group"><label class="form-label">Транспорт</label>
+          <select id="pMode" class="form-select">
+            <option value="car_sedan">🚗 Легковой автомобиль</option>
+            <option value="car_suv">🚙 Внедорожник (4x4)</option>
+            <option value="public">🚆 Без машины</option>
+          </select></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="buildPlan()">✨ Составить маршрут</button>
+        <div id="planResult" class="mt-6"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- СООБЩЕСТВО -->
+<div id="page-community" style="display:none">
+  <section class="section">
+    <div class="container">
+      <h1 style="margin-bottom:var(--sp-6)">Сообщество путешественников</h1>
+      <div style="background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-6)">
+        <div class="form-group"><label class="form-label">Поделитесь своей поездкой</label>
+          <textarea class="form-textarea" id="postText" placeholder="Где были? Что впечатлило?"></textarea></div>
+        <button class="btn btn-primary" onclick="publishPost()">Опубликовать</button>
+      </div>
+      <div id="feedContainer" class="mt-6"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ПОИСК -->
+<div id="searchOverlay" style="display:none;position:fixed;inset:0;z-index:180;
+background:rgba(0,0,0,.65);backdrop-filter:blur(4px)" onclick="if(event.target===this)closeSearch()">
+  <div style="max-width:640px;margin:80px auto 0;padding:0 var(--sp-4)">
+    <div class="search-wrapper">
+      <div class="search-bar" style="padding:var(--sp-4) var(--sp-5)">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="globalSearch" placeholder="Поиск по регионам и местам..." oninput="doSearch(this.value)">
+        <button class="btn-icon" onclick="closeSearch()">✕</button>
+      </div>
+      <div class="search-dropdown" id="searchResults" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- МОДАЛКА МЕСТА -->
+<div class="modal-overlay" id="placeModal" onclick="if(event.target===this)closeModal('placeModal')">
+  <div class="modal" id="placeModalContent"></div>
+</div>
+
+<!-- МОДАЛКА АВТОРИЗАЦИИ -->
+<div class="modal-overlay" id="authModal" onclick="if(event.target===this)closeModal('authModal')">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-body" style="padding:var(--sp-8)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-6)">
+        <h3>Добро пожаловать</h3>
+        <button class="btn-icon" onclick="closeModal('authModal')">✕</button>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuth('login',this)">Войти</button>
+        <button class="auth-tab" onclick="switchAuth('register',this)">Регистрация</button>
+      </div>
+      <div id="loginForm">
+        <div class="form-group"><label class="form-label">Email</label>
+          <input type="email" id="loginEmail" class="form-input" placeholder="your@email.ru"></div>
+        <div class="form-group"><label class="form-label">Пароль</label>
+          <input type="password" id="loginPass" class="form-input" placeholder="••••••••"></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="doLogin()">Войти</button>
+      </div>
+      <div id="registerForm" class="hidden">
+        <div class="form-group"><label class="form-label">Имя</label>
+          <input type="text" id="regName" class="form-input" placeholder="Алексей"></div>
+        <div class="form-group"><label class="form-label">Ваш город</label>
+          <input type="text" id="regCity" class="form-input" placeholder="Москва"></div>
+        <div class="form-group"><label class="form-label">Email</label>
+          <input type="email" id="regEmail" class="form-input" placeholder="your@email.ru"></div>
+        <div class="form-group"><label class="form-label">Тип путешественника</label>
+          <div class="travel-mode-grid">
+            <div class="travel-mode-card active" onclick="pickMode(this,'car_sedan')">
+              <span class="travel-mode-icon">🚗</span><span class="travel-mode-label">Легковой</span>
+              <span class="travel-mode-sub">Седан</span></div>
+            <div class="travel-mode-card" onclick="pickMode(this,'car_suv')">
+              <span class="travel-mode-icon">🚙</span><span class="travel-mode-label">Внедорожник</span>
+              <span class="travel-mode-sub">4x4</span></div>
+            <div class="travel-mode-card" onclick="pickMode(this,'public')">
+              <span class="travel-mode-icon">🚆</span><span class="travel-mode-label">Без машины</span>
+              <span class="travel-mode-sub">Транспорт</span></div>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="doRegister()">Создать аккаунт</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- МОДАЛКА ОТЗЫВА -->
+<div class="modal-overlay" id="reviewModal" onclick="if(event.target===this)closeModal('reviewModal')">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-body" style="padding:var(--sp-8)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-6)">
+        <h3>✍️ Написать отзыв</h3>
+        <button class="btn-icon" onclick="closeModal('reviewModal')">✕</button>
+      </div>
+      <div class="form-group"><label class="form-label">Место</label>
+        <select id="reviewPlace" class="form-select"><option value="">Выберите место...</option></select></div>
+      <div class="form-group"><label class="form-label">Оценка</label>
+        <div class="star-rating">
+          <input type="radio" id="s5" name="rr" value="5"><label for="s5">★</label>
+          <input type="radio" id="s4" name="rr" value="4"><label for="s4">★</label>
+          <input type="radio" id="s3" name="rr" value="3"><label for="s3">★</label>
+          <input type="radio" id="s2" name="rr" value="2"><label for="s2">★</label>
+          <input type="radio" id="s1" name="rr" value="1"><label for="s1">★</label>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">Ваш отзыв</label>
+        <textarea id="reviewText" class="form-textarea" placeholder="Расскажите о поездке..."></textarea></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitReview()">Опубликовать</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">🗺️ Россия<span style="color:var(--accent)">Гид</span></div>
+        <p>Полный туристический путеводитель по России для самостоятельных путешественников.</p>
+      </div>
+      <div class="footer-col"><h4>Направления</h4><ul>
+        <li><button onclick="openRegion('altai')">Алтай</button></li>
+        <li><button onclick="openRegion('kbr')">Кабардино-Балкария</button></li>
+        <li><button onclick="openRegion('kchr')">Карачаево-Черкесия</button></li>
+        <li><button onclick="openRegion('chechnya')">Чечня</button></li>
+        <li><button onclick="openRegion('ossetia')">Северная Осетия</button></li>
+        <li><button onclick="openRegion('dagestan')">Дагестан</button></li>
+      </ul></div>
+      <div class="footer-col"><h4>Сервисы</h4><ul>
+        <li><button onclick="showPage('routes')">Маршруты</button></li>
+        <li><button onclick="showPage('planner')">Планировщик</button></li>
+        <li><button onclick="showPage('community')">Сообщество</button></li>
+      </ul></div>
+      <div class="footer-col"><h4>О проекте</h4><ul>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Добавить место</a></li>
+        <li><a href="#">Контакты</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 РоссияГид</span>
+      <span>Политика конфиденциальности</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Полноэкранная страница места -->
+<div class="pd-wrap" id="placeDetail"></div>
+
+<!-- Мобильная нижняя навигация -->
+<nav class="mob-nav" aria-label="Мобильная навигация">
+  <div class="mob-nav-inner">
+    <button data-mob="home" onclick="showPage('home')"><span class="ic">🏠</span>Главная</button>
+    <button data-mob="regions" onclick="showPage('regions')"><span class="ic">🗺️</span>Регионы</button>
+    <button data-mob="routes" onclick="showPage('routes')"><span class="ic">🧭</span>Маршруты</button>
+    <button data-mob="planner" onclick="showPage('planner')"><span class="ic">📋</span>План</button>
+    <button data-mob="community" onclick="showPage('community')"><span class="ic">👥</span>Люди</button>
+  </div>
+</nav>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* ============ БАЗА ДАННЫХ ============ */
+
+const REGIONS = [
+{id:"moscow",name:"Москва",emoji:"🏙️",group:"city",diff:"easy",rating:4.8,reviews:12453,season:"Круглый год",
+desc:"Столица России — Кремль, Красная площадь, музеи и рестораны",img:"images/moscow.jpg",tags:["история","культура","гастрономия"],
+places:[{id:"kremlin",name:"Московский Кремль",img:"images/kremlin.jpg",rating:4.9,reviews:9876,
+desc:"Сердце России — резиденция президента, Соборная площадь, Оружейная палата.",
+road:"urban",roadDesc:"Метро «Александровский сад» или «Библиотека им. Ленина»",car:"any",
+route:"Из любого города по трассам М-1, М-2, М-3, М-4, М-7, М-9, М-10",
+public:"Аэроэкспресс из Шереметьево/Домодедово/Внуково, ж/д вокзалы в центре",transfer:"Аэроэкспресс 500 ₽, такси из аэропорта 800–2000 ₽",
+stay:[{n:"Отель Националь",t:"Отель",p:"от 15 000 ₽/ночь",r:4.9},{n:"Апартаменты на Арбате",t:"Квартира",p:"от 4500 ₽/ночь",r:4.7}],
+food:[{n:"Ресторан Турандот",c:"Авторская",p:"3000 ₽",r:4.8},{n:"Кафе Му-Му",c:"Русская",p:"500 ₽",r:4.4}]}]},
+
+{id:"spb",name:"Санкт-Петербург",emoji:"🏛️",group:"city",diff:"easy",rating:4.9,reviews:8901,season:"Круглый год",
+desc:"Культурная столица — Эрмитаж, белые ночи, разводные мосты",img:"images/spb.jpg",tags:["история","архитектура","музеи"],
+places:[{id:"hermitage",name:"Государственный Эрмитаж",img:"images/hermitage.jpg",rating:4.9,reviews:7654,
+desc:"Один из крупнейших музеев мира — 3 млн экспонатов и 365 залов.",
+road:"urban",roadDesc:"Центр города, метро «Адмиралтейская»",car:"any",
+route:"Москва → СПб по М-11 (730 км, ~8 часов)",public:"Сапсан 3,5 ч от 1500 ₽, самолёт 1,5 ч от 2500 ₽",transfer:"Такси Пулково → центр 800–1200 ₽, Аэроэкспресс 215 ₽",
+stay:[{n:"Отель Астория",t:"Отель",p:"от 12 000 ₽/ночь",r:4.9},{n:"Гостиница Октябрьская",t:"Отель",p:"от 4500 ₽/ночь",r:4.5}],
+food:[{n:"Кафе Пушкин",c:"Русская",p:"1500 ₽",r:4.8},{n:"Теремок",c:"Блины",p:"350 ₽",r:4.4}]}]},
+
+{id:"altai",name:"Алтай",emoji:"🏔️",group:"nature",diff:"hard",rating:4.9,reviews:2341,season:"Июнь — Сентябрь",
+desc:"Горный рай — Белуха, Телецкое озеро, Чуйский тракт",img:"images/altai.jpg",tags:["природа","горы","активный отдых"],
+places:[{id:"belukha",name:"Гора Белуха",img:"images/belukha.jpg",rating:4.9,reviews:876,
+desc:"Высшая точка Сибири (4509 м), священная гора алтайцев, объект ЮНЕСКО.",
+road:"offroad",roadDesc:"До базового лагеря грунтовка 40 км, нужен внедорожник",car:"4x4",closed:"Ноябрь — Май",
+route:"Горно-Алтайск → Чуйский тракт → Тюнгур (550 км, ~8 часов)",public:"Самолёт до Горно-Алтайска от 6500 ₽, автобус до Тюнгура 500 ₽",transfer:"Такси Горно-Алтайск → Тюнгур 5000–7000 ₽",
+stay:[{n:"Глэмпинг Белуха",t:"Глэмпинг",p:"от 4500 ₽/ночь",r:4.8},{n:"Гостевой дом Тюнгур",t:"Гостевой дом",p:"от 1800 ₽/ночь",r:4.6}],
+food:[{n:"Кафе Акташ",c:"Алтайская",p:"500 ₽",r:4.5}]},
+{id:"teletskoye",name:"Телецкое озеро",img:"images/teletskoye.jpg",rating:4.8,reviews:1243,
+desc:"Второе по глубине озеро России (325 м), чистейшая вода и водопады.",
+road:"paved",roadDesc:"Асфальт до Артыбаша, проедет любой автомобиль",car:"any",
+route:"Горно-Алтайск → Артыбаш (250 км, ~3 часа)",public:"Автобус до Артыбаша 350 ₽, 2 рейса в день",transfer:"Такси от Горно-Алтайска ≈ 2500 ₽",
+stay:[{n:"Турбаза Золотое озеро",t:"Отель",p:"от 3200 ₽/ночь",r:4.7},{n:"Кемпинг Артыбаш",t:"Кемпинг",p:"от 600 ₽/место",r:4.4}],
+food:[{n:"Ресторан Байгал",c:"Алтайская, рыбная",p:"800 ₽",r:4.7}]}]},
+
+{id:"karelia",name:"Карелия",emoji:"🌲",group:"nature",diff:"medium",rating:4.8,reviews:3102,season:"Июнь — Август",
+desc:"Край тысячи озёр, скал и соснового леса",img:"images/karelia.jpg",tags:["природа","озёра","скалы"],
+places:[{id:"kizhi",name:"Остров Кижи",img:"images/kizhi.jpg",rating:4.9,reviews:2105,
+desc:"Памятник ЮНЕСКО — деревянные церкви XVIII в. без единого гвоздя.",
+road:"boat",roadDesc:"Только на теплоходе или «Метеоре» от Петрозаводска",car:"none",closed:"Ноябрь — Май",
+route:"Москва → Петрозаводск (М-11, 970 км), затем теплоход",public:"Поезд до Петрозаводска, теплоход до Кижей 450 ₽",transfer:"Метеор туда-обратно 2500 ₽",
+stay:[{n:"Гостиница Карелия",t:"Отель",p:"от 4500 ₽/ночь",r:4.7},{n:"Гостевой дом Онего",t:"Гостевой дом",p:"от 2800 ₽/ночь",r:4.6}],
+food:[{n:"Ресторан Карелия",c:"Карельская",p:"700 ₽",r:4.6}]},
+{id:"kivach",name:"Водопад Кивач",img:"images/kivach.jpg",rating:4.7,reviews:1567,
+desc:"Один из крупнейших равнинных водопадов Европы (10,7 м).",
+road:"paved",roadDesc:"Асфальт до заповедника, проедет любой автомобиль",car:"any",
+route:"Петрозаводск → Кивач (80 км, ~1,5 часа)",public:"Автобус до Кондопоги, затем такси",transfer:"Такси от Петрозаводска ≈ 1500 ₽",
+stay:[{n:"Гостиница Кивач",t:"Отель",p:"от 3000 ₽/ночь",r:4.5}],
+food:[{n:"Кафе Кивач",c:"Карельская",p:"600 ₽",r:4.3}]}]},
+
+{id:"baikal",name:"Байкал",emoji:"💧",group:"nature",diff:"medium",rating:4.9,reviews:4230,season:"Июль — Август, Февраль",
+desc:"Глубочайшее озеро мира, «Священное море» России",img:"images/baikal.jpg",tags:["озеро","природа","омуль"],
+places:[{id:"olkhon",name:"Остров Ольхон",img:"images/olkhon.jpg",rating:4.9,reviews:2876,
+desc:"Сердце Байкала — мыс Бурхан (Скала Шаман), степи и кристальная вода.",
+road:"mixed",roadDesc:"До парома асфальт, на острове грунтовка — лучше внедорожник",car:"suv_recommended",
+route:"Иркутск → Сахюрта → паром → Хужир (280 км, ~5 часов), паром бесплатный",public:"Самолёт до Иркутска от 8000 ₽, автобус до Хужира 450 ₽",transfer:"Маршрутка 450 ₽, такси 3500–5000 ₽",
+stay:[{n:"Усадьба Никиты",t:"Гостевой дом",p:"от 3500 ₽/ночь",r:4.8},{n:"Глэмпинг Байкальский",t:"Глэмпинг",p:"от 6000 ₽/ночь",r:4.9}],
+food:[{n:"Кафе Бурхан",c:"Бурятская",p:"600 ₽",r:4.7},{n:"Омулёвая бочка",c:"Рыбная",p:"500 ₽",r:4.6}]}]},
+
+{id:"krasnodar",name:"Краснодарский край",emoji:"🌊",group:"sea",diff:"easy",rating:4.6,reviews:5421,season:"Май — Октябрь",
+desc:"Черноморское побережье, горы Кавказа и виноградники",img:"images/krasnodar.jpg",tags:["море","горы","вино"],
+places:[{id:"rosa",name:"Роза Хутор",img:"images/rosa.jpg",rating:4.8,reviews:3201,
+desc:"Горнолыжный курорт мирового класса, принимавший Олимпиаду 2014.",
+road:"paved",roadDesc:"Асфальт Сочи → Роза Хутор (40 км, ~1 час)",car:"any",
+route:"Краснодар → Сочи → Роза Хутор (340 км, ~4 часа по М-4)",public:"Самолёт до Сочи от 3500 ₽, «Ласточка» 100 ₽",transfer:"Такси аэропорт → Роза Хутор ≈ 1200 ₽",
+stay:[{n:"Отель Rosa Springs",t:"Отель",p:"от 8500 ₽/ночь",r:4.9},{n:"Апартаменты Эдельвейс",t:"Квартира",p:"от 4500 ₽/ночь",r:4.7}],
+food:[{n:"Ресторан Мезонин",c:"Европейская",p:"1200 ₽",r:4.8}]}]},
+
+{id:"kamchatka",name:"Камчатка",emoji:"🌋",group:"nature",diff:"hard",rating:5.0,reviews:876,season:"Июль — Сентябрь",
+desc:"Край вулканов, гейзеров и бурых медведей",img:"images/kamchatka.jpg",tags:["вулканы","гейзеры","экстрим"],
+places:[{id:"geysers",name:"Долина гейзеров",img:"images/geysers.jpg",rating:5.0,reviews:654,
+desc:"Одно из семи чудес России — около 40 крупных гейзеров.",
+road:"helicopter",roadDesc:"Только вертолётом — дороги нет",car:"none",closed:"Октябрь — Июнь",
+route:"Нет дороги. Только перелёт до Петропавловска-Камчатского",public:"Прямой рейс Москва → Петропавловск от 18 000 ₽, 9 часов",transfer:"Вертолётный тур 35 000–45 000 ₽/чел",
+stay:[{n:"Гостиница Петропавловск",t:"Отель",p:"от 6000 ₽/ночь",r:4.5},{n:"Глэмпинг Вилючинский",t:"Глэмпинг",p:"от 8000 ₽/ночь",r:4.8}],
+food:[{n:"Ресторан Камчатка",c:"Морепродукты, краб",p:"1500 ₽",r:4.8}]}]},
+
+/* ===== СЕВЕРНЫЙ КАВКАЗ ===== */
+{id:"kbr",name:"Кабардино-Балкария",emoji:"🗻",group:"caucasus",diff:"medium",rating:4.9,reviews:1654,season:"Май — Октябрь",
+desc:"Эльбрус, Чегемские водопады и Голубые озёра",img:"images/kbr.jpg",tags:["горы","Эльбрус","альпинизм"],
+places:[
+{id:"elbrus",name:"Эльбрус",img:"images/elbrus.jpg",rating:5.0,reviews:1243,
+desc:"Высочайшая вершина Европы (5642 м). Канатная дорога до 3847 м, далее — приюты.",
+road:"mixed",roadDesc:"До Азау асфальт, выше — канатная дорога. Зимой нужны цепи",car:"suv_recommended",closed:null,
+route:"Нальчик → Терскол → Азау (130 км, ~2,5 часа по А-158)",public:"Самолёт до Минеральных Вод от 5000 ₽, автобус до Терскола 500 ₽",transfer:"Такси Минводы → Терскол 4000–5000 ₽",
+stay:[{n:"Отель Азау",t:"Отель",p:"от 4500 ₽/ночь",r:4.7},{n:"Гостевой дом Терскол",t:"Гостевой дом",p:"от 2500 ₽/ночь",r:4.6}],
+food:[{n:"Кафе Приют 11",c:"Кавказская",p:"700 ₽",r:4.5},{n:"Ресторан Эльбрус",c:"Балкарская",p:"800 ₽",r:4.7}]},
+{id:"chegem",name:"Чегемские водопады",img:"images/chegem.jpg",rating:4.7,reviews:876,
+desc:"Каскад водопадов в Чегемском ущелье, высота до 60 м.",
+road:"paved",roadDesc:"Асфальт до смотровой площадки",car:"any",
+route:"Нальчик → Чегем (60 км, ~1 час)",public:"Маршрутка из Нальчика до Чегема 150 ₽",transfer:"Такси из Нальчика ≈ 1200 ₽",
+stay:[{n:"Гостевой дом Чегем",t:"Гостевой дом",p:"от 2000 ₽/ночь",r:4.5}],
+food:[{n:"Кафе Ущелье",c:"Кавказская",p:"500 ₽",r:4.5}]},
+{id:"blue-lakes",name:"Голубые озёра",img:"images/blue-lakes.jpg",rating:4.8,reviews:654,
+desc:"Пять карстовых озёр с невероятным бирюзовым цветом, не замерзают зимой.",
+road:"paved",roadDesc:"Асфальт до озёр из Нальчика",car:"any",
+route:"Нальчик → Голубые озёра (40 км, ~50 минут)",public:"Маршрутка из Нальчика 100 ₽",transfer:"Такси ≈ 800 ₽",
+stay:[{n:"Гостевой дом Черек",t:"Гостевой дом",p:"от 1800 ₽/ночь",r:4.4}],
+food:[{n:"Кафе Голубые озёра",c:"Кавказская",p:"450 ₽",r:4.3}]}]},
+
+{id:"kchr",name:"Карачаево-Черкесия",emoji:"🏔️",group:"caucasus",diff:"medium",rating:4.8,reviews:1321,season:"Май — Октябрь",
+desc:"Домбай, Архыз и Тебердинский заповедник",img:"images/kchr.jpg",tags:["горы","Домбай","Архыз"],
+places:[
+{id:"dombay",name:"Домбай",img:"images/dombay.jpg",rating:4.8,reviews:1043,
+desc:"Горнолыжный и туристический курорт, канатные дороги к склонам Мусса-Ачитара.",
+road:"paved",roadDesc:"Асфальт до Домбая, проедет любой автомобиль",car:"any",
+route:"Черкесск → Домбай (120 км, ~2 часа)",public:"Самолёт до Минвод, автобус до Домбая 700 ₽",transfer:"Такси Минводы → Домбай 5000 ₽",
+stay:[{n:"Отель Домбай",t:"Отель",p:"от 4000 ₽/ночь",r:4.7},{n:"Гостевой дом Хижина",t:"Гостевой дом",p:"от 2200 ₽/ночь",r:4.6}],
+food:[{n:"Ресторан Карачаевский",c:"Карачаевская",p:"700 ₽",r:4.7}]},
+{id:"arkhyz",name:"Архыз",img:"images/arkhyz.jpg",rating:4.9,reviews:876,
+desc:"Горная долина с бирюзовыми озёрами, древними храмами и обсерваторией.",
+road:"mixed",roadDesc:"Асфальт до посёлка, к озёрам — грунтовка на внедорожнике",car:"suv_recommended",
+route:"Черкесск → Архыз (140 км, ~2,5 часа)",public:"Автобус из Черкесска, далее джиппинг",transfer:"Джип-тур к Софийским озёрам от 3000 ₽",
+stay:[{n:"Отель Архыз",t:"Отель",p:"от 5000 ₽/ночь",r:4.8},{n:"Глэмпинг София",t:"Глэмпинг",p:"от 6000 ₽/ночь",r:4.8}],
+food:[{n:"Кафе Дукка",c:"Кавказская",p:"600 ₽",r:4.6}]}]},
+
+{id:"ossetia",name:"Северная Осетия",emoji:"⛰️",group:"caucasus",diff:"medium",rating:4.8,reviews:1187,season:"Май — Октябрь",
+desc:"Алания, Кармадонское ущелье и Военно-Грузинская дорога",img:"images/ossetia.jpg",tags:["горы","ущелья","история"],
+places:[
+{id:"karmadon",name:"Кармадонское ущелье",img:"images/karmadon.jpg",rating:4.8,reviews:654,
+desc:"Живописное ущелье с водопадами, ледником и нарзанами. Место трагедии 2002 года.",
+road:"mixed",roadDesc:"До въезда асфальт, дальше грунтовка — рекомендован внедорожник",car:"suv_recommended",
+route:"Владикавказ → Кармадон (35 км, ~1 час)",public:"Такси или экскурсия из Владикавказа",transfer:"Экскурсия от 1500 ₽/чел",
+stay:[{n:"Гостевой дом Владикавказ",t:"Гостевой дом",p:"от 2500 ₽/ночь",r:4.6}],
+food:[{n:"Кафе Дарьял",c:"Осетинская",p:"600 ₽",r:4.7}]},
+{id:"dargavs",name:"Город мёртвых Даргавс",img:"images/dargavs.jpg",rating:4.7,reviews:543,
+desc:"Средневековый некрополь из каменных склепов — «город мёртвых» в горах.",
+road:"paved",roadDesc:"Асфальт по Военно-Грузинской дороге, затем серпантин",car:"any",
+route:"Владикавказ → Даргавс (60 км, ~1,5 часа)",public:"Организованная экскурсия из Владикавказа",transfer:"Экскурсия 2000 ₽/чел",
+stay:[{n:"Гостевой дом Фиагдон",t:"Гостевой дом",p:"от 2000 ₽/ночь",r:4.5}],
+food:[{n:"Кафе Фиагдон",c:"Осетинская — пироги",p:"500 ₽",r:4.7}]}]},
+
+{id:"chechnya",name:"Чечня",emoji:"🕌",group:"caucasus",diff:"easy",rating:4.7,reviews:987,season:"Апрель — Октябрь",
+desc:"Грозный, мечеть «Сердце Чечни» и Аргунское ущелье",img:"images/chechnya.jpg",tags:["архитектура","горы","культура"],
+places:[
+{id:"heart-chechni",name:"Мечеть «Сердце Чечни»",img:"images/heart-chechni.jpg",rating:4.9,reviews:765,
+desc:"Одна из крупнейших мечетей Европы, названа в честь Ахмата Кадырова.",
+road:"urban",roadDesc:"Центр Грозного, городской транспорт",car:"any",
+route:"Из Махачкалы или Владикавказа по трассе Р-217 (150–200 км)",public:"Самолёт до Грозного от 5500 ₽, из Москвы 2,5 часа",transfer:"Такси из аэропорта 400 ₽",
+stay:[{n:"Отель Грозный Сити",t:"Отель",p:"от 5500 ₽/ночь",r:4.8},{n:"Гостевой дом Грозный",t:"Гостевой дом",p:"от 2500 ₽/ночь",r:4.6}],
+food:[{n:"Ресторан Жижиг-Галнаш",c:"Чеченская",p:"800 ₽",r:4.8}]},
+{id:"argun",name:"Аргунское ущелье",img:"images/argun.jpg",rating:4.8,reviews:432,
+desc:"Живописное ущелье реки Аргун с водопадами и древними башнями.",
+road:"mixed",roadDesc:"Асфальт до Шатоя, далее грунтовка",car:"suv_recommended",
+route:"Грозный → Шатой → Итум-Кали (120 км, ~2,5 часа)",public:"Экскурсия из Грозного",transfer:"Экскурсия 2500 ₽/чел",
+stay:[{n:"Гостевой дом Шатой",t:"Гостевой дом",p:"от 2000 ₽/ночь",r:4.5}],
+food:[{n:"Кафе Ущелье",c:"Чеченская",p:"500 ₽",r:4.5}]}]},
+
+{id:"dagestan",name:"Дагестан",emoji:"🏞️",group:"caucasus",diff:"medium",rating:4.8,reviews:2876,season:"Апрель — Октябрь",
+desc:"Сулакский каньон, Дербент и горные аулы",img:"images/dagestan.jpg",tags:["горы","море","гастрономия"],
+places:[
+{id:"sulak",name:"Сулакский каньон",img:"images/sulak.jpg",rating:4.9,reviews:1876,
+desc:"Один из глубочайших каньонов мира (1920 м) с бирюзовой рекой на дне.",
+road:"mixed",roadDesc:"До Дубки асфальт, к нижней точке грунтовка",car:"suv_recommended",closed:"Декабрь — Февраль",
+route:"Махачкала → Дубки (100 км, ~2 часа)",public:"Маршрутка или такси из Махачкалы",transfer:"Такси ≈ 1500 ₽, экскурсия от 2500 ₽",
+stay:[{n:"Гостевой дом Дубки",t:"Гостевой дом",p:"от 2000 ₽/ночь",r:4.7},{n:"Глэмпинг Сулак",t:"Глэмпинг",p:"от 4500 ₽/ночь",r:4.8}],
+food:[{n:"Кафе Дагестан",c:"Хинкал, чуду",p:"400 ₽",r:4.8}]},
+{id:"derbent",name:"Дербент",img:"images/derbent.jpg",rating:4.8,reviews:2134,
+desc:"Древнейший город России — крепость Нарын-Кала, объект ЮНЕСКО.",
+road:"paved",roadDesc:"Асфальт по Р-217 вдоль Каспия",car:"any",
+route:"Махачкала → Дербент (130 км, ~2 часа)",public:"Поезд из Москвы 30 часов, или самолёт до Махачкалы + маршрутка",transfer:"Маршрутка 200 ₽, такси 1200 ₽",
+stay:[{n:"Отель Старый город",t:"Отель",p:"от 3500 ₽/ночь",r:4.7}],
+food:[{n:"Ресторан Цитадель",c:"Дагестанская",p:"700 ₽",r:4.7}]}]},
+
+{id:"kalmykia",name:"Калмыкия",emoji:"🐪",group:"caucasus",diff:"medium",rating:4.5,reviews:543,season:"Апрель — Октябрь",
+desc:"Степи, буддийские храмы и Элиста",img:"images/kalmykia.jpg",tags:["степь","буддизм","природа"],
+places:[
+{id:"elista",name:"Элиста — Золотая обитель Будды",img:"images/elista.jpg",rating:4.6,reviews:432,
+desc:"Крупнейший буддийский храм в Европе, центр калмыцкой культуры.",
+road:"paved",roadDesc:"Асфальт до Элисты по трассе Р-22",car:"any",
+route:"Волгоград → Элиста (300 км, ~4 часа)",public:"Самолёт до Элисты из Москвы от 5000 ₽",transfer:"Такси из аэропорта 300 ₽",
+stay:[{n:"Отель Элиста",t:"Отель",p:"от 3500 ₽/ночь",r:4.5}],
+food:[{n:"Кафе Калмыцкая кухня",c:"Калмыцкая",p:"500 ₽",r:4.6}]}]},
+
+/* ===== ЗОЛОТОЕ КОЛЬЦО ===== */
+{id:"suzdal",name:"Суздаль",emoji:"🏘️",group:"golden",diff:"easy",rating:4.8,reviews:1543,season:"Май — Сентябрь",
+desc:"Город-музей под открытым небом",img:"images/suzdal.jpg",tags:["история","музеи","зодчество"],
+places:[{id:"museum-wood",name:"Музей деревянного зодчества",img:"images/museum-wood.jpg",rating:4.8,reviews:876,
+desc:"Подлинные деревянные постройки XVIII–XIX веков, привезённые со всей области.",
+road:"paved",roadDesc:"Асфальт, город небольшой — везде пешком",car:"any",
+route:"Москва → Суздаль (220 км, ~3 часа по М-7)",public:"Автобус из Москвы 600 ₽, 4 часа",transfer:"Такси из Владимира 800 ₽",
+stay:[{n:"Отель Пушкарская слобода",t:"Отель",p:"от 6500 ₽/ночь",r:4.8},{n:"Гостевой дом Суздаль",t:"Гостевой дом",p:"от 3000 ₽/ночь",r:4.6}],
+food:[{n:"Ресторан Гостиный двор",c:"Русская",p:"900 ₽",r:4.7}]}]},
+
+{id:"kazan",name:"Татарстан",emoji:"🕌",group:"city",diff:"easy",rating:4.7,reviews:2234,season:"Май — Сентябрь",
+desc:"Казань — Кремль, мечеть Кул-Шариф и татарская кухня",img:"images/kazan.jpg",tags:["культура","история","гастрономия"],
+places:[{id:"kul-sharif",name:"Мечеть Кул-Шариф",img:"images/kul-sharif.jpg",rating:4.9,reviews:1543,
+desc:"Главная мечеть Татарстана в Казанском Кремле, объект ЮНЕСКО.",
+road:"urban",roadDesc:"Центр Казани, метро «Кремлёвская»",car:"any",
+route:"Москва → Казань по М-7 (820 км, ~9 часов)",public:"Поезд из Москвы 12 часов, самолёт 1,5 часа от 2500 ₽",transfer:"Такси из аэропорта 700 ₽",
+stay:[{n:"Отель Мираж",t:"Отель",p:"от 6500 ₽/ночь",r:4.8},{n:"Апартаменты Кремль",t:"Квартира",p:"от 3500 ₽/ночь",r:4.6}],
+food:[{n:"Ресторан Татарская усадьба",c:"Татарская",p:"900 ₽",r:4.8},{n:"Чак-Чак",c:"Татарская",p:"500 ₽",r:4.6}]}]},
+
+{id:"nizhny",name:"Нижний Новгород",emoji:"🏰",group:"city",diff:"easy",rating:4.6,reviews:1876,season:"Май — Сентябрь",
+desc:"Кремль, Чкаловская лестница и слияние Оки и Волги",img:"images/nizhny.jpg",tags:["история","архитектура","Волга"],
+places:[{id:"nn-kremlin",name:"Нижегородский Кремль",img:"images/nn-kremlin.jpg",rating:4.7,reviews:1234,
+desc:"Крепость XVI века с 13 башнями и панорамой на Волгу.",
+road:"urban",roadDesc:"Центр города, метро «Горьковская»",car:"any",
+route:"Москва → Нижний Новгород по М-7 (420 км, ~5 часов)",public:"Ласточка из Москвы 3,5 часа от 1200 ₽",transfer:"Такси из аэропорта 500 ₽",
+stay:[{n:"Отель Sheraton",t:"Отель",p:"от 7500 ₽/ночь",r:4.8},{n:"Гостевой дом Печёрская",t:"Гостевой дом",p:"от 2800 ₽/ночь",r:4.5}],
+food:[{n:"Ресторан Пяткин",c:"Русская",p:"1200 ₽",r:4.7}]}]},
+
+{id:"vologda",name:"Вологда",emoji:"🪵",group:"golden",diff:"easy",rating:4.5,reviews:876,season:"Май — Сентябрь",
+desc:"Русский Север — кружево, деревянное зодчество, Софийский собор",img:"images/vologda-kremlin.jpg",tags:["история","ремёсла","архитектура"],
+places:[{id:"vologda-kremlin",name:"Вологодский кремль",img:"images/vologda-kremlin.jpg",rating:4.6,reviews:654,
+desc:"Софийский собор с фресками XVII века и колокольня с панорамой города.",
+road:"paved",roadDesc:"Асфальт по трассе М-8",car:"any",
+route:"Москва → Вологда по М-8 (470 км, ~6 часов)",public:"Поезд из Москвы 7 часов от 1500 ₽",transfer:"Такси из центра 200 ₽",
+stay:[{n:"Отель Спасская",t:"Отель",p:"от 4500 ₽/ночь",r:4.6}],
+food:[{n:"Ресторан Вологда",c:"Русская северная",p:"800 ₽",r:4.6}]}]},
+
+{id:"pskov",name:"Псков",emoji:"🏰",group:"golden",diff:"easy",rating:4.5,reviews:654,season:"Май — Сентябрь",
+desc:"Древний Кром, кремль и Псково-Печерский монастырь",img:"images/pskov-krom.jpg",tags:["история","архитектура","религия"],
+places:[{id:"pskov-krom",name:"Псковский Кром",img:"images/pskov-krom.jpg",rating:4.7,reviews:543,
+desc:"Один из крупнейших средневековых крепостных комплексов Европы.",
+road:"paved",roadDesc:"Асфальт по трассе М-9",car:"any",
+route:"Москва → Псков по М-9 (730 км, ~9 часов)",public:"Поезд из Москвы 12 часов от 1800 ₽",transfer:"Такси из центра 200 ₽",
+stay:[{n:"Отель Двор Подзноева",t:"Отель",p:"от 5500 ₽/ночь",r:4.7}],
+food:[{n:"Ресторан Кром",c:"Русская",p:"800 ₽",r:4.5}]}]},
+
+{id:"novgorod",name:"Великий Новгород",emoji:"📖",group:"golden",diff:"easy",rating:4.6,reviews:987,season:"Май — Сентябрь",
+desc:"Колыбель России — Софийский собор и кремль XI века",img:"images/novgorod.jpg",tags:["история","культура","ЮНЕСКО"],
+places:[{id:"sophia",name:"Софийский собор",img:"images/sophia.jpg",rating:4.8,reviews:765,
+desc:"Древнейший сохранившийся храм России (1045–1050 гг.), объект ЮНЕСКО.",
+road:"paved",roadDesc:"Асфальт по трассе М-10",car:"any",
+route:"Москва → Новгород по М-10 (530 км, ~7 часов)",public:"Поезд из Москвы 8 часов от 1600 ₽",transfer:"Такси из центра 250 ₽",
+stay:[{n:"Отель Park Inn",t:"Отель",p:"от 6000 ₽/ночь",r:4.7}],
+food:[{n:"Ресторан Детинец",c:"Русская",p:"900 ₽",r:4.6}]}]},
+
+{id:"yaroslavl",name:"Ярославль",emoji:"🏛️",group:"golden",diff:"easy",rating:4.7,reviews:1234,season:"Май — Сентябрь",
+desc:"Столица Золотого кольца — храмы XVII века на Волге",img:"images/yaroslavl.jpg",tags:["история","архитектура","ЮНЕСКО"],
+places:[{id:"spaso",name:"Спасо-Преображенский монастырь",img:"images/spaso.jpg",rating:4.8,reviews:987,
+desc:"Древний монастырь, где был найден «Слово о полку Игореве».",
+road:"paved",roadDesc:"Асфальт по М-8",car:"any",
+route:"Москва → Ярославль по М-8 (270 км, ~3,5 часа)",public:"Поезд из Москвы 4 часа от 1000 ₽",transfer:"Такси из центра 250 ₽",
+stay:[{n:"Отель Ring Premier",t:"Отель",p:"от 6000 ₽/ночь",r:4.8}],
+food:[{n:"Ресторан Собранiе",c:"Русская",p:"1100 ₽",r:4.7}]}]},
+
+/* ===== СИБИРЬ И ДАЛЬНИЙ ВОСТОК ===== */
+{id:"novosibirsk",name:"Новосибирск",emoji:"❄️",group:"city",diff:"easy",rating:4.4,reviews:987,season:"Круглый год",
+desc:"Ворота Сибири — крупнейший театр оперы и Академгородок",img:"images/novosibirsk.jpg",tags:["культура","наука","театр"],
+places:[{id:"opera",name:"Новосибирский театр оперы и балета",img:"images/opera.jpg",rating:4.8,reviews:654,
+desc:"Крупнейший театр России, знаменитый купол больше, чем у Большого.",
+road:"urban",roadDesc:"Центр города, метро «Площадь Ленина»",car:"any",
+route:"По трассе Р-254 из Омска или Р-256 из Барнаула",public:"Самолёт из Москвы 4 часа от 6000 ₽, поезд 2 суток",transfer:"Такси из аэропорта 700 ₽",
+stay:[{n:"Отель Азимут",t:"Отель",p:"от 5500 ₽/ночь",r:4.6}],
+food:[{n:"Ресторан Сибирь",c:"Сибирская",p:"900 ₽",r:4.5}]}]},
+
+{id:"yakutia",name:"Якутия",emoji:"🧊",group:"nature",diff:"hard",rating:4.7,reviews:654,season:"Декабрь — Февраль, Июнь — Август",
+desc:"Край вечной мерзлоты, алмазов и северного сияния",img:"images/yakutia.jpg",tags:["сияние","мерзлота","экстрим"],
+places:[{id:"lena-pillars",name:"Ленские столбы",img:"images/lena-pillars.jpg",rating:4.9,reviews:432,
+desc:"Сорокаметровые скалы на берегу Лены, объект ЮНЕСКО.",
+road:"boat",roadDesc:"Только по реке Лене на теплоходе от Якутска",car:"none",closed:"Ноябрь — Май",
+route:"Дороги нет — только речной транспорт",public:"Самолёт Москва → Якутск от 12 000 ₽, 6,5 часов",transfer:"Круиз до Ленских столбов 15 000–25 000 ₽",
+stay:[{n:"Отель Азимут Якутск",t:"Отель",p:"от 6500 ₽/ночь",r:4.6}],
+food:[{n:"Ресторан Чочур Муран",c:"Якутская",p:"1000 ₽",r:4.7}]}]},
+
+{id:"vladivostok",name:"Владивосток",emoji:"⛵",group:"sea",diff:"easy",rating:4.5,reviews:1234,season:"Май — Сентябрь",
+desc:"Тихий океан, Русский мост и остров Русский",img:"images/russky.jpg",tags:["море","мосты","океан"],
+places:[{id:"russky",name:"Остров Русский",img:"images/russky.jpg",rating:4.6,reviews:765,
+desc:"Остров с фортами, маяками и видом на Русский мост.",
+road:"paved",roadDesc:"Асфальт по Русскому мосту, любой автомобиль",car:"any",
+route:"Через Русский мост из Владивостока (5 км)",public:"Самолёт Москва → Владивосток 9 часов от 15 000 ₽",transfer:"Такси из аэропорта 1500 ₽",
+stay:[{n:"Отель Хендэ",t:"Отель",p:"от 6500 ₽/ночь",r:4.7}],
+food:[{n:"Ресторан Зума",c:"Паназиатская",p:"1500 ₽",r:4.8}]}]},
+
+{id:"urals",name:"Урал",emoji:"⛏️",group:"nature",diff:"medium",rating:4.5,reviews:1543,season:"Июнь — Сентябрь",
+desc:"Хребет, самоцветы и национальный парк Таганай",img:"images/urals.jpg",tags:["горы","природа","геология"],
+places:[{id:"taganay",name:"Национальный парк Таганай",img:"images/taganay.jpg",rating:4.8,reviews:987,
+desc:"Горные хребты, каменные реки и реликтовые леса Южного Урала.",
+road:"paved",roadDesc:"Асфальт до Златоуста, далее пешие маршруты",car:"any",
+route:"Челябинск → Златоуст (140 км, ~2 часа)",public:"Поезд до Златоуста, автобус до входа в парк",transfer:"Такси от Златоуста 400 ₽",
+stay:[{n:"Приют Таганай",t:"Гостевой дом",p:"от 2000 ₽/ночь",r:4.5}],
+food:[{n:"Кафе Златоуст",c:"Русская",p:"600 ₽",r:4.4}]}]},
+
+{id:"rostov",name:"Ростов-на-Дону",emoji:"🌾",group:"city",diff:"easy",rating:4.3,reviews:654,season:"Май — Сентябрь",
+desc:"Ворота Кавказа — Дон, казачество, южная кухня",img:"images/rostov.jpg",tags:["история","гастрономия","казачество"],
+places:[{id:"don-embankment",name:"Набережная Дона",img:"images/don-embankment.jpg",rating:4.5,reviews:543,
+desc:"Прогулочная набережная с ресторанами и видом на реку.",
+road:"urban",roadDesc:"Центр города",car:"any",
+route:"Москва → Ростов по М-4 (1080 км, ~12 часов)",public:"Самолёт из Москвы 2 часа от 4000 ₽",transfer:"Такси из аэропорта 600 ₽",
+stay:[{n:"Отель Don Plaza",t:"Отель",p:"от 5000 ₽/ночь",r:4.6}],
+food:[{n:"Ресторан Казачий курень",c:"Донская",p:"900 ₽",r:4.6}]}]},
+
+{id:"voronezh",name:"Воронеж",emoji:"🌊",group:"city",diff:"easy",rating:4.4,reviews:765,season:"Май — Сентябрь",
+desc:"Водохранилище, корабли и петровская история",img:"images/voronezh.jpg",tags:["история","река","флот"],
+places:[{id:"voronezh-fleet",name:"Музей-корабль «Гото Предестинация»",img:"images/voronezh-fleet.jpg",rating:4.6,reviews:432,
+desc:"Действующая копия первого линейного корабля России, построенного Петром I.",
+road:"urban",roadDesc:"Набережная Воронежского водохранилища",car:"any",
+route:"Москва → Воронеж по М-4 (520 км, ~6 часов)",public:"Поезд из Москвы 6 часов от 1300 ₽",transfer:"Такси из центра 200 ₽",
+stay:[{n:"Отель Дегас",t:"Отель",p:"от 4500 ₽/ночь",r:4.6}],
+food:[{n:"Ресторан Воронеж",c:"Русская",p:"800 ₽",r:4.5}]}]}
+];
+
+
+/* ============ ГЛУБОКИЙ КОНТЕНТ: КАВКАЗ (Дагестан, Чечня, КБР) ============ */
+const DEEP_REGIONS = [{"id": "dagestan", "name": "Дагестан", "emoji": "🏞️", "group": "caucasus", "diff": "medium", "rating": 4.8, "reviews": 2876, "season": "Апрель — Октябрь", "desc": "Самый южный регион России: каньон глубиной 1920 м, древний Дербент, аулы ремесленников и Каспий", "img": "images/dagestan.jpg", "tags": ["горы", "каньоны", "история", "гастрономия"], "places": [{"id": "sulak", "name": "Сулакский каньон", "cat": "каньон", "desc": "Один из глубочайших каньонов мира — 1920 метров от края до воды. Река Сулак прорезает плато, обрываясь отвесными стенами. Главные смотровые — у села Дубки и у Зубутли-Миатли. По дну ходят катера от причала в Дубках.", "lat": 43.06, "lng": 46.84, "road": "mixed", "roadDesc": "До Дубки асфальт по Р-217, последние 1,5–2 км к верхней смотровой — грунтовка с колеёй. В сухую погоду проедет легковая, после дождя лучше внедорожник.", "car": "any", "closed": "Декабрь — Февраль (гололёд на спусках)", "route": "Махачкала → Дубки, ~100 км, 2 часа по Р-217", "public": "Маршрутка Махачкала — Дубки от Южного автовокзала, 250 ₽, 2,5 часа; далее пешком или на попутке", "transfer": "Такси Махачкала — Дубки 2500–3500 ₽; катер по каньону 1000–1500 ₽ с человека", "stay": [{"n": "Гостевой дом «Дубки»", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.7}, {"n": "Глэмпинг над каньоном", "t": "Глэмпинг", "p": "от 5000 ₽/ночь", "r": 4.8}], "food": [{"n": "Кафе «Каньон»", "c": "Дагестанская", "p": "500 ₽", "r": 4.7}, {"n": "Чайхана в Дубках", "c": "Чай, хинкал", "p": "400 ₽", "r": 4.6}], "rating": 4.9, "reviews": 1876, "img": "images/dagestan_sulak.jpg"}, {"id": "chirkey", "name": "Чиркейское водохранилище", "cat": "водохранилище", "desc": "Бирюзовое море в скалах и самая высокая арочная плотина России (232 м). Воду спускают весной и в начале лета — уровень падает, обнажая бирюзовые террасы. Лучшие точки обзора с дороги на Чиркей и со смотровой у ГЭС.", "lat": 43.0, "lng": 46.97, "road": "paved", "roadDesc": "Асфальт от Р-217 через Чиркей, хорошее покрытие. Серпантин с набором высоты, но проедет любая машина.", "car": "any", "closed": null, "route": "Махачкала → Чиркей, ~90 км, 1 ч 45 мин", "public": "Маршрутка до Чиркея 200 ₽, далее пешком к смотровой", "transfer": "Такси из Махачкалы 2200–3000 ₽", "stay": [{"n": "Гостевой дом «Чиркей»", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе у ГЭС", "c": "Дагестанская", "p": "450 ₽", "r": 4.4}], "rating": 4.7, "reviews": 654, "img": "images/dagestan_chirkey.jpg"}, {"id": "sarykum", "name": "Бархан Сарыкум", "cat": "бархан", "desc": "Крупнейший песчаный бархан Евразии высотой около 250 метров. Находится в Дагестанском заповеднике. Песок нагревается до 60 °C, летом лучше идти утром. По бархану нельзя ходить где попало — есть размеченные тропы.", "lat": 42.98, "lng": 47.33, "road": "paved", "roadDesc": "Асфальт от Махачкалы, парковка у входа. Дальше — только пешком по территории заповедника.", "car": "any", "closed": null, "route": "Махачкала → Сарыкум, ~20 км, 30 минут", "public": "Маршрутка Махачкала — Кумторкала 80 ₽, далее 3 км пешком", "transfer": "Такси из Махачкалы 600–900 ₽", "stay": [{"n": "Отель в Махачкале", "t": "Отель", "p": "от 3500 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе «Сарыкум»", "c": "Дагестанская", "p": "500 ₽", "r": 4.3}], "rating": 4.6, "reviews": 543, "img": "images/dagestan_sarykum.jpg"}, {"id": "naryn-kala", "name": "Крепость Нарын-Кала", "cat": "крепость", "desc": "Цитадель Дербента VI века, объект ЮНЕСКО. Древнейшая сохранившаяся крепость России, часть Дербентской стены, перекрывавшей Каспийский проход. Внутри — ханский дворец, бани, подземная тюрьма и винодавильни.", "lat": 42.053, "lng": 48.274, "road": "urban", "roadDesc": "Центр Дербента, подъём по брусчатке. Для машины — парковка у нижних ворот, дальше пешком.", "car": "any", "closed": null, "route": "Махачкала → Дербент, ~130 км, 2 часа по Р-217", "public": "Поезд Москва — Дербент (30 ч) или самолёт до Махачкалы + электричка/маршрутка 250 ₽", "transfer": "Такси по Дербенту 150–300 ₽", "stay": [{"n": "Отель «Старый город»", "t": "Отель", "p": "от 3500 ₽/ночь", "r": 4.7}, {"n": "Гостевой дом в магалах", "t": "Гостевой дом", "p": "от 2200 ₽/ночь", "r": 4.6}], "food": [{"n": "Ресторан «Цитадель»", "c": "Дагестанская", "p": "800 ₽", "r": 4.7}, {"n": "Чайхана у Джума-мечети", "c": "Чай, чуду", "p": "350 ₽", "r": 4.6}], "rating": 4.9, "reviews": 2134, "img": "images/dagestan_naryn-kala.jpg"}, {"id": "dzhuma", "name": "Джума-мечеть Дербента", "cat": "мечеть", "desc": "Старейшая мечеть в России, построена в VIII веке. Действующий храм в исторических кварталах-магалах. Рядом — старейшее в стране медресе и узкие улочки с резными воротами. Вход свободный, дресс-код обязателен.", "lat": 42.056, "lng": 48.29, "road": "urban", "roadDesc": "Пешеходная зона исторического центра, машину оставить у Нарын-Калы.", "car": "any", "closed": null, "route": "Внутри Дербента, пешком от Нарын-Калы 20 минут", "public": "До Дербента поездом или самолётом до Махачкалы", "transfer": "Не требуется — всё в пешей доступности", "stay": [{"n": "Отель «Старый город»", "t": "Отель", "p": "от 3500 ₽/ночь", "r": 4.7}], "food": [{"n": "Чайхана «Магалы»", "c": "Дагестанская", "p": "400 ₽", "r": 4.6}], "rating": 4.8, "reviews": 987, "img": "images/dagestan_dzhuma.jpg"}, {"id": "gunib", "name": "Гуниб и Гунибская крепость", "cat": "плато", "desc": "Горное плато, где в 1859 году закончилась Кавказская война. Село на высоте 1500 м, окружённое скалами. Со смотровой у крепости открывается вид на каньон Кара-Койсу и Гунибское водохранилище — бирюзовую чашу между хребтами.", "lat": 42.39, "lng": 46.96, "road": "paved", "roadDesc": "Асфальт от Махачкалы через Буйнакск и Гимринский тоннель. Серпантин с крутыми поворотами, но покрытие ровное.", "car": "any", "closed": "Декабрь — Март (снег на перевале)", "route": "Махачкала → Гуниб, ~150 км, 3 часа", "public": "Маршрутка Махачкала — Гуниб 400 ₽, 3,5 часа, 2 рейса в день", "transfer": "Такси Махачкала — Гуниб 4000–5000 ₽", "stay": [{"n": "Гостиница «Гуниб»", "t": "Отель", "p": "от 2500 ₽/ночь", "r": 4.5}, {"n": "Гостевой дом на плато", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе «Гуниб»", "c": "Дагестанская", "p": "500 ₽", "r": 4.5}], "rating": 4.8, "reviews": 765, "img": "images/dagestan_gunib.jpg"}, {"id": "salta", "name": "Салтинский водопад", "cat": "водопад", "desc": "Единственный в Дагестане подземный водопад — падает в каменный колодец. Вода уходит в узкую теснину и обрушивается с 20 метров внутри скального коридора. Максимальный поток — в мае-июне, к августу мелеет. Внутри сыро и скользко, нужна обувь с хорошим протектором.", "lat": 42.42, "lng": 46.98, "road": "mixed", "roadDesc": "Асфальт до села Салта, далее спуск пешком 150–200 м по камням. Машина остаётся наверху — к водопаду дороги нет.", "car": "any", "closed": "Ноябрь — Апрель", "route": "Махачкала → Гуниб → Салта, ~160 км, 3,5 часа", "public": "Маршрутка до Гуниба, далее такси 500 ₽", "transfer": "Такси от Гуниба 600–800 ₽", "stay": [{"n": "Гостевой дом в Салта", "t": "Гостевой дом", "p": "от 1500 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе в Гунибе", "c": "Дагестанская", "p": "450 ₽", "r": 4.4}], "rating": 4.7, "reviews": 654, "img": "images/dagestan_salta.jpg"}, {"id": "karadakh", "name": "Карадахская теснина", "cat": "ущелье", "desc": "Щель шириной 2–4 метра между стенами высотой до 170 метров. Внизу течёт ручей, идти приходится прямо по воде или по наваленным камням. В июле-августе воды мало, весной — по колено. Протяжённость маршрута около 1,5 км в одну сторону.", "lat": 42.44, "lng": 46.86, "road": "mixed", "roadDesc": "Асфальт до села Карадах, дальше пешком. Для машины — грунтовая парковка у входа в теснину.", "car": "any", "closed": "Март — Май (высокая вода)", "route": "Махачкала → Карадах, ~150 км, 3 часа", "public": "Маршрутка до Гуниба, затем попутка до Карадаха", "transfer": "Такси от Гуниба 800 ₽", "stay": [{"n": "Гостевой дом в Карадах", "t": "Гостевой дом", "p": "от 1500 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе в Карадах", "c": "Дагестанская", "p": "400 ₽", "r": 4.3}], "rating": 4.7, "reviews": 543, "img": "images/dagestan_karadakh.jpg"}, {"id": "tobot", "name": "Водопад Тобот", "cat": "водопад", "desc": "70-метровый водопад на Хунзахском плато. Падает с края плато в каньон. Полноводен после дождей и в начале лета; в сухой август может почти исчезнуть. Рядом — смотровая и развалины старого аула.", "lat": 42.55, "lng": 46.72, "road": "paved", "roadDesc": "Асфальт до Хунзаха через Гимринский тоннель — самый длинный автодорожный тоннель в России (4303 м). От Хунзаха до водопада 2 км по грунтовке.", "car": "any", "closed": null, "route": "Махачкала → Хунзах, ~160 км, 3 часа", "public": "Маршрутка Махачкала — Хунзах 450 ₽, 3,5 часа", "transfer": "Такси Махачкала — Хунзах 4500 ₽", "stay": [{"n": "Гостиница «Хунзах»", "t": "Отель", "p": "от 2200 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе на плато", "c": "Дагестанская", "p": "450 ₽", "r": 4.5}], "rating": 4.7, "reviews": 876, "img": "images/dagestan_tobot.jpg"}, {"id": "matlas", "name": "Матласская теснина", "cat": "ущелье", "desc": "Каскад водопадов в узком ущелье у Хунзахского плато. Дорога идёт по дну каньона между отвесными стенами, переезжая ручей вброд несколько раз. После дождя броды становятся глубокими.", "lat": 42.57, "lng": 46.62, "road": "mixed", "roadDesc": "До поворота на Матлас асфальт, дальше 8–10 км грунтовки с бродами. В сухую погоду проедет кроссовер, после дождя нужен внедорожник.", "car": "suv_recommended", "closed": "Ноябрь — Апрель", "route": "Хунзах → Матлас, ~15 км, 40 минут", "public": "Только на попутке или экскурсии из Хунзаха", "transfer": "Джип-тур из Хунзаха 2000–3000 ₽ с человека", "stay": [{"n": "Гостиница «Хунзах»", "t": "Отель", "p": "от 2200 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе в Матласе", "c": "Дагестанская", "p": "500 ₽", "r": 4.5}], "rating": 4.8, "reviews": 432, "img": "images/dagestan_matlas.jpg"}, {"id": "goor", "name": "Гоор — Страна башен", "cat": "башни", "desc": "Комплекс средневековых боевых башен на скальном выступе. Село на краю обрыва, башни стоят прямо над пропастью. Отсюда открывается вид на каньон реки Аварское Койсу. Место малоизвестно даже среди местных.", "lat": 42.42, "lng": 46.63, "road": "mixed", "roadDesc": "Асфальт до Шамильского района, последние километры — горная грунтовка. Узкий серпантин без ограждений.", "car": "suv_recommended", "closed": "Декабрь — Март", "route": "Махачкала → Гоор, ~200 км, 4,5 часа", "public": "Общественный транспорт фактически отсутствует, только экскурсии", "transfer": "Джип-тур из Махачкалы 6000–8000 ₽ с человека", "stay": [{"n": "Гостевой дом в Гооре", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.6}], "food": [{"n": "Домашняя кухня у хозяев", "c": "Дагестанская", "p": "500 ₽", "r": 4.8}], "rating": 4.8, "reviews": 321, "img": "images/dagestan_goor.jpg"}, {"id": "kubachi", "name": "Кубачи", "cat": "аул", "desc": "Село златокузнецов, где оружие и ювелирку делают больше тысячи лет. Известно с IX века как центр обработки металла. Местные мастера делают кинжалы, браслеты и посуду с насечкой. Есть музей и действующие мастерские.", "lat": 42.08, "lng": 47.6, "road": "paved", "roadDesc": "Асфальт от Дербента и Махачкалы, но дорога — узкий горный серпантин с крутыми поворотами. Фуры и автобусы проходят с трудом.", "car": "any", "closed": "Декабрь — Февраль", "route": "Махачкала → Кубачи, ~180 км, 4 часа", "public": "Маршрутка из Махачкалы 500 ₽, 4,5 часа, 1 рейс в день", "transfer": "Такси Махачкала — Кубачи 5000 ₽", "stay": [{"n": "Гостевой дом в Кубачи", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе «Кубачи»", "c": "Дагестанская", "p": "450 ₽", "r": 4.5}], "rating": 4.7, "reviews": 543, "img": "images/dagestan_kubachi.jpg"}, {"id": "balkhar", "name": "Балхар", "cat": "аул", "desc": "Село гончаров — единственное место в Дагестане с расписной керамикой. Здесь делают посуду без гончарного круга, вручную, и расписывают белой глиной с красным орнаментом. Работает артель, можно посмотреть процесс и купить.", "lat": 42.3, "lng": 47.15, "road": "paved", "roadDesc": "Асфальт до села, горная дорога с серпантином. Проедет любой автомобиль.", "car": "any", "closed": null, "route": "Махачкала → Балхар, ~170 км, 3,5 часа", "public": "Маршрутка через Акуша 450 ₽", "transfer": "Такси 4500 ₽", "stay": [{"n": "Гостевой дом в Балхаре", "t": "Гостевой дом", "p": "от 1500 ₽/ночь", "r": 4.5}], "food": [{"n": "Домашняя кухня", "c": "Дагестанская", "p": "400 ₽", "r": 4.7}], "rating": 4.6, "reviews": 321, "img": "images/dagestan_balkhar.jpg"}, {"id": "samur", "name": "Самурский лес", "cat": "лес", "desc": "Единственный в России субтропический лиановый лес. Дельта реки Самур на границе с Азербайджаном. Лианы, орех, тополя-великаны и каналы с чистой водой. Часть территории — пограничная зона, нужен пропуск.", "lat": 41.85, "lng": 48.42, "road": "mixed", "roadDesc": "Асфальт до Магарамкента, дальше грунтовка вдоль каналов. Низкий клиренс рискован — глубокие лужи и промоины.", "car": "suv_recommended", "closed": null, "route": "Махачкала → Магарамкент, ~230 км, 4 часа", "public": "Автобус Махачкала — Магарамкент 600 ₽, далее пешком", "transfer": "Такси от Дербента 3000 ₽", "stay": [{"n": "Гостевой дом в Магарамкенте", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе в Магарамкенте", "c": "Дагестанская", "p": "400 ₽", "r": 4.3}], "rating": 4.7, "reviews": 432, "img": "images/dagestan_samur.jpg"}, {"id": "kurush", "name": "Аул Куруш", "cat": "аул", "desc": "Самый высокогорный населённый пункт России — 2560 метров. Расположен на склоне Шалбуздага, у самой границы с Азербайджаном. Отсюда начинаются маршруты на вершину, которую местные считают святой. Дорога сложная и открыта не круглый год.", "lat": 41.28, "lng": 47.86, "road": "unpaved", "roadDesc": "От Ахтов асфальт заканчивается через 20 км, дальше горная грунтовка с камнями и бродом. Нужен высокий клиренс, лучше внедорожник. Зимой перевал закрыт.", "car": "suv_required", "closed": "Ноябрь — Май", "route": "Махачкала → Ахты → Куруш, ~260 км, 6 часов", "public": "Автобус до Ахтов, дальше только попутка или джип", "transfer": "Джип из Ахтов 4000–6000 ₽", "stay": [{"n": "Гостевой дом в Куруше", "t": "Гостевой дом", "p": "от 1500 ₽/ночь", "r": 4.5}], "food": [{"n": "Домашняя кухня", "c": "Дагестанская", "p": "400 ₽", "r": 4.6}], "rating": 4.8, "reviews": 276, "img": "images/dagestan_kurush.jpg"}, {"id": "kala-koreish", "name": "Кала-Корейш", "cat": "древний город", "desc": "Столица Кайтагского уцмийства X–XI веков. Заброшенный город на вершине скалы: мавзолеи, мечеть, каменные надгробия с арабской вязью. Место паломничества и один из самых атмосферных памятников Дагестана.", "lat": 42.06, "lng": 47.75, "road": "mixed", "roadDesc": "Асфальт до села Кубачи и поворота, далее 3 км грунтовки по склону. Крутой подъём, в дождь скользко.", "car": "suv_recommended", "closed": "Декабрь — Март", "route": "Махачкала → Кала-Корейш, ~190 км, 4 часа", "public": "Только экскурсия или такси", "transfer": "Такси от Дербента 3500 ₽", "stay": [{"n": "Гостевой дом в Кубачи", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе в Кубачи", "c": "Дагестанская", "p": "450 ₽", "r": 4.5}], "rating": 4.7, "reviews": 365, "img": "images/dagestan_kala-koreish.jpg"}, {"id": "huchni", "name": "Хучнинский водопад", "cat": "водопад", "desc": "Водопад в Табасаранском районе высотой около 30 метров. Падает в узкое ущелье у села Хучни. Рядом — Хучнинская крепость VII века. Место популярно у местных на майские.", "lat": 41.94, "lng": 47.94, "road": "paved", "roadDesc": "Асфальт от Дербента через Табасаранский перевал, хорошее покрытие. От парковки 5 минут пешком.", "car": "any", "closed": null, "route": "Дербент → Хучни, ~60 км, 1,5 часа", "public": "Маршрутка Дербент — Хучни 150 ₽", "transfer": "Такси из Дербента 1200 ₽", "stay": [{"n": "Отель в Дербенте", "t": "Отель", "p": "от 3500 ₽/ночь", "r": 4.7}], "food": [{"n": "Кафе «Хучни»", "c": "Дагестанская", "p": "400 ₽", "r": 4.4}], "rating": 4.5, "reviews": 543, "img": "images/dagestan_huchni.jpg"}, {"id": "tarki-tau", "name": "Гора Тарки-Тау", "cat": "смотровая", "desc": "Смотровая площадка над Махачкалой и Каспийским морем. Плато на высоте 700 м прямо над городом. Ночью видно огни Махачкалы и порт. Подъём — по серпантину через посёлок Тарки.", "lat": 42.94, "lng": 47.45, "road": "paved", "roadDesc": "Асфальт до плато, но дорога узкая и с крутыми поворотами. Ночью освещения почти нет.", "car": "any", "closed": null, "route": "Внутри Махачкалы, 20 минут от центра", "public": "Маршрутка до Тарки, далее пешком вверх", "transfer": "Такси из центра 400–600 ₽", "stay": [{"n": "Отель в Махачкале", "t": "Отель", "p": "от 3500 ₽/ночь", "r": 4.5}], "food": [{"n": "Ресторан на плато", "c": "Дагестанская", "p": "900 ₽", "r": 4.6}], "rating": 4.6, "reviews": 876, "img": "images/dagestan_tarki-tau.jpg"}, {"id": "chokh", "name": "Село Чох", "cat": "аул", "desc": "Высокогорный аул с террасным земледелием и старинными домами. Одно из древнейших поселений Дагестана, известное террасами на склонах и боевыми башнями. Отсюда открывается панорама на Гунибское плато.", "lat": 42.32, "lng": 46.9, "road": "paved", "roadDesc": "Асфальт от Гуниба, 15 км по горной дороге. Проедет любая машина.", "car": "any", "closed": "Декабрь — Март", "route": "Гуниб → Чох, 15 км, 30 минут", "public": "Попутка из Гуниба", "transfer": "Такси от Гуниба 500 ₽", "stay": [{"n": "Гостевой дом в Чохе", "t": "Гостевой дом", "p": "от 1600 ₽/ночь", "r": 4.5}], "food": [{"n": "Домашняя кухня", "c": "Дагестанская", "p": "400 ₽", "r": 4.6}], "rating": 4.6, "reviews": 432, "img": "images/dagestan_chokh.jpg"}, {"id": "akhty", "name": "Ахтынские источники и крепость", "cat": "источники", "desc": "Горячие минеральные источники у подножия Ахтынской крепости. Вода выходит на поверхность круглый год с температурой около 40–50 °C. Рядом — крепость XIX века и высокогорное село Ахты на слиянии двух рек.", "lat": 41.47, "lng": 47.74, "road": "paved", "roadDesc": "Асфальт от Магарамкента по ущелью Самура, дорога узкая вдоль обрыва.", "car": "any", "closed": null, "route": "Махачкала → Ахты, ~250 км, 5 часов", "public": "Автобус Махачкала — Ахты 700 ₽, 6 часов", "transfer": "Такси от Дербента 4000 ₽", "stay": [{"n": "Санаторий «Ахты»", "t": "Санаторий", "p": "от 2500 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе «Ахты»", "c": "Дагестанская", "p": "400 ₽", "r": 4.3}], "rating": 4.5, "reviews": 365, "img": "images/dagestan_akhty.jpg"}]}, {"id": "chechnya", "name": "Чечня", "emoji": "🕌", "group": "caucasus", "diff": "easy", "rating": 4.7, "reviews": 987, "season": "Апрель — Октябрь", "desc": "Грозный с мечетями-гигантами, Аргунское ущелье, башенные комплексы и высокогорное озеро Кезеной-Ам", "img": "images/chechnya.jpg", "tags": ["архитектура", "горы", "история", "культура"], "places": [{"id": "heart", "name": "Мечеть «Сердце Чечни»", "cat": "мечеть", "desc": "Одна из крупнейших мечетей Европы, открыта в 2008 году. Названа в честь Ахмата Кадырова, вмещает до 10 000 человек. Внутри — белый мрамор, позолота и люстры из бронзы. Женщинам выдадут платок на входе.", "lat": 43.317, "lng": 45.694, "road": "urban", "roadDesc": "Центр Грозного, парк рядом с Грозный-Сити. Парковка у мечети.", "car": "any", "closed": null, "route": "Внутри Грозного, пешком от Грозный-Сити 10 минут", "public": "Самолёт Москва — Грозный 2,5 часа от 5500 ₽; из аэропорта маршрутка 100 ₽", "transfer": "Такси из аэропорта 400–600 ₽", "stay": [{"n": "Отель «Грозный Сити»", "t": "Отель", "p": "от 5500 ₽/ночь", "r": 4.8}, {"n": "Гостевой дом в центре", "t": "Гостевой дом", "p": "от 2500 ₽/ночь", "r": 4.6}], "food": [{"n": "Ресторан «Жижиг-Галнаш»", "c": "Чеченская", "p": "800 ₽", "r": 4.8}, {"n": "Кафе «Даймохк»", "c": "Чеченская", "p": "500 ₽", "r": 4.6}], "rating": 4.9, "reviews": 1543, "img": "images/chechnya_heart.jpg"}, {"id": "city", "name": "Грозный-Сити", "cat": "небоскрёбы", "desc": "Комплекс высоток в центре города, смотровая на 32-м этаже. Самый заметный квартал Грозного: отель, офисы, смотровая площадка с видом на мечеть и город. Вечером подсветка.", "lat": 43.311, "lng": 45.69, "road": "urban", "roadDesc": "Центр города, парковка под комплексом.", "car": "any", "closed": null, "route": "Внутри Грозного", "public": "От аэропорта 20 минут на такси", "transfer": "Такси по городу 150–250 ₽", "stay": [{"n": "Отель «Грозный Сити»", "t": "Отель", "p": "от 5500 ₽/ночь", "r": 4.8}], "food": [{"n": "Ресторан на 32 этаже", "c": "Европейская", "p": "1200 ₽", "r": 4.7}], "rating": 4.7, "reviews": 876, "img": "images/chechnya_city.jpg"}, {"id": "shali", "name": "Мечеть «Гордость мусульман» в Шали", "cat": "мечеть", "desc": "Крупнейшая мечеть Европы по площади — открыта в 2019 году. Рассчитана на 30 000 человек, отделка из белого мрамора. Находится в городе Шали, в 40 км от Грозного.", "lat": 43.146, "lng": 45.903, "road": "paved", "roadDesc": "Асфальт по трассе Грозный — Шали, 40 км. Парковка у мечети.", "car": "any", "closed": null, "route": "Грозный → Шали, 40 км, 40 минут", "public": "Маршрутка Грозный — Шали 80 ₽", "transfer": "Такси из Грозного 600 ₽", "stay": [{"n": "Отель «Грозный Сити»", "t": "Отель", "p": "от 5500 ₽/ночь", "r": 4.8}], "food": [{"n": "Кафе в Шали", "c": "Чеченская", "p": "500 ₽", "r": 4.5}], "rating": 4.8, "reviews": 654, "img": "images/chechnya_shali.jpg"}, {"id": "argun-gorge", "name": "Аргунское ущелье", "cat": "ущелье", "desc": "Дорога вдоль реки Аргун между скальными стенами. Трасса идёт по дну ущелья от Грозного к Шатою, повторяя изгибы реки. По пути — смотровые, водопады и башенные комплексы. Одна из самых красивых дорог Кавказа.", "lat": 42.95, "lng": 45.65, "road": "paved", "roadDesc": "Асфальт от Грозного, хорошее покрытие на всём протяжении. Местами камнепад — не останавливаться под склонами.", "car": "any", "closed": "Январь — Февраль (гололёд)", "route": "Грозный → Шатой, ~80 км, 1,5 часа", "public": "Маршрутка Грозный — Шатой 150 ₽", "transfer": "Такси из Грозного 1500 ₽", "stay": [{"n": "Гостевой дом в Шатое", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе «Аргун»", "c": "Чеченская", "p": "500 ₽", "r": 4.5}], "rating": 4.8, "reviews": 987, "img": "images/chechnya_argun-gorge.jpg"}, {"id": "ushkaloy", "name": "Ушкалойские башни", "cat": "башни", "desc": "Две башни XII века, встроенные в скалу над дорогой. Стоят прямо у трассы на Итум-Кали, на краю обрыва над Аргуном. Один из самых фотографируемых объектов Чечни. Рядом — смотровая и родник.", "lat": 42.83, "lng": 45.6, "road": "paved", "roadDesc": "Асфальт по дороге Грозный — Итум-Кали, башни видны с трассы. Парковка у обочины.", "car": "any", "closed": null, "route": "Грозный → Ушкалой, ~90 км, 1 ч 45 мин", "public": "Маршрутка до Итум-Кали 200 ₽", "transfer": "Такси из Грозного 1800 ₽", "stay": [{"n": "Гостевой дом в Итум-Кали", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе у дороги", "c": "Чеченская", "p": "450 ₽", "r": 4.4}], "rating": 4.8, "reviews": 765, "img": "images/chechnya_ushkaloy.jpg"}, {"id": "nikhaloy", "name": "Нихалойские водопады", "cat": "водопад", "desc": "Каскад водопадов в Шатойском районе, до 12 метров. Несколько струй падают со скального яруса в лесистом ущелье. К верхнему водопаду ведёт тропа. Летом поток слабеет, максимум — май-июнь.", "lat": 42.95, "lng": 45.63, "road": "mixed", "roadDesc": "Асфальт до Нихалой, дальше 1,5 км по грунтовке и пешком по тропе. После дождя размывает.", "car": "suv_recommended", "closed": "Декабрь — Март", "route": "Грозный → Нихалой, ~85 км, 2 часа", "public": "Маршрутка до Шатоя, далее пешком 5 км", "transfer": "Такси от Шатоя 800 ₽", "stay": [{"n": "Гостевой дом в Шатое", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе в Шатое", "c": "Чеченская", "p": "450 ₽", "r": 4.4}], "rating": 4.6, "reviews": 543, "img": "images/chechnya_nikhaloy.jpg"}, {"id": "tsoi-pede", "name": "Цой-Педе — Город мёртвых", "cat": "некрополь", "desc": "Средневековый некрополь из 42 каменных склепов в высокогорье. Расположен на мысу между двумя реками у границы с Грузией, на высоте около 1400 м. Склепы с пирамидальными крышами, внутри — останки и предметы быта. Место труднодоступное и мало посещаемое.", "lat": 42.63, "lng": 45.55, "road": "unpaved", "roadDesc": "Асфальт до Итум-Кали, дальше 15 км горной грунтовки без покрытия, местами колея и камни. Нужен внедорожник. Зимой проезд закрыт.", "car": "suv_required", "closed": "Ноябрь — Май", "route": "Грозный → Итум-Кали → Цой-Педе, ~140 км, 3,5 часа", "public": "Общественного транспорта нет, только джип-тур", "transfer": "Джип-тур из Грозного 5000–8000 ₽ с человека", "stay": [{"n": "Гостевой дом в Итум-Кали", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе в Итум-Кали", "c": "Чеченская", "p": "400 ₽", "r": 4.3}], "rating": 4.9, "reviews": 276, "img": "images/chechnya_shali.jpg"}, {"id": "kezenoy", "name": "Озеро Кезеной-Ам", "cat": "озеро", "desc": "Крупнейшее высокогорное озеро Северного Кавказа — 1870 метров. Бирюзовая вода в котловине между хребтами, глубина до 74 м. Зимой замерзает. Рядом — экомузей и восстановленный древний аул Хой.", "lat": 42.78, "lng": 46.15, "road": "mixed", "roadDesc": "Асфальт от Ведено, последние 10 км — горная дорога с грунтовыми участками. Серпантин без ограждений.", "car": "suv_recommended", "closed": "Декабрь — Март", "route": "Грозный → Ведено → Кезеной-Ам, ~120 км, 3 часа", "public": "Маршрутка до Ведено, дальше только такси или джип", "transfer": "Джип из Ведено 2500–3500 ₽", "stay": [{"n": "Экоотель «Кезеной-Ам»", "t": "Эко-лодж", "p": "от 4000 ₽/ночь", "r": 4.6}, {"n": "Гостевой дом в Хое", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе у озера", "c": "Чеченская", "p": "600 ₽", "r": 4.4}], "rating": 4.9, "reviews": 654, "img": "images/chechnya_kezenoy.jpg"}, {"id": "itum-kali", "name": "Итум-Кали", "cat": "село", "desc": "Горное село у слияния Аргуна и Кериго, центр башенной архитектуры. Здесь находится музей под открытым небом с реконструированными башнями и крепостью. Отсюда начинаются маршруты к Цой-Педе и в верховья Аргуна.", "lat": 42.72, "lng": 45.57, "road": "paved", "roadDesc": "Асфальт от Грозного по Аргунскому ущелью, хорошее покрытие. Дальше в горы — только грунт.", "car": "any", "closed": "Январь — Февраль", "route": "Грозный → Итум-Кали, ~110 км, 2,5 часа", "public": "Маршрутка из Грозного 250 ₽, 3 часа", "transfer": "Такси из Грозного 2500 ₽", "stay": [{"n": "Гостевой дом в Итум-Кали", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе в Итум-Кали", "c": "Чеченская", "p": "400 ₽", "r": 4.3}], "rating": 4.7, "reviews": 432, "img": "images/chechnya_shatoy.jpg"}, {"id": "shatoy", "name": "Шатойская крепость", "cat": "крепость", "desc": "Крепость на скальном выступе над Аргунским ущельем. Построена в XIX веке на месте древнего укрепления. Со смотровой видно весь каньон и дорогу в Итум-Кали. Небольшой музей внутри.", "lat": 42.87, "lng": 45.68, "road": "paved", "roadDesc": "Асфальт от Грозного. К крепости — короткий подъём пешком по лестнице.", "car": "any", "closed": null, "route": "Грозный → Шатой, ~80 км, 1,5 часа", "public": "Маршрутка Грозный — Шатой 150 ₽", "transfer": "Такси из Грозного 1500 ₽", "stay": [{"n": "Гостевой дом в Шатое", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе «Шатой»", "c": "Чеченская", "p": "450 ₽", "r": 4.5}], "rating": 4.6, "reviews": 365, "img": "images/chechnya_shatoy.jpg"}, {"id": "vedeno", "name": "Ведено и Харачой", "cat": "село", "desc": "Горное село в верховьях Хулхулау с видами на Веденский хребет. Отсюда идёт дорога к Кезеной-Ам. В окрестностях — родники, лесные ущелья и панорамные серпантины. Место тихое, туристов мало.", "lat": 42.96, "lng": 46.1, "road": "paved", "roadDesc": "Асфальт от Грозного через Шали, горная дорога с серпантином.", "car": "any", "closed": "Декабрь — Февраль", "route": "Грозный → Ведено, ~90 км, 2 часа", "public": "Маршрутка Грозный — Ведено 180 ₽", "transfer": "Такси из Грозного 1800 ₽", "stay": [{"n": "Гостевой дом в Ведено", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.3}], "food": [{"n": "Кафе «Ведено»", "c": "Чеченская", "p": "400 ₽", "r": 4.3}], "rating": 4.5, "reviews": 276, "img": "images/chechnya_argun-gorge.jpg"}, {"id": "ahmat-arena", "name": "Ахмат-Арена", "cat": "стадион", "desc": "Стадион на 30 000 мест, домашняя арена «Ахмата». Открыт в 2011 году, одна из главных построек Грозного. Экскурсии по стадиону возможны по договорённости, в дни матчей — атмосфера.", "lat": 43.32, "lng": 45.7, "road": "urban", "roadDesc": "Центр Грозного, парковка у стадиона.", "car": "any", "closed": null, "route": "Внутри Грозного", "public": "От центра 10 минут на такси", "transfer": "Такси 150 ₽", "stay": [{"n": "Отель «Грозный Сити»", "t": "Отель", "p": "от 5500 ₽/ночь", "r": 4.8}], "food": [{"n": "Кафе у стадиона", "c": "Чеченская", "p": "500 ₽", "r": 4.4}], "rating": 4.6, "reviews": 543, "img": "images/chechnya_ahmat-arena.jpg"}, {"id": "argun-museum", "name": "Аргунский музей-заповедник", "cat": "музей", "desc": "Музей под открытым небом с башнями и петроглифами. Собирает памятники Аргунского ущелья: боевые и жилые башни, склепы, наскальные изображения. Часть экспозиции — реконструкции, часть — подлинники на своих местах.", "lat": 42.8, "lng": 45.6, "road": "paved", "roadDesc": "Асфальт по трассе в Итум-Кали, объекты вдоль дороги.", "car": "any", "closed": null, "route": "Грозный → Аргунское ущелье, 90–110 км", "public": "Маршрутка до Шатоя или Итум-Кали", "transfer": "Такси из Грозного 1800 ₽", "stay": [{"n": "Гостевой дом в Шатое", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе в Шатое", "c": "Чеченская", "p": "450 ₽", "r": 4.4}], "rating": 4.6, "reviews": 321, "img": "images/chechnya_argun-museum.jpg"}, {"id": "national-museum", "name": "Национальный музей Чечни", "cat": "музей", "desc": "Главный музей республики в Грозном. Экспозиция по истории и этнографии Чечни: оружие, ковры, утварь, документы. Находится в центре, рядом с мечетью.", "lat": 43.315, "lng": 45.692, "road": "urban", "roadDesc": "Центр Грозного, пешком от мечети.", "car": "any", "closed": null, "route": "Внутри Грозного", "public": "Пешком от «Сердца Чечни»", "transfer": "Не требуется", "stay": [{"n": "Отель «Грозный Сити»", "t": "Отель", "p": "от 5500 ₽/ночь", "r": 4.8}], "food": [{"n": "Ресторан «Жижиг-Галнаш»", "c": "Чеченская", "p": "800 ₽", "r": 4.8}], "rating": 4.5, "reviews": 432, "img": "images/chechnya_national-museum.jpg"}, {"id": "hoy", "name": "Аул Хой", "cat": "аул", "desc": "Восстановленный древний аул у озера Кезеной-Ам. Каменные дома и башни, воссозданные по старым образцам. Внутри — экомузей с предметами быта горцев. Вид на озеро с террас.", "lat": 42.79, "lng": 46.14, "road": "mixed", "roadDesc": "Дорога от Ведено — асфальт с грунтовыми участками, серпантин. Последние километры к аулу узкие.", "car": "suv_recommended", "closed": "Декабрь — Март", "route": "Грозный → Ведено → Хой, ~120 км, 3 часа", "public": "Только такси или джип-тур от Ведено", "transfer": "Джип из Ведено 2500 ₽", "stay": [{"n": "Гостевой дом в Хое", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе у озера", "c": "Чеченская", "p": "600 ₽", "r": 4.4}], "rating": 4.7, "reviews": 276, "img": "images/chechnya_hoy.jpg"}]}, {"id": "kbr", "name": "Кабардино-Балкария", "emoji": "🗻", "group": "caucasus", "diff": "medium", "rating": 4.9, "reviews": 1654, "season": "Май — Октябрь", "desc": "Эльбрус — высшая точка Европы, Чегемские водопады, Голубые озёра и нарзаны Джилы-Су", "img": "images/kbr.jpg", "tags": ["горы", "Эльбрус", "водопады", "альпинизм"], "places": [{"id": "elbrus", "name": "Эльбрус", "cat": "гора", "desc": "Высочайшая вершина Европы — 5642 метра. Стратовулкан с двумя вершинами. Канатная дорога поднимает до станции Гарабаши на 3847 м, дальше — только пешком или на ратраке. Наверху разрежённый воздух, холод и сильный ветер даже летом.", "lat": 43.355, "lng": 42.439, "road": "mixed", "roadDesc": "Асфальт от Нальчика до Азау через Баксанское ущелье — 130 км, хорошее покрытие. Дальше только канатная дорога: три очереди, до 3847 м.", "car": "any", "closed": null, "route": "Нальчик → Тырныауз → Терскол → Азау, 130 км, 2,5 часа по А-158", "public": "Самолёт до Минеральных Вод от 5000 ₽, автобус до Терскола 500 ₽ (4 часа)", "transfer": "Такси Минводы — Азау 4000–5000 ₽; канатная дорога ~1000–1400 ₽ за очередь", "stay": [{"n": "Отель «Азау»", "t": "Отель", "p": "от 4500 ₽/ночь", "r": 4.7}, {"n": "Гостевой дом в Терсколе", "t": "Гостевой дом", "p": "от 2500 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе «Приют 11»", "c": "Кавказская", "p": "700 ₽", "r": 4.5}, {"n": "Ресторан «Эльбрус»", "c": "Балкарская", "p": "800 ₽", "r": 4.7}], "rating": 5.0, "reviews": 1243, "img": "images/kbr_elbrus.jpg"}, {"id": "priyut11", "name": "Приют одиннадцати", "cat": "высокогорный приют", "desc": "Приют на высоте 4100 м — база восходителей на Эльбрус. Отсюда начинается штурм вершины. Добраться можно пешком от Гарабаши (2–3 часа) или на ратраке. Ночёвка на такой высоте требует акклиматизации.", "lat": 43.315, "lng": 42.44, "road": "helicopter", "roadDesc": "Канатка до Гарабаши, дальше пешком 2–3 часа или ратрак. Автомобильной дороги нет.", "car": "none", "closed": "Ноябрь — Апрель", "route": "Азау → Гарабаши (канатка) → пешком 3 км", "public": "Только канатная дорога и пешком", "transfer": "Ратрак от Гарабаши 2000–3000 ₽ с человека", "stay": [{"n": "Приют 11", "t": "Приют", "p": "от 3000 ₽/ночь", "r": 4.3}], "food": [{"n": "Столовая приюта", "c": "Кавказская", "p": "800 ₽", "r": 4.2}], "rating": 4.9, "reviews": 876, "img": "images/kbr_priyut11.jpg"}, {"id": "chegem", "name": "Чегемские водопады", "cat": "водопад", "desc": "Каскад водопадов высотой до 60 метров в Чегемском ущелье. Большие и Малые водопады падают со скальных стен прямо к дороге. Полноводны в июне-июле от таяния ледников. Рядом — источник с нарзаном.", "lat": 43.35, "lng": 43.25, "road": "paved", "roadDesc": "Асфальт от Нальчика через Чегем, дорога идёт прямо под водопадами. Парковка у входа.", "car": "any", "closed": "Декабрь — Март", "route": "Нальчик → Хушто-Сырт, 60 км, 1,5 часа", "public": "Маршрутка Нальчик — Чегем 100 ₽, до водопадов — попутка", "transfer": "Такси из Нальчика 1500 ₽", "stay": [{"n": "Гостевой дом в Чегеме", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе «Ущелье»", "c": "Балкарская", "p": "500 ₽", "r": 4.5}], "rating": 4.8, "reviews": 987, "img": "images/kbr_chegem.jpg"}, {"id": "blue-lakes", "name": "Голубые озёра", "cat": "озёра", "desc": "Пять карстовых озёр с бирюзовой водой, не замерзающих зимой. Нижнее Голубое озеро имеет глубину 258 м и не покрывается льдом даже в морозы. Верхние озёра — проточные, вода меняет цвет от времени года.", "lat": 43.24, "lng": 43.35, "road": "paved", "roadDesc": "Асфальт от Нальчика через Черекское ущелье. К верхним озёрам — грунтовка 2 км.", "car": "any", "closed": null, "route": "Нальчик → Голубые озёра, 40 км, 50 минут", "public": "Маршрутка Нальчик — Бабугент 120 ₽, далее пешком", "transfer": "Такси из Нальчика 1000 ₽", "stay": [{"n": "Гостевой дом «Черек»", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе «Голубые озёра»", "c": "Балкарская", "p": "450 ₽", "r": 4.3}], "rating": 4.8, "reviews": 654, "img": "images/kbr_blue-lakes.jpg"}, {"id": "verkhnyaya-balkaria", "name": "Верхняя Балкария", "cat": "село", "desc": "Древнее балкарское село с башней Абаевых XVI века. Каменные дома и боевые башни на склоне Черекского ущелья. Часть села была разрушена в 1944 году при депортации, сохранились руины и некрополь.", "lat": 43.15, "lng": 43.2, "road": "paved", "roadDesc": "Асфальт от Нальчика по Черекскому ущелью, узкая горная дорога. Проедет любая машина.", "car": "any", "closed": "Декабрь — Март", "route": "Нальчик → Верхняя Балкария, 80 км, 2 часа", "public": "Маршрутка Нальчик — Верхняя Балкария 200 ₽", "transfer": "Такси из Нальчика 2500 ₽", "stay": [{"n": "Гостевой дом в Верхней Балкарии", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.5}], "food": [{"n": "Домашняя кухня", "c": "Балкарская", "p": "450 ₽", "r": 4.6}], "rating": 4.7, "reviews": 543, "img": "images/kbr_verkhnyaya-balkaria.jpg"}, {"id": "dzhily-su", "name": "Джилы-Су", "cat": "урочище", "desc": "Нарзаны и водопады у северного подножия Эльбруса. Минеральные источники с разным составом, водопад Султан и скала Кара-Кайя. Дорога сложная: грунтовка через Былымское ущелье с бродами.", "lat": 43.42, "lng": 42.55, "road": "unpaved", "roadDesc": "От Былыма — около 30 км грунтовки с камнями и бродами. Нужен высокий клиренс; после дождя проезд затруднён. Есть альтернативный заезд со стороны Кисловодска.", "car": "suv_required", "closed": "Ноябрь — Май", "route": "Нальчик → Былым → Джилы-Су, ~120 км, 3,5 часа", "public": "Общественного транспорта нет, только джип-тур", "transfer": "Джип-тур из Кисловодска или Нальчика 4000–6000 ₽ с человека", "stay": [{"n": "Гостевой дом в Былыме", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.3}], "food": [{"n": "Кафе в Джилы-Су", "c": "Балкарская", "p": "500 ₽", "r": 4.2}], "rating": 4.9, "reviews": 765, "img": "images/kbr_dzhily-su.jpg"}, {"id": "eltyubu", "name": "Эльтюбю", "cat": "некрополь", "desc": "Древние петроглифы и склепы в Чегемском ущелье. На скалах — наскальные изображения людей, животных и сцен охоты, возраст которых оценивают в несколько тысяч лет. Рядом — наземные склепы.", "lat": 43.35, "lng": 43.15, "road": "mixed", "roadDesc": "Асфальт до Чегема, далее 20 км грунтовки вверх по ущелью. Узко, местами разбито.", "car": "suv_recommended", "closed": "Декабрь — Март", "route": "Нальчик → Чегем → Эльтюбю, ~70 км, 2 часа", "public": "Маршрутка до Чегема, дальше только такси", "transfer": "Такси от Чегема 1200 ₽", "stay": [{"n": "Гостевой дом в Эльтюбю", "t": "Гостевой дом", "p": "от 1600 ₽/ночь", "r": 4.4}], "food": [{"n": "Домашняя кухня", "c": "Балкарская", "p": "400 ₽", "r": 4.5}], "rating": 4.7, "reviews": 432, "img": "images/kbr_eltyubu.jpg"}, {"id": "bezengi", "name": "Безенгийская стена", "cat": "ледник", "desc": "Пятикилометровая стена вершин-пятитысячников. Один из самых сложных альпинистских районов Кавказа. Внизу — ледник и альплагерь. Для обычного туриста доступны прогулки к языку ледника и виды со смотровых.", "lat": 43.1, "lng": 43.15, "road": "unpaved", "roadDesc": "Асфальт до Безенги заканчивается за несколько километров, дальше грунтовка и пешая часть. К леднику — только пешком.", "car": "suv_recommended", "closed": "Октябрь — Май", "route": "Нальчик → Безенги, ~90 км, 2,5 часа", "public": "Маршрутка до Советского, далее такси", "transfer": "Такси из Нальчика 3000 ₽", "stay": [{"n": "Альплагерь Безенги", "t": "Приют", "p": "от 1500 ₽/ночь", "r": 4.4}], "food": [{"n": "Столовая альплагеря", "c": "Кавказская", "p": "500 ₽", "r": 4.2}], "rating": 4.9, "reviews": 321, "img": "images/kbr_bezengi.jpg"}, {"id": "terskol", "name": "Терскол и водопад «Девичьи косы»", "cat": "водопад", "desc": "Водопад у подножия Эльбруса, в 15 минутах от Терскола. Тонкие струи воды стекают по скальной стене, отсюда название. Тропа от Терскола идёт через сосновый лес вдоль реки.", "lat": 43.24, "lng": 42.52, "road": "paved", "roadDesc": "Асфальт до Терскола, к водопаду — пешая тропа 20 минут по лесной дороге.", "car": "any", "closed": null, "route": "Нальчик → Терскол, 125 км, 2,5 часа", "public": "Автобус до Терскола, 4 часа", "transfer": "Такси Минводы — Терскол 4000 ₽", "stay": [{"n": "Гостевой дом в Терсколе", "t": "Гостевой дом", "p": "от 2500 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе «Терскол»", "c": "Балкарская", "p": "600 ₽", "r": 4.5}], "rating": 4.7, "reviews": 654, "img": "images/kbr_terskol.jpg"}, {"id": "azau", "name": "Поляна Азау", "cat": "поляна", "desc": "Нижняя станция канатной дороги на Эльбрус — 2350 метров. Отсюда стартуют все маршруты в Приэльбрусье. Вокруг — гостиницы, прокат снаряжения, кафе. Открывается вид на оба склона Эльбруса.", "lat": 43.28, "lng": 42.48, "road": "paved", "roadDesc": "Асфальт от Нальчика, парковка у канатки. Зимой нужны цепи при снегопаде.", "car": "any", "closed": null, "route": "Нальчик → Азау, 130 км, 2,5 часа", "public": "Автобус до Терскола, далее 3 км пешком или такси", "transfer": "Такси из Терскола 300 ₽", "stay": [{"n": "Отель «Азау»", "t": "Отель", "p": "от 4500 ₽/ночь", "r": 4.7}], "food": [{"n": "Кафе на поляне", "c": "Кавказская", "p": "700 ₽", "r": 4.4}], "rating": 4.8, "reviews": 876, "img": "images/kbr_azau.jpg"}, {"id": "chegem-gorge", "name": "Чегемское ущелье", "cat": "ущелье", "desc": "40-километровое ущелье вдоль реки Чегем. Дорога петляет между скал, над ней нависают водопады. По пути — аулы, нарзанные источники и смотровые площадки.", "lat": 43.33, "lng": 43.22, "road": "paved", "roadDesc": "Асфальт от Нальчика, местами узко и разбито на поворотах.", "car": "any", "closed": "Декабрь — Март", "route": "Нальчик → Чегем, 60 км, 1,5 часа", "public": "Маршрутка Нальчик — Чегем 100 ₽", "transfer": "Такси из Нальчика 1500 ₽", "stay": [{"n": "Гостевой дом в Чегеме", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе «Ущелье»", "c": "Балкарская", "p": "500 ₽", "r": 4.5}], "rating": 4.7, "reviews": 543, "img": "images/kbr_chegem-gorge.jpg"}, {"id": "nartsan", "name": "Долина Нарзанов", "cat": "источники", "desc": "Поле десятков минеральных источников с разным вкусом воды. Каждый источник имеет свой состав — от железистого до щелочного. Вода выходит прямо из земли, в некоторых местах оборудованы краны.", "lat": 43.45, "lng": 42.6, "road": "unpaved", "roadDesc": "Асфальт до поворота, далее грунтовка 5 км. Проедет легковая в сухую погоду.", "car": "any", "closed": "Ноябрь — Апрель", "route": "Нальчик → Долина Нарзанов, ~110 км, 3 часа", "public": "Только такси или экскурсия", "transfer": "Такси из Кисловодска 2500 ₽", "stay": [{"n": "Гостевой дом рядом", "t": "Гостевой дом", "p": "от 1500 ₽/ночь", "r": 4.2}], "food": [{"n": "Кафе в долине", "c": "Кавказская", "p": "450 ₽", "r": 4.2}], "rating": 4.5, "reviews": 321, "img": "images/kbr_nartsan.jpg"}, {"id": "upper-chegem", "name": "Верхний Чегем", "cat": "ущелье", "desc": "Верховья Чегема с ледниками и альпийскими лугами. Дорога заканчивается у древних аулов, дальше — только пешие маршруты к ледникам. Место для тех, кто хочет уйти от людей.", "lat": 43.3, "lng": 43.1, "road": "unpaved", "roadDesc": "Грунтовка высоко в горы, узкая, с бродами. Нужен внедорожник, зимой непроходима.", "car": "suv_required", "closed": "Октябрь — Май", "route": "Чегем → Верхний Чегем, ~30 км, 2 часа", "public": "Общественного транспорта нет", "transfer": "Джип от Чегема 3000 ₽", "stay": [{"n": "Гостевой дом в верховьях", "t": "Гостевой дом", "p": "от 1500 ₽/ночь", "r": 4.3}], "food": [{"n": "Домашняя кухня", "c": "Балкарская", "p": "400 ₽", "r": 4.4}], "rating": 4.6, "reviews": 276, "img": "images/kbr_upper-chegem.jpg"}, {"id": "cherek", "name": "Черекская теснина", "cat": "ущелье", "desc": "Узкий каньон с почти отвесными стенами вдоль реки Черек. Дорога прорублена в скале, местами нависает над рекой. По пути — тоннели и смотровые. Ведёт к Голубым озёрам и Верхней Балкарии.", "lat": 43.22, "lng": 43.38, "road": "paved", "roadDesc": "Асфальт от Нальчика, дорога узкая с односторонним движением в тоннелях.", "car": "any", "closed": "Декабрь — Февраль", "route": "Нальчик → Черекская теснина, 35 км, 50 минут", "public": "Маршрутка Нальчик — Бабугент 120 ₽", "transfer": "Такси из Нальчика 900 ₽", "stay": [{"n": "Гостевой дом «Черек»", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе у теснины", "c": "Балкарская", "p": "450 ₽", "r": 4.3}], "rating": 4.6, "reviews": 432, "img": "images/kbr_cherek.jpg"}, {"id": "elbrus-park", "name": "Национальный парк «Приэльбрусье»", "cat": "нацпарк", "desc": "Охраняемая территория вокруг Эльбруса — 100 тысяч гектаров. Включает ущелья, ледники, водопады и маршруты разной сложности. Нужен пропуск на посещение приграничной зоны, оформляется заранее.", "lat": 43.27, "lng": 42.5, "road": "paved", "roadDesc": "Асфальт по основным дорогам парка. Для пограничной зоны — пропуск в ФСБ, оформляется за 15–30 дней.", "car": "any", "closed": null, "route": "Нальчик → Приэльбрусье, 130 км", "public": "Автобус до Терскола", "transfer": "Такси Минводы — Терскол 4000 ₽", "stay": [{"n": "Отель «Азау»", "t": "Отель", "p": "от 4500 ₽/ночь", "r": 4.7}], "food": [{"n": "Кафе в Терсколе", "c": "Балкарская", "p": "600 ₽", "r": 4.5}], "rating": 4.8, "reviews": 654, "img": "images/kbr_elbrus-park.jpg"}]}, {"id": "kchr", "name": "Карачаево-Черкесия", "emoji": "🏔️", "group": "caucasus", "diff": "medium", "rating": 4.8, "reviews": 1876, "season": "Май — Октябрь, Декабрь — Март (горные лыжи)", "desc": "Домбай и Архыз — горнолыжные курорты федерального значения, Тебердинский биосферный заповедник, крупнейшая в Евразии астрофизическая обсерватория и древнейшие христианские храмы России X века", "img": "images/kchr.jpg", "tags": ["горы", "горные лыжи", "astronomy", "древние храмы"], "places": [{"id": "dombay", "name": "Домбай", "cat": "горный курорт", "desc": "Один из старейших и известнейших горнолыжных курортов Кавказа на высоте 1600 м. Курорт расположен в котловине, окружённой пиками Белалакая, Суфруджу и Домбай-Ульген, на территории Тебердинского заповедника. Три канатные дороги поднимают к смотровым площадкам на хребте Мусса-Ачитара.", "road": "paved", "roadDesc": "Асфальт от Черкесска и от Минеральных Вод, хорошее покрытие на всём протяжении.", "car": "any", "closed": null, "route": "Черкесск → Теберда → Домбай, ~120 км, 2–2,5 часа", "public": "Самолёт до Минеральных Вод, далее автобус или маршрутка до Домбая (3,5–4 часа)", "transfer": "Такси Минводы — Домбай 5000–6500 ₽", "stay": [{"n": "Отель «Домбай»", "t": "Отель", "p": "от 4000 ₽/ночь", "r": 4.7}, {"n": "Гостевой дом «Хижина»", "t": "Гостевой дом", "p": "от 2200 ₽/ночь", "r": 4.6}], "food": [{"n": "Ресторан «Карачаевский»", "c": "Карачаевская", "p": "700 ₽", "r": 4.7}, {"n": "Кафе на поляне", "c": "Кавказская", "p": "500 ₽", "r": 4.5}], "rating": 4.9, "reviews": 1243, "img": "images/kchr_dombay.jpg"}, {"id": "mussa-achitara", "name": "Хребет Мусса-Ачитара", "cat": "смотровая", "desc": "Главная смотровая площадка Домбая, подъём по канатной дороге до 3012 м. С верхней станции канатки открывается панорама на Домбай-Ульген, Белалакаю и ледники Тебердинского заповедника. Три очереди канатной дороги, наверху — кафе и смотровые площадки.", "road": "urban", "roadDesc": "Канатная дорога от посёлка, пешком не подняться.", "car": "none", "closed": "Иногда закрыта в сильный ветер", "route": "Из центра Домбая пешком до нижней станции 10 минут", "public": "Из центра Домбая пешком", "transfer": "Билет на канатку 1000–1500 ₽ за очередь", "stay": [{"n": "Отель «Домбай»", "t": "Отель", "p": "от 4000 ₽/ночь", "r": 4.7}], "food": [{"n": "Кафе на верхней станции", "c": "Кавказская", "p": "600 ₽", "r": 4.4}], "rating": 4.8, "reviews": 876, "img": "images/kchr_mussa-achitara.jpg"}, {"id": "alibek", "name": "Алибекский ледник и водопад", "cat": "ледник", "desc": "Один из самых доступных ледников Кавказа и живописный водопад на подходе к нему. Тропа к леднику идёт через хвойный лес вдоль реки Алибек, набор высоты около 360 м. Водопад находится в 6,5 км от центра Домбая, дорога пологая и доступна даже с детьми.", "road": "unpaved", "roadDesc": "Грунтовая тропа от турбазы, для машины — только до начала маршрута.", "car": "none", "closed": "Ноябрь — Апрель (снег на тропе)", "route": "От центра Домбая до начала тропы — 2 км асфальта, далее пешком", "public": "Пешком от посёлка Домбай, 2–3 часа туда-обратно", "transfer": "Не требуется", "stay": [{"n": "Турбаза «Алибек»", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе у тропы", "c": "Кавказская", "p": "450 ₽", "r": 4.3}], "rating": 4.8, "reviews": 654, "img": "images/kchr_alibek.jpg"}, {"id": "kara-kel", "name": "Озеро Кара-Кёль", "cat": "озеро", "desc": "Небольшое горное озеро в центре Домбайской поляны. Озеро образовалось у подножия хребта и считается одним из символов курорта. Вокруг — пешеходная тропа, рядом кафе и сувенирные лавки.", "road": "urban", "roadDesc": "В черте посёлка, асфальтированные дорожки.", "car": "any", "closed": null, "route": "В центре Домбая", "public": "Пешком от любой точки посёлка", "transfer": "Не требуется", "stay": [{"n": "Отель «Домбай»", "t": "Отель", "p": "от 4000 ₽/ночь", "r": 4.7}], "food": [{"n": "Кафе у озера", "c": "Кавказская", "p": "500 ₽", "r": 4.4}], "rating": 4.5, "reviews": 432, "img": "images/kchr_kara-kel.jpg"}, {"id": "arkhyz", "name": "Архыз", "cat": "горный курорт", "desc": "Современный горнолыжный курорт и один из крупнейших горных массивов Западного Кавказа. Курорт на высоте 1650–2200 м, развивается с 2013 года. Рядом — Тебердинский заповедник, Софийские озёра и древнейшие христианские храмы России. Архыз даёт имя известной марке минеральной воды.", "road": "paved", "roadDesc": "Асфальт от Черкесска через Зеленчукскую, хорошее покрытие.", "car": "any", "closed": null, "route": "Черкесск → Архыз, ~130 км, 2,5 часа", "public": "Самолёт до Минеральных Вод, далее автобус до Архыза (4 часа)", "transfer": "Такси Минводы — Архыз 5500–7000 ₽", "stay": [{"n": "Отель «Архыз»", "t": "Отель", "p": "от 5000 ₽/ночь", "r": 4.8}, {"n": "Глэмпинг «София»", "t": "Глэмпинг", "p": "от 6000 ₽/ночь", "r": 4.8}], "food": [{"n": "Кафе «Дукка»", "c": "Кавказская", "p": "600 ₽", "r": 4.6}], "rating": 4.9, "reviews": 987, "img": "images/kchr_arkhyz.jpg"}, {"id": "sofia-lakes", "name": "Софийские озёра", "cat": "озёра", "desc": "Каскад ледниковых озёр у подножия горы София (3637 м). Группа высокогорных озёр с бирюзовой водой на высоте около 2800 м. Маршрут проходит мимо Софийских водопадов — каскада, падающего с ледника. Популярен джиппинг-маршрут от посёлка Архыз.", "road": "unpaved", "roadDesc": "Грунтовая дорога в горы, рекомендован внедорожник или джип-тур.", "car": "suv_recommended", "closed": "Октябрь — Май", "route": "Архыз → Софийские озёра, ~25 км горной грунтовки", "public": "Только джип-тур или пешком с турбазы", "transfer": "Джип-тур из Архыза 2500–3500 ₽ с человека", "stay": [{"n": "Отель «Архыз»", "t": "Отель", "p": "от 5000 ₽/ночь", "r": 4.8}], "food": [{"n": "Кафе «Дукка»", "c": "Кавказская", "p": "600 ₽", "r": 4.6}], "rating": 4.9, "reviews": 765, "img": "images/kchr_sofia-lakes.jpg"}, {"id": "sofia-waterfalls", "name": "Софийские водопады", "cat": "водопад", "desc": "Каскад водопадов, питаемых Софийским ледником, на пути к Софийским озёрам. Несколько потоков падают с высоты, формируя один из самых фотографируемых каскадов Архыза. Видны уже с подножия горы София, доступны по тому же маршруту, что и озёра.", "road": "unpaved", "roadDesc": "Грунтовая горная дорога, джип-тур или пешая тропа.", "car": "suv_recommended", "closed": "Октябрь — Май", "route": "Архыз → Софийские водопады, ~20 км", "public": "Джип-тур или пешком от турбазы", "transfer": "Джип-тур из Архыза 2500 ₽ с человека", "stay": [{"n": "Отель «Архыз»", "t": "Отель", "p": "от 5000 ₽/ночь", "r": 4.8}], "food": [{"n": "Кафе «Дукка»", "c": "Кавказская", "p": "600 ₽", "r": 4.6}], "rating": 4.7, "reviews": 543, "img": "images/kchr_sofia-waterfalls.jpg"}, {"id": "sao-ran", "name": "Специальная астрофизическая обсерватория РАН", "cat": "обсерватория", "desc": "Крупнейший в Евразии оптический телескоп БТА-6 с диаметром зеркала 6 метров. Обсерватория находится в долине реки Большой Зеленчук, в посёлке Нижний Архыз. Проводятся дневные экскурсии к телескопу БТА, а по записи — ночные наблюдения. Внутрь купола с самим зеркалом туристов пускают в составе экскурсии.", "road": "paved", "roadDesc": "Асфальт от Зеленчукской, хорошее покрытие.", "car": "any", "closed": null, "route": "Черкесск → Нижний Архыз, ~100 км, 2 часа", "public": "Автобус до Зеленчукской, далее такси 15 км", "transfer": "Такси от Зеленчукской 600–800 ₽", "stay": [{"n": "Гостевой дом в Нижнем Архызе", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе в Нижнем Архызе", "c": "Кавказская", "p": "500 ₽", "r": 4.4}], "rating": 4.7, "reviews": 654, "img": "images/kchr_sao-ran.jpg"}, {"id": "nizhny-arkhyz", "name": "Нижне-Архызское городище", "cat": "древний город", "desc": "Памятник аланской цивилизации X–XII веков с древнейшими христианскими храмами России. На территории городища сохранились три храма X века — Северный, Южный и Среднеархызский, а также наскальное изображение «Лик Христа». Это один из первых центров христианства на территории современной России.", "road": "paved", "roadDesc": "Асфальт до городища, рядом с обсерваторией.", "car": "any", "closed": null, "route": "Черкесск → Нижний Архыз, ~100 км, 2 часа", "public": "Автобус до Зеленчукской, далее такси", "transfer": "Такси от Зеленчукской 600 ₽", "stay": [{"n": "Гостевой дом в Нижнем Архызе", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе в Нижнем Архызе", "c": "Кавказская", "p": "500 ₽", "r": 4.4}], "rating": 4.8, "reviews": 432, "img": "images/kchr_nizhny-arkhyz.jpg"}, {"id": "senty", "name": "Сентинский храм", "cat": "древний храм", "desc": "Один из древнейших христианских храмов на территории России, X век. Находится недалеко от Теберды, построен в эпоху Аланского царства. Сохранились фрагменты фресковой росписи. Один из немногих средневековых храмов Кавказа, дошедших почти в первозданном виде.", "road": "mixed", "roadDesc": "Асфальт до села Нижняя Теберда, далее подъём пешком по склону.", "car": "any", "closed": "Декабрь — Февраль (гололёд на подъёме)", "route": "Черкесск → Теберда → Нижняя Теберда, ~110 км, 2,5 часа", "public": "Автобус до Теберды, далее такси", "transfer": "Такси от Теберды 500 ₽", "stay": [{"n": "Гостевой дом в Теберде", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе в Теберде", "c": "Карачаевская", "p": "500 ₽", "r": 4.4}], "rating": 4.7, "reviews": 321, "img": "images/kchr_senty.jpg"}, {"id": "shoana", "name": "Шоанинский храм", "cat": "древний храм", "desc": "Средневековый храм X века на скале над Кубанью, близ Карачаевска. Построен в эпоху христианизации Алании, стоит на вершине горы с видом на долину Кубани. Подъём занимает около 40 минут по тропе.", "road": "mixed", "roadDesc": "Асфальт до подножия горы, далее пешая тропа на вершину.", "car": "any", "closed": "Декабрь — Февраль", "route": "Черкесск → Карачаевск, ~90 км, 2 часа", "public": "Автобус до Карачаевска, далее такси и пешком", "transfer": "Такси от Карачаевска 400 ₽", "stay": [{"n": "Гостиница в Карачаевске", "t": "Отель", "p": "от 2500 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе в Карачаевске", "c": "Карачаевская", "p": "450 ₽", "r": 4.3}], "rating": 4.6, "reviews": 276, "img": "images/kchr_shoana.jpg"}, {"id": "teberda", "name": "Тебердинский биосферный заповедник", "cat": "заповедник", "desc": "Один из старейших заповедников Кавказа, основан в 1936 году. Охватывает горные леса, альпийские луга, ледники и более 150 озёр. Главные маршруты — к озеру Кара-Кель, перевалу Муху и Домбайской поляне. Богатая фауна: кавказский тур, серна, бурый медведь.", "road": "paved", "roadDesc": "Асфальт до визит-центра в Теберде, маршруты внутри — пешие тропы.", "car": "any", "closed": null, "route": "Черкесск → Теберда, ~100 км, 2 часа", "public": "Автобус Черкесск — Теберда, 2,5 часа", "transfer": "Такси от Черкесска 2500 ₽", "stay": [{"n": "Гостевой дом в Теберде", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе в Теберде", "c": "Карачаевская", "p": "500 ₽", "r": 4.4}], "rating": 4.7, "reviews": 543, "img": "images/kchr_teberda.jpg"}, {"id": "karachaevsk", "name": "Карачаевск", "cat": "город", "desc": "Административный и культурный центр Карачаево-Черкесии в горной долине Кубани. Город у слияния рек Кубань, Теберда и Мара, окружён горами со всех сторон. Отправная точка для поездок в Домбай и Теберду, здесь же — университет и краеведческий музей.", "road": "paved", "roadDesc": "Асфальт по федеральной трассе, хорошее покрытие.", "car": "any", "closed": null, "route": "Черкесск → Карачаевск, ~90 км, 2 часа", "public": "Автобус из Черкесска, 2 часа", "transfer": "Такси из Черкесска 2200 ₽", "stay": [{"n": "Гостиница «Карачаевск»", "t": "Отель", "p": "от 2500 ₽/ночь", "r": 4.4}], "food": [{"n": "Кафе «Эльбрус»", "c": "Карачаевская", "p": "450 ₽", "r": 4.4}], "rating": 4.4, "reviews": 321, "img": "images/kchr_karachaevsk.jpg"}, {"id": "elbrus-north", "name": "Эльбрус (вид с севера)", "cat": "гора", "desc": "Высочайшая вершина Европы, видна с территории Карачаево-Черкесии с хребтов Архыза и Домбая. Хотя формально Эльбрус относится к КБР, лучшие виды на северную стену открываются именно с хребтов КЧР — Мусса-Ачитара и обзорных точек Архыза. Популярны фототуры специально ради этого ракурса.", "road": "mixed", "roadDesc": "Доступ через смотровые площадки Домбая и Архыза, восхождение — отдельный сложный маршрут.", "car": "suv_recommended", "closed": "Октябрь — Май (для восхождений)", "route": "С хребта Мусса-Ачитара (канатная дорога) или со смотровых Архыза", "public": "Канатная дорога в Домбае или джип-тур в Архызе", "transfer": "Билет на канатку 1000–1500 ₽", "stay": [{"n": "Отель «Домбай»", "t": "Отель", "p": "от 4000 ₽/ночь", "r": 4.7}], "food": [{"n": "Кафе на верхней станции", "c": "Кавказская", "p": "600 ₽", "r": 4.4}], "rating": 4.9, "reviews": 432, "img": "images/kchr_elbrus-north.jpg"}]}, {"id": "ossetia", "name": "Северная Осетия — Алания", "emoji": "⛰️", "group": "caucasus", "diff": "medium", "rating": 4.8, "reviews": 1432, "season": "Май — Октябрь", "desc": "Цейское ущелье с ледниками, средневековый некрополь Даргавс, Кармадонское ущелье и древние башенные комплексы в сердце Кавказа", "img": "images/ossetia.jpg", "tags": ["горы", "ледники", "история", "некрополи"], "places": [{"id": "tsey-gorge", "name": "Цейское ущелье", "cat": "ущелье", "desc": "Одно из самых живописных ущелий Кавказа протяжённостью 23 км. Ущелье образовано реками Цейдон и питающими его ледниками. Находится в Северо-Осетинском заповеднике с более чем 1400 видами растений. Популярное место для треккинга и альпинизма.", "road": "paved", "roadDesc": "Асфальт от Алагира, хорошее покрытие практически на всём протяжении.", "car": "any", "closed": "Январь — Февраль (возможен гололёд)", "route": "Владикавказ → Алагир → Цей, ~75 км, 1,5 часа", "public": "Маршрутка Владикавказ — Алагир, далее такси до Цея", "transfer": "Такси от Алагира 800–1200 ₽", "stay": [{"n": "Турбаза «Горянка»", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.6}, {"n": "Гостиница «Цей»", "t": "Отель", "p": "от 3000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе «Цейдон»", "c": "Осетинская", "p": "500 ₽", "r": 4.5}], "rating": 4.9, "reviews": 876, "img": "images/ossetia.jpg"}, {"id": "tsey-glacier", "name": "Цейский ледник", "cat": "ледник", "desc": "Один из крупнейших ледников Северной Осетии, состоит из четырёх ветвей. Ледник известен многочисленными трещинами и ледопадами, где лёд движется особенно быстро. Рядом — Сказский ледник между пиками Лагау и Адай-Хох, получивший название за сказочный прозрачный лёд.", "road": "unpaved", "roadDesc": "От турбазы «Горянка» пешая тропа, около 400 м до начала маршрута, далее — горная тропа 2–3 часа.", "car": "none", "closed": "Ноябрь — Апрель", "route": "Владикавказ → Алагир → Цей, далее пешком от турбазы", "public": "Маршрутка до Алагира, такси до Цея, далее пешком", "transfer": "Такси от Алагира 1000 ₽", "stay": [{"n": "Турбаза «Горянка»", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе «Цейдон»", "c": "Осетинская", "p": "500 ₽", "r": 4.5}], "rating": 4.8, "reviews": 654, "img": "images/ossetia_tsey-glacier.jpg"}, {"id": "dargavs", "name": "Город мёртвых Даргавс", "cat": "некрополь", "desc": "Крупнейший средневековый некрополь Кавказа — около 100 каменных склепов XVI–XVIII веков. Склепы построены на склоне горы над селом Даргавс, высота некоторых достигает трёх метров. По легенде, сюда уходили умирать во время эпидемий, чтобы не заразить живых. Один из самых загадочных памятников Осетии.", "road": "paved", "roadDesc": "Асфальт от Владикавказа через Куртатинское ущелье.", "car": "any", "closed": "Декабрь — Март (снег на горном участке)", "route": "Владикавказ → Даргавс, ~40 км, 1 час", "public": "Организованная экскурсия из Владикавказа", "transfer": "Такси из Владикавказа 1500 ₽", "stay": [{"n": "Гостевой дом в Фиагдоне", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе «Фиагдон»", "c": "Осетинская — пироги", "p": "500 ₽", "r": 4.7}], "rating": 4.9, "reviews": 1098, "img": "images/ossetia_dargavs.jpg"}, {"id": "karmadon", "name": "Кармадонское ущелье", "cat": "ущелье", "desc": "Ущелье, известное сходом ледника Колка в 2002 году. Трагедия унесла жизни более 100 человек, включая съёмочную группу Сергея Бодрова-младшего. Сегодня это место памяти с мемориалом, а также живописное ущелье с минеральными источниками.", "road": "mixed", "roadDesc": "Асфальт до въезда в ущелье, далее местами грунтовая дорога.", "car": "suv_recommended", "closed": null, "route": "Владикавказ → Кармадон, ~35 км, 1 час", "public": "Такси или экскурсия из Владикавказа", "transfer": "Экскурсия из Владикавказа от 1500 ₽/чел", "stay": [{"n": "Гостевой дом во Владикавказе", "t": "Гостевой дом", "p": "от 2500 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе «Дарьял»", "c": "Осетинская", "p": "600 ₽", "r": 4.7}], "rating": 4.7, "reviews": 654, "img": "images/ossetia_kармadon-gorge.jpg"}, {"id": "kurtatinskoe", "name": "Куртатинское ущелье", "cat": "ущелье", "desc": "Одно из красивейших ущелий Осетии с множеством древних башен и монастырей. По ущелью течёт река Фиагдон. Здесь находится Аланский Успенский мужской монастырь — самый высокогорный действующий монастырь России, а также средневековые боевые башни.", "road": "paved", "roadDesc": "Асфальт от Владикавказа, хорошее покрытие на всём протяжении.", "car": "any", "closed": null, "route": "Владикавказ → Фиагдон, ~40 км, 1 час", "public": "Маршрутка Владикавказ — Фиагдон", "transfer": "Такси из Владикавказа 1200 ₽", "stay": [{"n": "Гостевой дом в Фиагдоне", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе «Фиагдон»", "c": "Осетинская", "p": "500 ₽", "r": 4.7}], "rating": 4.8, "reviews": 765, "img": "images/ossetia_kurtatinskoe.jpg"}, {"id": "alan-monastery", "name": "Аланский Успенский монастырь", "cat": "монастырь", "desc": "Самый высокогорный действующий монастырь России, на высоте 1600 м. Основан в 2000 году в Куртатинском ущелье. С территории монастыря открывается панорама на горы и долину Фиагдона. Один из духовных центров современной Осетии.", "road": "paved", "roadDesc": "Асфальт до монастыря, парковка у входа.", "car": "any", "closed": null, "route": "Владикавказ → Фиагдон → монастырь, ~45 км, 1 час", "public": "Маршрутка до Фиагдона, далее пешком", "transfer": "Такси из Владикавказа 1300 ₽", "stay": [{"n": "Гостевой дом в Фиагдоне", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе «Фиагдон»", "c": "Осетинская", "p": "500 ₽", "r": 4.7}], "rating": 4.7, "reviews": 543, "img": "images/ossetia_alan-monastery.jpg"}, {"id": "vladikavkaz", "name": "Владикавказ", "cat": "город", "desc": "Столица Северной Осетии на реке Терек, у выхода из Дарьяльского ущелья. Город основан в 1784 году как крепость. Главная улица — проспект Мира с исторической застройкой XIX века. Рядом — набережная Терека и множество культовых сооружений разных конфессий.", "road": "urban", "roadDesc": "Город, парковки в центре платные.", "car": "any", "closed": null, "route": "По трассе Р-217 «Кавказ»", "public": "Самолёт до Владикавказа или поезд из Москвы", "transfer": "Такси по городу 150–300 ₽", "stay": [{"n": "Отель «Владикавказ»", "t": "Отель", "p": "от 4000 ₽/ночь", "r": 4.6}], "food": [{"n": "Ресторан «Нартон»", "c": "Осетинская", "p": "900 ₽", "r": 4.7}], "rating": 4.6, "reviews": 1234, "img": "images/ossetia_vladikavkaz.jpg"}, {"id": "mukhtarov-mosque", "name": "Суннитская мечеть (мечеть Мухтарова)", "cat": "мечеть", "desc": "Одна из главных достопримечательностей Владикавказа, построена в 1900–1908 годах. Мечеть стоит на берегу Терека и выполнена в египетском стиле по заказу нефтепромышленника Мухтарова. Один из немногих памятников исламской архитектуры такого масштаба на Северном Кавказе.", "road": "urban", "roadDesc": "В черте города, на набережной Терека.", "car": "any", "closed": null, "route": "Центр Владикавказа, набережная Терека", "public": "Пешком от центра города", "transfer": "Такси по городу 150 ₽", "stay": [{"n": "Отель «Владикавказ»", "t": "Отель", "p": "от 4000 ₽/ночь", "r": 4.6}], "food": [{"n": "Ресторан «Нартон»", "c": "Осетинская", "p": "900 ₽", "r": 4.7}], "rating": 4.7, "reviews": 876, "img": "images/ossetia_mukhtarov-mosque.jpg"}, {"id": "prospekt-mira", "name": "Проспект Мира", "cat": "улица", "desc": "Главная пешеходная улица Владикавказа с исторической застройкой XIX века. Здесь сосредоточены старинные особняки, кафе и памятники. Проспект считается одним из красивейших в городах Северного Кавказа, часто сравнивают с Невским проспектом.", "road": "urban", "roadDesc": "Пешеходная зона в центре города.", "car": "any", "closed": null, "route": "Центр Владикавказа", "public": "Пешком от любой точки центра", "transfer": "Не требуется", "stay": [{"n": "Отель «Владикавказ»", "t": "Отель", "p": "от 4000 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе на проспекте", "c": "Осетинская", "p": "600 ₽", "r": 4.5}], "rating": 4.5, "reviews": 654, "img": "images/ossetia_prospekt-mira.jpg"}, {"id": "alagir-gorge", "name": "Алагирское ущелье", "cat": "ущелье", "desc": "Ворота в горную Осетию, ведущие к Цею, Мамисону и Транскавказской магистрали. Ущелье реки Ардон начинается у города Алагир и ведёт в глубь Кавказского хребта. По пути — старинные осетинские сёла и смотровые площадки.", "road": "paved", "roadDesc": "Асфальт, основная дорога в горную часть республики.", "car": "any", "closed": "Декабрь — Март (гололёд)", "route": "Владикавказ → Алагир, ~50 км, 1 час", "public": "Маршрутка Владикавказ — Алагир", "transfer": "Такси из Владикавказа 1000 ₽", "stay": [{"n": "Гостиница в Алагире", "t": "Отель", "p": "от 2000 ₽/ночь", "r": 4.3}], "food": [{"n": "Кафе в Алагире", "c": "Осетинская", "p": "450 ₽", "r": 4.3}], "rating": 4.5, "reviews": 432, "img": "images/ossetia_alagir-gorge.jpg"}, {"id": "dzivgis", "name": "Дзивгисская наскальная крепость", "cat": "крепость", "desc": "Средневековая крепость, встроенная прямо в скалу над селом Дзивгис. Уникальный оборонительный комплекс XVII века, вырубленный в известняковой скале. С крепости открывается вид на Куртатинское ущелье.", "road": "paved", "roadDesc": "Асфальт до села, крепость видна со стороны дороги.", "car": "any", "closed": null, "route": "Владикавказ → Дзивгис, ~35 км, 50 минут", "public": "Маршрутка до Фиагдона, далее попутка", "transfer": "Такси из Владикавказа 1100 ₽", "stay": [{"n": "Гостевой дом в Фиагдоне", "t": "Гостевой дом", "p": "от 2000 ₽/ночь", "r": 4.5}], "food": [{"n": "Кафе «Фиагдон»", "c": "Осетинская", "p": "500 ₽", "r": 4.7}], "rating": 4.6, "reviews": 321, "img": "images/ossetia_dzivgis.jpg"}, {"id": "daryal-gorge", "name": "Дарьяльское ущелье", "cat": "ущелье", "desc": "Узкий каньон на границе с Грузией, известный с античных времён как «Аланские ворота». Ущелье реки Терек прорезает Кавказский хребет, образуя естественный проход между Северным Кавказом и Закавказьем. Упоминается ещё в сочинениях античных авторов.", "road": "paved", "roadDesc": "Асфальт по Военно-Грузинской дороге.", "car": "any", "closed": "Январь — Март (снегопады на перевале)", "route": "Владикавказ → Дарьял, ~25 км, 40 минут", "public": "Маршрутка по Военно-Грузинской дороге", "transfer": "Такси из Владикавказа 700 ₽", "stay": [{"n": "Отель «Владикавказ»", "t": "Отель", "p": "от 4000 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе у дороги", "c": "Осетинская", "p": "450 ₽", "r": 4.3}], "rating": 4.7, "reviews": 543, "img": "images/ossetia_daryal-gorge.jpg"}, {"id": "mamison", "name": "Мамисонский перевал", "cat": "перевал", "desc": "Горный перевал через Кавказский хребет, известный минеральными источниками. Высота перевала — более 2800 м, рядом строится крупный горнолыжный курорт «Мамисон». В долине — множество целебных источников, используемых с давних времён.", "road": "mixed", "roadDesc": "Асфальт до Нижнего Зарамага, далее горная дорога с грунтовыми участками.", "car": "suv_recommended", "closed": "Октябрь — Май", "route": "Владикавказ → Алагир → Зарамаг → Мамисон, ~120 км, 3 часа", "public": "Только на автомобиле или в составе тура", "transfer": "Экскурсия из Владикавказа от 2500 ₽/чел", "stay": [{"n": "Гостевой дом в Зарамаге", "t": "Гостевой дом", "p": "от 1800 ₽/ночь", "r": 4.3}], "food": [{"n": "Кафе в Зарамаге", "c": "Осетинская", "p": "450 ₽", "r": 4.3}], "rating": 4.6, "reviews": 321, "img": "images/ossetia_mamison.jpg"}, {"id": "kazbek", "name": "Вид на Казбек", "cat": "гора", "desc": "Одна из высочайших вершин Кавказа (5033 м), видна с территории Северной Осетии. Хотя сама вершина находится на грузинской стороне, лучшие виды на неё открываются с Военно-Грузинской дороги и окрестностей Владикавказа. Считается священной горой в кавказской мифологии.", "road": "paved", "roadDesc": "Вид со смотровых площадок вдоль Военно-Грузинской дороги.", "car": "any", "closed": null, "route": "Владикавказ → смотровые Военно-Грузинской дороги", "public": "Маршрутка по Военно-Грузинской дороге", "transfer": "Такси из Владикавказа 700–1000 ₽", "stay": [{"n": "Отель «Владикавказ»", "t": "Отель", "p": "от 4000 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе у дороги", "c": "Осетинская", "p": "450 ₽", "r": 4.3}], "rating": 4.8, "reviews": 432, "img": "images/ossetia_kazbek.jpg"}]}, {"id": "kalmykia", "name": "Калмыкия", "emoji": "🐪", "group": "caucasus", "diff": "easy", "rating": 4.6, "reviews": 876, "season": "Апрель — Июнь, Сентябрь — Октябрь", "desc": "Единственный регион Европы, где исповедуют буддизм — Золотая обитель Будды Шакьямуни, степные заповедники с сайгаками и бескрайние ковыльные степи", "img": "images/kalmykia.jpg", "tags": ["буддизм", "степь", "сайгаки", "культура"], "places": [{"id": "golden-abode", "name": "Золотая обитель Будды Шакьямуни", "cat": "буддийский храм", "desc": "Центральный хурул Калмыкии — крупнейший буддийский храм в России и Европе. Построен в 2005 году в центре Элисты, высота здания — около 63 метров. Внутри находится девятиметровая статуя Будды Шакьямуни, одна из крупнейших в Европе. Храм виден из разных районов города и является духовным центром российского буддизма.", "road": "urban", "roadDesc": "Центр Элисты, парковка у храма.", "car": "any", "closed": null, "route": "В черте Элисты, по улице Юрия Клыкова", "public": "Самолёт до Элисты из Москвы, далее такси 15 минут", "transfer": "Такси по городу 150–250 ₽", "stay": [{"n": "Отель «Элиста»", "t": "Отель", "p": "от 3500 ₽/ночь", "r": 4.6}, {"n": "Гостиница «Джангар»", "t": "Отель", "p": "от 3000 ₽/ночь", "r": 4.5}], "food": [{"n": "Ресторан «Белый лотос»", "c": "Калмыцкая", "p": "600 ₽", "r": 4.7}, {"n": "Кафе «Калмыцкая кухня»", "c": "Калмыцкая", "p": "450 ₽", "r": 4.6}], "rating": 4.9, "reviews": 1543, "img": "images/kalmykia_golden-abode.jpg"}, {"id": "elista-city", "name": "Элиста", "cat": "город", "desc": "Столица Калмыкии, единственный буддийский город Европы. Город основан в 1865 году, а современный облик получил после переноса в 1944 году. Сегодня это компактный, зелёный город со множеством буддийских пагод, статуй и памятников калмыцкой культуре.", "road": "urban", "roadDesc": "Город, парковки доступны по центру.", "car": "any", "closed": null, "route": "По трассе Р-22 «Каспий» или Р-216", "public": "Самолёт до Элисты из Москвы, 2,5 часа", "transfer": "Такси по городу 150–300 ₽", "stay": [{"n": "Отель «Элиста»", "t": "Отель", "p": "от 3500 ₽/ночь", "r": 4.6}], "food": [{"n": "Ресторан «Белый лотос»", "c": "Калмыцкая", "p": "600 ₽", "r": 4.7}], "rating": 4.6, "reviews": 987, "img": "images/elista.jpg"}, {"id": "chess-city", "name": "Сити Чесс (Шахматный город)", "cat": "комплекс", "desc": "Уникальный жилой и культурный комплекс, построенный к шахматной Олимпиаде 1998 года. В городке проходили партии мировой шахматной Олимпиады. Сегодня здесь находится Шахматная академия, музей истории шахмат и памятники, посвящённые этой игре. Элиста — один из мировых центров шахматной культуры.", "road": "urban", "roadDesc": "В черте Элисты, отдельный микрорайон.", "car": "any", "closed": null, "route": "Окраина Элисты, 10 минут от центра", "public": "Такси или автобус от центра города", "transfer": "Такси 150–250 ₽", "stay": [{"n": "Отель «Элиста»", "t": "Отель", "p": "от 3500 ₽/ночь", "r": 4.6}], "food": [{"n": "Кафе в Сити Чесс", "c": "Калмыцкая", "p": "500 ₽", "r": 4.5}], "rating": 4.6, "reviews": 654, "img": "images/kalmykia_chess-city.jpg"}, {"id": "pagoda-seven-days", "name": "Пагода Семи Дней", "cat": "пагода", "desc": "Символ Элисты — буддийская пагода с молитвенным барабаном в центре города. Внутри барабана находится более 75 миллионов мантр. По легенде, один оборот барабана равносилен произнесению всех заключённых в нём молитв. Пагода расположена на главной площади Элисты.", "road": "urban", "roadDesc": "Центр Элисты, пешеходная зона.", "car": "any", "closed": null, "route": "Центральная площадь Элисты", "public": "Пешком от центра города", "transfer": "Не требуется", "stay": [{"n": "Отель «Элиста»", "t": "Отель", "p": "от 3500 ₽/ночь", "r": 4.6}], "food": [{"n": "Ресторан «Белый лотос»", "c": "Калмыцкая", "p": "600 ₽", "r": 4.7}], "rating": 4.6, "reviews": 543, "img": "images/kalmykia_pagoda-seven-days.jpg"}, {"id": "chernye-zemli", "name": "Заповедник «Чёрные земли»", "cat": "заповедник", "desc": "Биосферный заповедник, созданный для сохранения сайгаков и полупустынных степей. Единственное место в Европе, где в дикой природе обитают сайгаки — древние антилопы, пережившие ледниковый период. Заповедник включает степные, полупустынные и озёрные экосистемы. Посещение возможно только с разрешения администрации заповедника.", "road": "unpaved", "roadDesc": "Асфальт до посёлка Комсомольский, далее грунтовые дороги заповедника — только в сопровождении егеря.", "car": "suv_recommended", "closed": "Июль — Август (жара, сайгаки уходят глубже в степь)", "route": "Элиста → Яшкуль → Комсомольский, ~250 км, 4 часа", "public": "Только организованный тур с разрешением на въезд", "transfer": "Экскурсия в заповедник от 20 000 ₽ за группу", "stay": [{"n": "Гостевой дом в Комсомольском", "t": "Гостевой дом", "p": "от 1500 ₽/ночь", "r": 4.3}], "food": [{"n": "Кафе в Яшкуле", "c": "Калмыцкая", "p": "400 ₽", "r": 4.2}], "rating": 4.8, "reviews": 432, "img": "images/kalmykia_chernye-zemli.jpg"}, {"id": "saiga", "name": "Сайгаки в степи", "cat": "дикая природа", "desc": "Наблюдение за редчайшими антилопами, занесёнными в Красную книгу. Сайгак — один из древнейших видов млекопитающих, сохранившихся со времён мамонтов. В Калмыкии обитает крупнейшая в Европе популяция. Лучшее время для наблюдения — раннее утро в степи заповедника «Чёрные земли».", "road": "unpaved", "roadDesc": "Доступ только по грунтовым дорогам заповедника в сопровождении егеря.", "car": "suv_required", "closed": "Июль — Август", "route": "Через территорию заповедника «Чёрные земли»", "public": "Только организованный тур", "transfer": "Включено в стоимость экскурсии в заповедник", "stay": [{"n": "Гостевой дом в Комсомольском", "t": "Гостевой дом", "p": "от 1500 ₽/ночь", "r": 4.3}], "food": [{"n": "Кафе в Яшкуле", "c": "Калмыцкая", "p": "400 ₽", "r": 4.2}], "rating": 4.9, "reviews": 321, "img": "images/kalmykia_saiga.jpg"}, {"id": "manych-gudilo", "name": "Озеро Маныч-Гудило", "cat": "озеро", "desc": "Крупное солёное озеро на границе Калмыкии, Ростовской области и Ставрополья. Озеро знаменито колониями розовых пеликанов, цапель и других редких птиц. Вода меняет цвет в зависимости от сезона — от розового до бирюзового из-за особых микроорганизмов. Часть территории входит в заповедник «Ростовский».", "road": "mixed", "roadDesc": "Асфальт до прибрежных посёлков, последние километры — грунтовая дорога.", "car": "any", "closed": null, "route": "Элиста → Яшалта → Маныч-Гудило, ~150 км, 2,5 часа", "public": "Только на автомобиле или в составе тура", "transfer": "Экскурсия из Элисты от 3000 ₽/чел", "stay": [{"n": "Гостевой дом у озера", "t": "Гостевой дом", "p": "от 1600 ₽/ночь", "r": 4.3}], "food": [{"n": "Кафе в Яшалте", "c": "Калмыцкая", "p": "400 ₽", "r": 4.2}], "rating": 4.7, "reviews": 432, "img": "images/kalmykia_manych-gudilo.jpg"}, {"id": "tulip-steppe", "name": "Тюльпановая степь", "cat": "природная достопримечательность", "desc": "Весеннее цветение диких тюльпанов Шренка в калмыцких степях. В конце апреля — начале мая степи Калмыкии покрываются ковром краснокнижных тюльпанов Шренка. Явление длится всего 2–3 недели и привлекает туристов и фотографов со всей страны.", "road": "unpaved", "roadDesc": "Асфальт до ближайших посёлков, в степь — только по грунтовым дорогам.", "car": "suv_recommended", "closed": "Цветение только в конце апреля — начале мая", "route": "Элиста → степные районы республики, 50–100 км в зависимости от локации цветения", "public": "Только организованный тур в сезон цветения", "transfer": "Экскурсия из Элисты от 2500 ₽/чел", "stay": [{"n": "Отель «Элиста»", "t": "Отель", "p": "от 3500 ₽/ночь", "r": 4.6}], "food": [{"n": "Ресторан «Белый лотос»", "c": "Калмыцкая", "p": "600 ₽", "r": 4.7}], "rating": 4.8, "reviews": 543, "img": "images/kalmykia_tulip-steppe.jpg"}]}];
+
+(function mergeDeep() {
+  const byId = {};
+  DEEP_REGIONS.forEach(r => byId[r.id] = r);
+  // подменяем регион целиком, если для него есть глубокие данные
+  for (let i = 0; i < REGIONS.length; i++) {
+    if (byId[REGIONS[i].id]) REGIONS[i] = byId[REGIONS[i].id];
+  }
+  // добавляем те, которых ещё нет в списке
+  DEEP_REGIONS.forEach(r => {
+    if (!REGIONS.some(x => x.id === r.id)) REGIONS.push(r);
+  });
+})();
+
+/* ============ РОУТЫ ============ */
+
+/* ============ РОУТЫ ============ */
+const ROUTES=[
+{id:"altai",title:"Алтай: классический автотур",mode:"car",days:7,img:"images/altai.jpg",desc:"Чуйский тракт, Телецкое озеро и подножие Белухи за неделю",stops:["Горно-Алтайск","Телецкое озеро","Чуйский тракт","Тюнгур"],price:"45 000 ₽"},
+{id:"karelia",title:"Карелия за выходные",mode:"public",days:3,img:"images/karelia.jpg",desc:"Кижи, водопад Кивач и Петрозаводск на поезде из СПб",stops:["Петрозаводск","Кижи","Кивач"],price:"18 000 ₽"},
+{id:"baikal",title:"Байкал: лёд Ольхона",mode:"car",days:5,img:"images/baikal.jpg",desc:"Зимний Байкал — прозрачный лёд, гроты и остров Ольхон",stops:["Иркутск","Листвянка","Ольхон"],price:"38 000 ₽"},
+{id:"kbr",title:"Эльбрус: восхождение на 5642",mode:"car",days:6,img:"images/elbrus.jpg",desc:"Приэльбрусье, канатные дороги и Чегемские водопады",stops:["Минеральные Воды","Терскол","Азау","Чегем"],price:"42 000 ₽"},
+{id:"kchr",title:"Домбай и Архыз",mode:"car",days:5,img:"images/arkhyz.jpg",desc:"Горные курорты Карачаево-Черкесии и Софийские озёра",stops:["Черкесск","Домбай","Архыз"],price:"35 000 ₽"},
+{id:"chechnya",title:"Чечня и Ингушетия",mode:"car",days:4,img:"images/heart-chechni.jpg",desc:"Грозный, Аргунское ущелье и башенные комплексы",stops:["Грозный","Шатой","Магас"],price:"28 000 ₽"},
+{id:"ossetia",title:"Северная Осетия: Алания",mode:"car",days:4,img:"images/dargavs.jpg",desc:"Кармадон, Даргавс и Военно-Грузинская дорога",stops:["Владикавказ","Кармадон","Даргавс","Фиагдон"],price:"26 000 ₽"},
+{id:"dagestan",title:"Дагестан: горы и Каспий",mode:"car",days:6,img:"images/dagestan.jpg",desc:"Сулакский каньон, Дербент и горные аулы",stops:["Махачкала","Сулак","Дербент"],price:"32 000 ₽"},
+{id:"golden",title:"Золотое кольцо",mode:"car",days:5,img:"images/suzdal_museum.jpg",desc:"Суздаль, Владимир, Ярославль и Кострома",stops:["Владимир","Суздаль","Ярославль","Кострома"],price:"24 000 ₽"},
+{id:"kamchatka",title:"Камчатка: земля вулканов",mode:"public",days:10,img:"images/kamchatka.jpg",desc:"Долина гейзеров, вулканы и медведи",stops:["Петропавловск","Долина гейзеров","Ключи"],price:"160 000 ₽"},
+{id:"moscow",title:"Москва: столица за 3 дня",mode:"public",days:3,img:"images/moscow.jpg",desc:"Кремль, Красная площадь, музеи и гастрономия",stops:["Кремль","Арбат","ВДНХ"],price:"20 000 ₽"},
+{id:"spb",title:"Санкт-Петербург: имперский",mode:"public",days:4,img:"images/spb.jpg",desc:"Эрмитаж, Петергоф и белые ночи",stops:["Эрмитаж","Петергоф","Невский"],price:"28 000 ₽"}
+];
+
+/* ============ ОТЗЫВЫ ============ */
+let REVIEWS=[
+{a:"Ирина Б.",c:"Москва",r:5,place:"Золотая обитель Будды Шакьямуни, Элиста",date:"28 сентября 2026",t:"Ехали специально ради хурула и не пожалели. Внутри тихо и очень светло, девятиметровый Будда впечатляет больше, чем на фото. Вход бесплатный, но нужно соблюдать дресс-код: плечи и колени закрыты. Рядом Пагода Семи Дней, всё в пешей доступности. На весь осмотр ушло часа два."},
+{a:"Сергей Д.",c:"Волгоград",r:5,place:"Домбай и Мусса-Ачитара, КЧР",date:"14 августа 2026",t:"Поднялись по канатной дороге на 3012 м — Эльбрус виден как на ладони. Билет на три очереди около 1500 рублей, оно того стоит. Внизу в посёлке нормальные гостевые дома от 2200, кафе с хычинами. Дорога от Черкесска асфальт, ехали на обычной легковой."},
+{a:"Алан Т.",c:"Владикавказ",r:5,place:"Даргавс, Северная Осетия",date:"2 сентября 2026",t:"Были в Даргавсе на закате. Место сильное и немного жуткое: около сотни склепов на склоне, некоторым по семь веков. Экскурсию брали из Владикавказа за 1500 с человека. Советую ехать в будни — в выходные привозят большие группы."},
+{a:"Михаил К.",c:"Новосибирск",r:5,place:"Ольхон, Байкал",date:"12 сентября 2026",t:"Были на Ольхоне в начале сентября — народу мало, природа сказочная. Паром бесплатный. Взяли Дастер — не пожалели, по острову без внедорожника тяжело."},
+{a:"Анастасия Р.",c:"Москва",r:5,place:"Сулакский каньон, Дагестан",date:"3 августа 2026",t:"Дагестан — открытие года! Каньон поражает масштабом. Хинкал и чуду — лучшее, что ели за всё путешествие. Катер по каньону 1200 с человека, идёт около часа."},
+{a:"Елена В.",c:"Санкт-Петербург",r:5,place:"Архыз, КЧР",date:"20 июля 2026",t:"Брали джип-тур к Софийским водопадам — 2500 с человека. Дорога реально только для внедорожника, на легковой не проехать. Водопады мощные, вода ледяная. В самом Архызе много новых отелей, есть где поесть."}
+];
+
+let FEED=[
+{a:"Ольга Ветрова",c:"Казань",t:"Плато Бермамыт на рассвете — это космос",img:"images/kchr_shoana-temple.jpg",likes:342,txt:"Встали в 3 утра, чтобы застать рассвет над Эльбрусом. Дорога только для внедорожника, но вид того стоит.",liked:false},
+{a:"Дмитрий Соколов",c:"Екатеринбург",t:"Прошёл весь Чуйский тракт на легковой",img:"images/kchr_dombay.jpg",likes:521,txt:"Весь Чуйский тракт — отличный асфальт, проехал на обычной Октавии. Внедорожник нужен только если сворачивать к Белухе.",liked:false}
+];
+
+let USER=null;
+const FILTERS={
+all:null,
+nature:["altai","karelia","kamchatka","baikal","yakutia","urals"],
+caucasus:["kbr","kchr","chechnya","dagestan","ossetia","kalmykia"],
+sea:["krasnodar","vladivostok","dagestan"],
+city:["moscow","spb","kazan","nizhny","novosibirsk","rostov","voronezh"],
+golden:["suzdal","vologda","pskov","novgorod","yaroslavl"]
+};
+
+// Фильтры по сложности — вычисляются из поля diff у каждого региона
+function filterByDifficulty(mode, list){
+  if(mode==='easy')   return list.filter(r=>r.diff==='easy');
+  if(mode==='medium') return list.filter(r=>r.diff==='medium');
+  if(mode==='hard')   return list.filter(r=>r.diff==='hard');
+  return list;
+}
+
+/* ============ РОУТИНГ ============ */
+function showPage(page){
+  document.querySelectorAll('[id^="page-"]').forEach(p=>p.style.display='none');
+  const t=document.getElementById('page-'+page);
+  if(t)t.style.display='block';
+  document.querySelectorAll('.navbar-nav button').forEach(b=>b.classList.remove('active'));
+  const btn=document.querySelector(`.navbar-nav button[data-page="${page}"]`);
+  if(btn)btn.classList.add('active');
+  window.scrollTo(0,0);
+  document.querySelectorAll('.mob-nav button').forEach(b=>b.classList.remove('active'));
+  const mb=document.querySelector(`.mob-nav button[data-mob="${page}"]`);
+  if(mb)mb.classList.add('active');
+  if(page==='regions')renderAllRegions();
+  if(page==='routes')renderRoutes();
+  if(page==='community')renderFeed();
+  closeSearch();
+}
+
+/* ============ ТЕМА ============ */
+function initTheme(){if(localStorage.getItem('rg_theme')==='dark')document.documentElement.setAttribute('data-theme','dark');updateThemeIcon()}
+function toggleTheme(){
+  const dark=document.documentElement.getAttribute('data-theme')==='dark';
+  if(dark){document.documentElement.removeAttribute('data-theme');localStorage.setItem('rg_theme','light')}
+  else{document.documentElement.setAttribute('data-theme','dark');localStorage.setItem('rg_theme','dark')}
+  updateThemeIcon();
+}
+function updateThemeIcon(){
+  const b=document.getElementById('themeToggle');
+  if(b)b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+}
+
+/* ============ КАРТОЧКИ ============ */
+function card(r){
+  const diff={easy:'✅ Легко',medium:'⚡ Средне',hard:'🔥 Сложно'}[r.diff]||'';
+  return `<div class="region-card" onclick="openRegion('${r.id}')" tabindex="0">
+    <div class="region-card-img">
+      <img src="${r.img}" alt="${r.name}" loading="lazy">
+      <span class="region-card-badge">${typeLabel(r.type||r.group)}</span>
+      <span class="difficulty-badge difficulty-${r.diff}">${diff}</span>
+    </div>
+    <div class="region-card-body">
+      <h3>${r.emoji} ${r.name}</h3>
+      <p>${r.desc}</p>
+      <div class="region-tags">${r.tags.slice(0,3).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="region-card-meta">
+        <span class="region-rating"><span class="star">★</span> ${r.rating} <span class="region-reviews">(${r.reviews.toLocaleString('ru')})</span></span>
+        <span class="region-season">📅 ${r.season.split(',')[0]}</span>
+      </div>
+    </div>
+  </div>`;
+}
+function typeLabel(g){return{city:'Город',nature:'Природа',sea:'Море',caucasus:'Кавказ',golden:'Золотое кольцо'}[g]||g}
+
+function renderHome(){
+  const f=FILTERS.homeFilter||'all';
+  let list;
+  if(['easy','medium','hard'].includes(f)){
+    list=filterByDifficulty(f,REGIONS);
+  } else if(f!=='all'&&FILTERS[f]){
+    list=REGIONS.filter(r=>FILTERS[f].includes(r.id));
+  } else {
+    list=REGIONS;
+  }
+  const g=document.getElementById('homeGrid');
+  g.innerHTML=list.length?list.slice(0,9).map(card).join('')
+    :'<p class="text-muted" style="grid-column:1/-1;text-align:center;padding:40px">В этой категории пока нет регионов</p>';
+}
+function renderAllRegions(){
+  const q=(document.getElementById('regionSearch')?.value||'').toLowerCase();
+  const f=FILTERS.regionsFilter||'all';
+  let list=REGIONS;
+  if(['easy','medium','hard'].includes(f)){
+    list=filterByDifficulty(f,list);
+  } else if(f!=='all'&&FILTERS[f]){
+    list=list.filter(r=>FILTERS[f].includes(r.id));
+  }
+  if(q)list=list.filter(r=>r.name.toLowerCase().includes(q)||r.desc.toLowerCase().includes(q)||r.tags.some(t=>t.toLowerCase().includes(q)));
+  const g=document.getElementById('allGrid');
+  g.innerHTML=list.length?list.map(card).join(''):'<p class="text-muted" style="grid-column:1/-1;text-align:center;padding:40px">Ничего не найдено</p>';
+}
+function renderRoutes(){
+  const f=FILTERS.routeFilter||'all';
+  let list=ROUTES;
+  if(f==='car')list=list.filter(r=>r.mode==='car');
+  if(f==='public')list=list.filter(r=>r.mode==='public');
+  if(f==='short')list=list.filter(r=>r.days<=5);
+  if(f==='long')list=list.filter(r=>r.days>=6);
+  document.getElementById('routesGrid').innerHTML=list.map(r=>`
+    <div class="region-card" onclick="openRegion('${r.id}')">
+      <div class="region-card-img">
+        <img src="${r.img}" alt="${r.title}" loading="lazy">
+        <span class="region-card-badge">${r.mode==='car'?'🚗 Авто':'🚆 Без машины'}</span>
+        <span class="difficulty-badge difficulty-easy">📅 ${r.days} дней</span>
+      </div>
+      <div class="region-card-body">
+        <h3>${r.title}</h3><p>${r.desc}</p>
+        <div class="region-tags">${r.stops.slice(0,3).map(s=>`<span class="tag">📍 ${s}</span>`).join('')}</div>
+        <div class="region-card-meta"><span class="region-rating">${r.price}</span><span class="region-season">на человека</span></div>
+      </div>
+    </div>`).join('');
+}
+function renderFilters(){
+  const defs=[['all','Все'],['nature','🏔️ Природа'],['caucasus','⛰️ Кавказ'],['sea','🌊 Море'],['city','🏙️ Города'],['golden','🏛️ Золотое кольцо'],['easy','✅ Лёгкий доступ'],['medium','⚡ Средние'],['hard','🔥 Сложные']];
+  const html=defs.map(([k,l])=>`<button class="filter-chip${k==='all'?' active':''}" data-f="${k}" onclick="pickFilter(this,'homeFilter')">${l}</button>`).join('');
+  document.getElementById('homeFilters').innerHTML=html;
+  document.getElementById('allFilters').innerHTML=html.replace(/pickFilter\(this,'homeFilter'\)/g,"pickFilter(this,'regionsFilter')");
+  document.getElementById('routeFilters').innerHTML=
+    [['all','Все'],['car','🚗 На авто'],['public','🚆 Без машины'],['short','⚡ До 5 дней'],['long','🗓️ 6+ дней']]
+    .map(([k,l])=>`<button class="filter-chip${k==='all'?' active':''}" onclick="pickFilter(this,'routeFilter','routes')">${l}</button>`).join('');
+}
+function pickFilter(el,key,page){
+  el.parentElement.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  FILTERS[key]=el.dataset.f;
+  if(key==='homeFilter')renderHome();
+  else if(key==='regionsFilter')renderAllRegions();
+  else renderRoutes();
+}
+function filterRegions(){renderAllRegions()}
+
+/* ============ РЕГИОН ============ */
+function openRegion(id){
+  const r=REGIONS.find(x=>x.id===id);
+  if(!r){showToast('Регион не найден','error');return}
+  const m=document.getElementById('placeModalContent');
+  m.innerHTML=`
+    <div class="modal-hero">
+      <img src="${r.img}" alt="${r.name}">
+      <div class="modal-hero-overlay"></div>
+      <div class="modal-hero-content">
+        <span class="road-pill urban" style="margin-bottom:8px;display:inline-block">${typeLabel(r.group)}</span>
+        <h2>${r.emoji} ${r.name}</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('placeModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="region-meta-bar" style="margin-bottom:24px">
+        <span class="region-meta-item" style="color:var(--text-muted)">⭐ ${r.rating} (${r.reviews.toLocaleString('ru')} отзывов)</span>
+        <span class="region-meta-item" style="color:var(--text-muted)">📅 ${r.season}</span>
+        <span class="region-meta-item" style="color:var(--text-muted)">📍 ${r.places.length} мест</span>
+      </div>
+      <p style="margin-bottom:24px;max-width:none">${r.desc}</p>
+      <h3 style="margin-bottom:16px">Достопримечательности</h3>
+      ${r.places.map((p,i)=>renderPlace(r,p,i)).join('')}
+    </div>`;
+  openModal('placeModal');
+}
+function renderPlace(r,p,i){
+  const rl={paved:'🟢 Асфальт',mixed:'🟡 Смешанная',offroad:'🔴 Бездорожье',boat:'🔵 Лодка/теплоход',helicopter:'🟣 Вертолёт',urban:'⬛ Город'}[p.road]||p.road;
+  return `<div class="attraction-card" style="grid-template-columns:200px 1fr" onclick="openRegionPlace('${r.id}','${p.id}')">
+    <div class="attraction-img" style="height:200px"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+    <div class="attraction-body" style="padding:20px">
+      <h3 style="font-size:1rem;margin-bottom:8px">${p.name}</h3>
+      <p style="font-size:.85rem">${p.desc}</p>
+      <div class="attraction-footer" style="margin-top:12px;padding-top:12px">
+        <span style="font-size:.8rem">⭐ ${p.rating} (${p.reviews.toLocaleString('ru')})</span>
+        <span class="road-pill ${p.road}">${rl}</span>
+      </div>
+      <div id="pdet-${i}" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+        <div class="road-card ${p.road}" style="margin-bottom:12px">
+          <div class="road-icon">${roadIcon(p.road)}</div>
+          <div class="road-info">
+            <h4>Дорога: ${rl}</h4>
+            <p>${p.roadDesc}</p>
+            ${p.closed?`<p style="color:var(--warning);margin-top:8px">⚠️ Закрыто: ${p.closed}</p>`:''}
+          </div>
+        </div>
+        <div class="transport-options">
+          <div class="transport-option"><div class="transport-icon">🚗</div><div class="transport-body"><h4>На автомобиле</h4><p>${p.route}</p></div></div>
+          <div class="transport-option"><div class="transport-icon">🚆</div><div class="transport-body"><h4>Без машины</h4><p>${p.public}</p></div></div>
+          <div class="transport-option" style="background:var(--success-bg);border-color:rgba(26,122,74,.3)"><div class="transport-icon">💰</div><div class="transport-body"><h4>Трансфер и такси</h4><p>${p.transfer}</p></div></div>
+        </div>
+        <h4 style="margin:16px 0 10px;font-size:.9rem">🏠 Где остановиться</h4>
+        <div class="stay-grid">${p.stay.map(s=>`<div class="stay-card"><div class="stay-type">${s.t}</div><h4>${s.n}</h4><div class="stay-price">${s.p}</div><div style="font-size:.75rem;margin-top:4px">⭐ ${s.r}</div></div>`).join('')}</div>
+        <h4 style="margin:16px 0 10px;font-size:.9rem">🍽️ Где поесть</h4>
+        <div class="food-list">${p.food.map(f=>`<div class="food-card"><div class="food-info"><h4>${f.n}</h4><p>${f.c}</p></div><div class="food-price">${f.p}<div style="font-size:.75rem">⭐ ${f.r}</div></div></div>`).join('')}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function roadIcon(t){return{paved:'🛣️',mixed:'⛰️',offroad:'🏔️',boat:'⛵',helicopter:'🚁',urban:'🚇'}[t]||'📍'}
+
+
+/* ============ СТРАНИЦА МЕСТА (полноэкранный вид) ============ */
+const ROAD_META = {
+  paved:      {label:'Асфальт',        cls:'paved',      icon:'🛣️'},
+  mixed:      {label:'Смешанное',      cls:'mixed',      icon:'⛰️'},
+  unpaved:    {label:'Грунтовка',      cls:'mixed',      icon:'🪨'},
+  offroad:    {label:'Бездорожье',     cls:'offroad',    icon:'🏔️'},
+  boat:       {label:'Только по воде', cls:'boat',       icon:'⛵'},
+  helicopter: {label:'Только вертолёт',cls:'helicopter', icon:'🚁'},
+  urban:      {label:'Город',          cls:'urban',      icon:'🚇'},
+  rail:       {label:'Ж/д',            cls:'urban',      icon:'🚆'}
+};
+const CAR_META = {
+  any:              {t:'Проедет любая машина', cls:'success', i:'✅'},
+  suv_recommended:  {t:'Лучше внедорожник',    cls:'',        i:'⚠️'},
+  suv_required:     {t:'Нужен внедорожник',    cls:'danger',  i:'⛔'},
+  none:             {t:'Без машины',           cls:'',        i:'🚫'}
+};
+function roadMeta(k){ return ROAD_META[k] || {label:k, cls:'urban', icon:'📍'}; }
+
+let _pdRegion = null, _pdPlace = null;
+
+function openDetail(regionId, placeId){
+  const r = REGIONS.find(x => x.id === regionId);
+  if (!r) return;
+  const p = r.places.find(x => x.id === placeId);
+  if (!p) { openRegion(regionId); return; }
+  _pdRegion = r; _pdPlace = p;
+
+  const rm = roadMeta(p.road);
+  const cm = CAR_META[p.car] || CAR_META.any;
+  const others = r.places.filter(x => x.id !== p.id).slice(0, 4);
+
+  const el = document.getElementById('placeDetail');
+  el.innerHTML = `
+    <div class="pd-topbar">
+      <button class="pd-back" onclick="closeDetail()">← Назад</button>
+      <span class="pd-crumb">${r.emoji} ${r.name} · ${p.name}</span>
+    </div>
+    <div class="pd-hero">
+      <img src="${p.img}" alt="${p.name}">
+      <div class="pd-hero-txt">
+        <span class="pd-cat">${p.cat || 'Место'}</span>
+        <h1>${p.name}</h1>
+        <div class="pd-hero-meta">
+          <span>⭐ ${p.rating} · ${p.reviews.toLocaleString('ru')} отзывов</span>
+          <span>📍 ${r.name}</span>
+        </div>
+      </div>
+    </div>
+    <div class="pd-body">
+      <p class="pd-lead">${p.desc}</p>
+
+      <div class="pd-block">
+        <h2>🛣️ Дорога</h2>
+        <div class="pd-warn ${cm.cls}">
+          <span style="font-size:1.1rem;line-height:1.2">${cm.i}</span>
+          <span>${cm.t}</span>
+        </div>
+        <div class="pd-card">
+          <h3><span class="pd-badge road-pill ${rm.cls}">${rm.icon} ${rm.label}</span></h3>
+          <p style="margin-top:10px">${p.roadDesc}</p>
+        </div>
+        ${p.closed ? `<div class="pd-warn"><span>⚠️</span><span>Сезонное закрытие: ${p.closed}. Уточняйте проезд перед выездом.</span></div>` : ''}
+      </div>
+
+      <div class="pd-block">
+        <h2>🧭 Как добраться</h2>
+        <div class="pd-card">
+          <h3>🚗 На автомобиле</h3>
+          <p>${p.route}</p>
+        </div>
+        <div class="pd-card">
+          <h3>🚌 Без машины</h3>
+          <p>${p.public}</p>
+        </div>
+        <div class="pd-card">
+          <h3>💰 Трансфер и такси</h3>
+          <p>${p.transfer}</p>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h2>🏠 Где остановиться</h2>
+        <div class="pd-row">
+          ${p.stay.map(s => `<div class="pd-mini">
+            <div class="k">${s.t}</div>
+            <div class="v" style="font-size:.85rem">${s.n}</div>
+            <div style="font-size:.8rem;color:var(--success);font-weight:700;margin-top:4px">${s.p}</div>
+            <div style="font-size:.72rem;color:var(--text-muted)">⭐ ${s.r}</div>
+          </div>`).join('')}
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h2>🍽️ Где поесть</h2>
+        <div class="pd-row">
+          ${p.food.map(f => `<div class="pd-mini">
+            <div class="v" style="font-size:.85rem">${f.n}</div>
+            <div class="k" style="margin-top:4px">${f.c}</div>
+            <div style="font-size:.8rem;font-weight:700;margin-top:2px">${f.p}</div>
+            <div style="font-size:.72rem;color:var(--text-muted)">⭐ ${f.r}</div>
+          </div>`).join('')}
+        </div>
+      </div>
+
+      ${others.length ? `<div class="pd-block">
+        <h2>📍 Рядом в ${r.name}</h2>
+        <div class="pd-near">
+          ${others.map(o => `<div class="pd-near-card" onclick="openDetail('${r.id}','${o.id}')">
+            <img src="${o.img}" alt="${o.name}" loading="lazy">
+            <span>${o.name}</span>
+          </div>`).join('')}
+        </div>
+      </div>` : ''}
+
+      <div class="pd-block" style="font-size:.78rem;color:var(--text-muted);
+        border-top:1px solid var(--border);padding-top:var(--sp-4)">
+        Данные о дороге актуальны на момент публикации. Проезд меняется после дождей,
+        оползней и в межсезонье — проверяйте перед выездом.
+      </div>
+    </div>
+
+    <div class="pd-cta">
+      <button class="btn btn-secondary" onclick="showToast('Скоро: сообщения об изменениях','success')">⚠️ Сообщить об изменении</button>
+      <button class="btn btn-primary" onclick="openRegion('${r.id}')">Все места →</button>
+    </div>`;
+
+  el.classList.add('open');
+  el.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+
+  if (history.pushState) history.pushState({region:regionId, place:placeId}, '', `#/${regionId}/${placeId}`);
+}
+
+function closeDetail(){
+  const el = document.getElementById('placeDetail');
+  if (!el) return;
+  el.classList.remove('open');
+  document.body.style.overflow = '';
+  if (location.hash) history.replaceState(null, '', location.pathname);
+}
+
+/* Открыть карточку места прямо из списка региона в модалке */
+function openRegionPlace(regionId, placeId){
+  closeModal('placeModal');
+  setTimeout(() => openDetail(regionId, placeId), 120);
+}
+
+/* История: кнопка «назад» браузера закрывает страницу места */
+window.addEventListener('popstate', () => {
+  const el = document.getElementById('placeDetail');
+  if (el && el.classList.contains('open')) closeDetail();
+});
+
+/* Открытие по прямой ссылке #/region/place */
+document.addEventListener('DOMContentLoaded', () => {
+  const m = location.hash.match(/^#\/([a-z\-]+)\/([a-z\-]+)$/i);
+  if (m) setTimeout(() => openDetail(m[1], m[2]), 300);
+});
+
+/* ============ ОТЗЫВЫ И ЛЕНТА ============ */
+function renderReviews(){
+  document.getElementById('reviewsContainer').innerHTML=REVIEWS.map(r=>`
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-avatar">${r.a[0]}</div>
+        <div class="review-meta"><h4>${r.a} <span style="font-weight:400;color:var(--text-muted);font-size:.8rem">из ${r.c}</span></h4><p>${r.date} · 📍 ${r.place}</p></div>
+        <div style="margin-left:auto;color:#f59e0b">${'★'.repeat(r.r)}<span style="color:var(--n-300)">${'★'.repeat(5-r.r)}</span></div>
+      </div>
+      <p class="review-text">${r.t}</p>
+    </div>`).join('');
+}
+function renderFeed(){
+  document.getElementById('feedContainer').innerHTML=FEED.map((f,i)=>`
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-avatar">${f.a[0]}</div>
+        <div class="review-meta"><h4>${f.a}</h4><p>📍 ${f.c}</p></div>
+      </div>
+      <h4 style="margin-bottom:8px">${f.t}</h4>
+      <p class="review-text">${f.txt}</p>
+      ${f.img?`<div style="margin-top:12px;border-radius:12px;overflow:hidden;max-height:320px"><img src="${f.img}" style="width:100%;height:100%;object-fit:cover" loading="lazy"></div>`:''}
+      <div style="margin-top:12px"><button class="btn btn-ghost btn-sm" onclick="like(${i})">${f.liked?'❤️':'🤍'} ${f.likes}</button></div>
+    </div>`).join('');
+}
+function like(i){FEED[i].liked=!FEED[i].liked;FEED[i].likes+=FEED[i].liked?1:-1;renderFeed()}
+function publishPost(){
+  const t=document.getElementById('postText').value.trim();
+  if(t.length<10){showToast('Напишите подробнее','error');return}
+  FEED.unshift({a:USER?USER.name:'Вы',c:USER?USER.city:'Ваш город',t:t.slice(0,50),img:null,likes:0,txt:t,liked:false});
+  document.getElementById('postText').value='';
+  renderFeed();showToast('Опубликовано! 🎉');
+}
+
+/* ============ ПОИСК ============ */
+function openSearch(){document.getElementById('searchOverlay').style.display='block';setTimeout(()=>document.getElementById('globalSearch').focus(),50)}
+function closeSearch(){const o=document.getElementById('searchOverlay');if(o)o.style.display='none';const r=document.getElementById('searchResults');if(r)r.style.display='none'}
+function doSearch(q){
+  const box=document.getElementById('searchResults');
+  if(!q||q.length<2){box.style.display='none';return}
+  const ql=q.toLowerCase(),res=[];
+  REGIONS.forEach(r=>{
+    r.places.forEach(p=>{
+      if(p.name.toLowerCase().includes(ql))res.push({n:p.name,s:r.name,img:p.img,fn:()=>{closeSearch();openRegion(r.id)}});
+    });
+    if(r.name.toLowerCase().includes(ql))res.push({n:r.name,s:r.desc.slice(0,50),img:r.img,fn:()=>{closeSearch();openRegion(r.id)}});
+  });
+  box.innerHTML=res.length?res.slice(0,8).map((r,i)=>`
+    <div class="search-result-item" onclick="window._sr[${i}]()">
+      <img class="search-result-img" src="${r.img}" alt="${r.n}" loading="lazy">
+      <div class="search-result-info"><h4>${r.n}</h4><p>${r.s}</p></div>
+    </div>`).join(''):'<div style="padding:20px;text-align:center;color:var(--text-muted);font-size:.875rem">Ничего не найдено</div>';
+  window._sr=res.slice(0,8).map(r=>r.fn);
+  box.style.display='block';
+}
+
+/* ============ МОДАЛКИ ============ */
+function openModal(id){const m=document.getElementById(id);if(m){m.classList.add('open');document.body.style.overflow='hidden'}}
+function closeModal(id){const m=document.getElementById(id);if(m){m.classList.remove('open');document.body.style.overflow=''}}
+function switchAuth(t,btn){
+  document.getElementById('loginForm').classList.toggle('hidden',t!=='login');
+  document.getElementById('registerForm').classList.toggle('hidden',t!=='register');
+  document.querySelectorAll('.auth-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function pickMode(el,mode){
+  document.querySelectorAll('.travel-mode-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');el.dataset.mode=mode;
+}
+function doLogin(){
+  const e=document.getElementById('loginEmail').value.trim();
+  if(!e){showToast('Введите email','error');return}
+  USER={name:e.split('@')[0],email:e,city:'',mode:'car_sedan'};
+  closeModal('authModal');updateAuth();showToast('Добро пожаловать, '+USER.name+'! 👋');
+}
+function doRegister(){
+  const n=document.getElementById('regName').value.trim();
+  const e=document.getElementById('regEmail').value.trim();
+  if(!n||!e){showToast('Заполните имя и email','error');return}
+  const m=document.querySelector('.travel-mode-card.active')?.dataset.mode||'car_sedan';
+  USER={name:n,email:e,city:document.getElementById('regCity').value.trim(),mode:m};
+  closeModal('authModal');updateAuth();showToast('Аккаунт создан! 🎉');
+}
+function updateAuth(){
+  const b=document.getElementById('loginBtn');
+  if(b)b.textContent=USER?'👤 '+USER.name:'Войти';
+  if(b&&USER)b.onclick=()=>{USER=null;updateAuth();showToast('Вы вышли')};
+}
+function submitReview(){
+  const p=document.getElementById('reviewPlace').value;
+  const r=document.querySelector('input[name="rr"]:checked')?.value;
+  const t=document.getElementById('reviewText').value.trim();
+  if(!p||!r||t.length<20){showToast('Заполните все поля (отзыв от 20 символов)','error');return}
+  REVIEWS.unshift({a:USER?USER.name:'Гость',c:USER?.city||'Россия',r:+r,place:p,date:new Date().toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'}),t});
+  closeModal('reviewModal');renderReviews();showToast('Отзыв опубликован! 🎉');
+}
+
+/* ============ МАРШРУТ ============ */
+function buildRoute(){
+  const to=document.getElementById('toRegion').value;
+  const from=document.getElementById('fromCity').value;
+  const mode=document.getElementById('travelMode').value;
+  const res=document.getElementById('routeResult');
+  if(!to){showToast('Выберите регион','error');return}
+  const r=REGIONS.find(x=>x.id===to);
+  const pl=r.places[0];
+  const ml={car_sedan:'🚗 Легковой',car_suv:'🚙 Внедорожник',public:'🚆 Без машины'}[mode];
+  res.style.display='block';
+  res.innerHTML=`<h4>🗺️ ${from} → ${r.name}</h4>
+    <p style="color:rgba(255,255,255,.6);font-size:.8rem;margin-bottom:16px">${ml}</p>
+    ${r.places.slice(0,3).map((p,i)=>`
+      <div class="route-step-item">
+        <span class="step-num">${i+1}</span>
+        <span class="step-text"><strong>${p.name}</strong><br><span style="font-size:.8rem;color:rgba(255,255,255,.6)">${mode==='public'?p.public:p.route}</span></span>
+        <span class="step-cost">${roadShort(p.road)}</span>
+      </div>`).join('')}
+    <div style="margin-top:16px;padding:12px;background:rgba(77,216,144,.12);border-radius:8px;font-size:.8rem;color:rgba(255,255,255,.75)">
+      💡 Трансфер: ${pl.transfer}
+    </div>`;
+}
+function roadShort(t){return{paved:'Асфальт',mixed:'Смешанная',offroad:'4x4',boat:'Лодка',helicopter:'Вертолёт',urban:'Город'}[t]||t}
+
+function buildPlan(){
+  const to=document.getElementById('pTo').value;
+  const from=document.getElementById('pFrom').value;
+  const mode=document.getElementById('pMode').value;
+  const res=document.getElementById('planResult');
+  if(!to){showToast('Выберите регион','error');return}
+  const r=REGIONS.find(x=>x.id===to);
+  res.innerHTML=`<div style="background:var(--info-bg);border:1px solid rgba(29,95,168,.3);border-radius:12px;padding:20px">
+    <h4 style="margin-bottom:12px">✅ Маршрут готов</h4>
+    <p style="font-size:.9rem;margin-bottom:12px"><strong>${from} → ${r.name}</strong> · ${r.season}</p>
+    <div style="display:grid;gap:10px">
+      ${r.places.slice(0,3).map(p=>`<div style="padding:10px;background:var(--surface);border-radius:8px;font-size:.85rem">
+        <strong>${p.name}</strong> · ⭐ ${p.rating}<br>
+        <span style="font-size:.75rem;color:var(--text-muted)">🛣️ ${roadShort(p.road)} · 🏠 ${p.stay[0]?.n||'—'} ${p.stay[0]?.p||''}</span>
+      </div>`).join('')}
+    </div></div>`;
+}
+
+/* ============ TOAST ============ */
+function showToast(msg,type='success'){
+  const c=document.getElementById('toastContainer');
+  const t=document.createElement('div');
+  t.className='toast toast-'+type;
+  t.textContent=(type==='success'?'✅ ':'❌ ')+msg;
+  c.appendChild(t);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('show')));
+  setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300)},3000);
+}
+
+/* ============ INIT ============ */
+function initSelects(){
+  const opts=REGIONS.map(r=>`<option value="${r.id}">${r.emoji} ${r.name}</option>`).join('');
+  ['heroRegion','toRegion','pTo'].forEach(id=>{const s=document.getElementById(id);if(s)s.insertAdjacentHTML('beforeend',opts)});
+  document.getElementById('reviewPlace').insertAdjacentHTML('beforeend',
+    REGIONS.flatMap(r=>r.places.map(p=>`<option>${p.name}, ${r.name}</option>`)).join(''));
+}
+function initStats(){
+  const places=REGIONS.reduce((n,r)=>n+r.places.length,0);
+  document.getElementById('statRegions').textContent=REGIONS.length;
+  document.getElementById('statPlaces').textContent=places;
+}
+function renderTopPlaces(){
+  const all=REGIONS.flatMap(r=>r.places.map(p=>({...p,rid:r.id,rname:r.name})));
+  // Золотая обитель Будды Шакьямуни — особо отмеченное место сезона, всегда первое
+  all.sort((a,b)=>{
+    const aGold = a.id==='golden-abode' ? 1 : 0;
+    const bGold = b.id==='golden-abode' ? 1 : 0;
+    if (aGold !== bGold) return bGold - aGold;
+    return b.rating-a.rating;
+  });
+  document.getElementById('topPlaces').innerHTML=all.slice(0,6).map((p,i)=>`
+    <div class="region-card" onclick="openRegionPlace('${p.rid}','${p.id}')">
+      <div class="region-card-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${i===0?'<span class="region-card-badge" style="background:linear-gradient(135deg,#f59e0b,#e63030)">🏆 Место сезона</span>':''}
+      </div>
+      <div class="region-card-body">
+        <div style="font-size:.72rem;color:var(--accent);font-weight:700;text-transform:uppercase;margin-bottom:6px">${p.rname}</div>
+        <h3 style="font-size:1rem">${p.name}</h3>
+        <p style="font-size:.82rem;margin-top:4px">${(p.desc||'').slice(0,80)}${(p.desc||'').length>80?'…':''}</p>
+        <div class="region-card-meta"><span class="region-rating"><span class="star">★</span> ${p.rating} <span class="region-reviews">(${(p.reviews||0).toLocaleString('ru')})</span></span><span class="road-pill ${p.road}">${roadShort(p.road)}</span></div>
+      </div>
+    </div>`).join('');
+}
+function quickSearch(){
+  const v=document.getElementById('heroRegion').value;
+  if(v)openRegion(v);else showPage('regions');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  initTheme();
+  initSelects();
+  initStats();
+  renderFilters();
+  renderHome();
+  renderTopPlaces();
+  renderReviews();
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();closeModal('placeModal');closeModal('authModal')}});
+});
+</script>
+</body>
+</html>
