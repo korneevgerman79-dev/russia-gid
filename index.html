@@ -68,10 +68,13 @@ border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm);height:64px}
 font-weight:800;color:var(--text-heading)}
 .navbar-logo .logo-icon{font-size:1.5rem}
 .navbar-logo em{color:var(--accent);font-style:normal}
-.navbar-logo .logo-img{height:38px;width:auto;display:block}
+.navbar-logo .logo-img{height:40px;width:auto;display:block}
+.navbar-logo .logo-dark{display:none}
+[data-theme="dark"] .navbar-logo .logo-light{display:none}
+[data-theme="dark"] .navbar-logo .logo-dark{display:block}
 .navbar-logo .logo-txt{display:none}
 @media(min-width:900px){.navbar-logo .logo-txt{display:inline}}
-@media(max-width:900px){.navbar-logo .logo-img{height:34px}}
+@media(max-width:900px){.navbar-logo .logo-img{height:34px;width:auto}}
 .navbar-nav{display:flex;align-items:center;gap:var(--sp-1);list-style:none}
 .navbar-nav button{background:none;border:none;color:var(--text-body);
 padding:var(--sp-2) var(--sp-3);border-radius:var(--r-sm);font-size:.9rem;
@@ -555,7 +558,8 @@ transition-duration:.01ms!important;animation-duration:.01ms!important}}
 <nav class="navbar">
   <div class="container navbar-inner">
     <a class="navbar-logo" href="#" onclick="showPage('home');return false" aria-label="РоссияГид — на главную">
-      <img src="images/brand/logo-mark.png" alt="РоссияГид" class="logo-img">
+      <img src="images/brand/logo-nav.png" alt="РоссияГид" class="logo-img logo-light">
+      <img src="images/brand/logo-nav-dark.png" alt="РоссияГид" class="logo-img logo-dark">
     </a>
     <ul class="navbar-nav" id="mainNav">
       <li><button data-page="home" class="active" onclick="showPage('home')">Главная</button></li>
